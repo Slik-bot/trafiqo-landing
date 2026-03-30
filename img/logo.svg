@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40" role="img" aria-label="TRAFIQO">
-  <circle cx="8" cy="20" r="3" fill="#9B7FE8"/>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 180 40"
+     role="img"
+     aria-label="TRAFIQO">
   <text
-    x="18"
-    y="27"
+    x="8"
+    y="28"
     font-family="Syne, sans-serif"
     font-weight="700"
     font-size="22"
     letter-spacing="5"
-    fill="#F0ECFF"
-  >TRAFIQO</text>
+    fill="#F0ECFF">TRAFIQO</text>
+  <circle cx="172" cy="10" r="4" fill="#9B7FE8"/>
 </svg>

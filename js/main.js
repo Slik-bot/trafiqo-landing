@@ -312,6 +312,27 @@ const initPhoneScreens = () => {
   }, 2500);
 };
 
+// ─── ТОЧКИ ПРОГРЕССА СКРОЛЛА ─────────────────────────────
+const initScrollDots = () => {
+  const pairs = [
+    {
+      wrap: document.querySelector('.services__scroll-wrap'),
+      dots: document.querySelectorAll('#servicesDots .scroll-dot')
+    }
+  ];
+
+  pairs.forEach(({ wrap, dots }) => {
+    if (!wrap || !dots.length) return;
+    wrap.addEventListener('scroll', () => {
+      const total = wrap.scrollWidth - wrap.clientWidth;
+      if (!total) return;
+      const ratio = wrap.scrollLeft / total;
+      const idx = Math.round(ratio * (dots.length - 1));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    }, { passive: true });
+  });
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -324,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimation();
   initHeroChat();
   initPhoneScreens();
+  initScrollDots();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
