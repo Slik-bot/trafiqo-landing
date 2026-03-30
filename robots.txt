@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /img/og-cover.jpg
+
+Sitemap: https://trafiqo.ru/sitemap.xml

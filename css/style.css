@@ -681,3 +681,102 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .bot-widget__toggle { width: 60px; height: 60px; }
   .bot-widget__bubble { max-width: 280px; }
 }
+
+/* ─── БОТ-ЧАТ ───────────────────────────────────────────── */
+.bot-widget__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 280px;
+  padding: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.bot-message {
+  max-width: 80%;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: var(--radius-lg);
+}
+
+.bot-message--bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.bot-message--user {
+  align-self: flex-end;
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.bot-typing {
+  align-self: flex-start;
+  padding: 10px 14px;
+  letter-spacing: 3px;
+  color: var(--color-text-muted);
+}
+
+.bot-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.bot-option {
+  padding: 6px 16px;
+  font-size: 12px;
+  color: var(--color-accent-lt);
+  border: 0.5px solid var(--color-accent);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.bot-option:hover { background: var(--color-accent); color: var(--color-text); }
+
+.bot-input-wrap {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 0.5px solid var(--color-border);
+}
+
+.bot-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.bot-input:focus { border-color: var(--color-accent); }
+
+.bot-send {
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.bot-send:hover { opacity: 0.85; }
+
+.contact-form__hint {
+  font-size: 11px;
+  color: rgba(255, 120, 120, 0.9);
+  margin-top: 4px;
+}
