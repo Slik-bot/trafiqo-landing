@@ -1,3 +1,5 @@
+history.scrollRestoration = 'manual';
+
 // ─── КОНСТАНТЫ ───────────────────────────────────────────
 const BREAKPOINT_MOBILE = 768;
 const BREAKPOINT_TABLET = 1200;
