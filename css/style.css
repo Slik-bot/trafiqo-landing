@@ -628,12 +628,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .section-hero__container { flex-direction: row; align-items: center; gap: 48px; }
   .section-hero__content { flex: 1; }
 
-  .section-hero__visuals {
-    position: relative;
-    flex: 1;
-    flex-direction: row;
-    min-height: 340px;
-  }
+  .section-hero__visuals { position: relative; flex: 1; flex-direction: row; min-height: 340px; }
 
   .ui-browser { position: absolute; top: 0; left: 0; max-width: 280px; }
   .ui-phone   { position: absolute; top: 40px; right: 0; max-width: 130px; }
@@ -650,22 +645,8 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 
   .process-timeline { flex-direction: row; }
 
-  .process-step {
-    flex: 1;
-    flex-direction: column;
-    padding-left: 0;
-    padding-top: 56px;
-    padding-bottom: 0;
-  }
-
-  .process-step::before {
-    top: 18px;
-    left: 36px;
-    right: 0;
-    bottom: auto;
-    width: auto;
-    height: 1px;
-  }
+  .process-step { flex: 1; flex-direction: column; padding-left: 0; padding-top: 56px; padding-bottom: 0; }
+  .process-step::before { top: 18px; left: 36px; right: 0; bottom: auto; width: auto; height: 1px; }
 
   .process-step__number { top: 0; left: 0; }
 
@@ -792,4 +773,22 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   font-size: 11px;
   color: rgba(255, 120, 120, 0.9);
   margin-top: 4px;
+}
+
+/* ─── @MEDIA 767px (mobile) ─────────────────────────────── */
+@media (max-width: 767px) {
+  .section { padding: 48px 16px; }
+  .section-hero { padding: 70px 16px 24px; gap: 16px; }
+  .section__title { margin-bottom: 24px; }
+  .section-label { margin-bottom: 6px; }
+  .trust-bar__item { padding: 16px 8px; }
+  .trust-bar__number { font-size: 26px; }
+  .service-card { padding: 16px 14px; min-width: 130px; }
+  .service-card__icon { width: 24px; height: 24px; margin-bottom: 8px; }
+  .service-card__title { font-size: 13px; }
+  .service-card__description { font-size: 12px; line-height: 1.4; }
+  .process__step { gap: 10px; margin-bottom: 20px; }
+  .faq-item__question { padding: 14px 0; font-size: 14px; }
+  .contact-form { gap: 10px; }
+  .footer { padding: 20px 16px; }
 }
