@@ -1,0 +1,125 @@
+/* ─── ANIMATIONS.CSS ─────────────────────────────────────
+   Только transform и opacity. GPU-анимации без reflow.
+   Все анимации — внутри prefers-reduced-motion: no-preference
+   ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ─── GSAP СТАРТОВЫЕ СОСТОЯНИЯ ─────────────────────── */
+  .gsap-fade-up    { opacity: 0; transform: translateY(40px); }
+  .gsap-fade-in    { opacity: 0; }
+  .gsap-slide-left { opacity: 0; transform: translateX(-40px); }
+  .gsap-slide-right{ opacity: 0; transform: translateX(40px); }
+
+  .section-hero__title,
+  .section-label,
+  .section-hero__subtitle,
+  .section-hero__cta-group {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .hero__ui-browser,
+  .hero__ui-phone,
+  .hero__ui-chat {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* ─── UI-ОБЪЕКТЫ: will-change ───────────────────────── */
+  .hero__ui-browser { will-change: transform; }
+  .hero__ui-phone   { will-change: transform; }
+  .hero__ui-chat    { will-change: transform; }
+
+  /* ─── КНОПКИ ────────────────────────────────────────── */
+  .btn--primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* ─── КАРТОЧКИ УСЛУГ ────────────────────────────────── */
+  .service-card:hover {
+    box-shadow: 0 20px 60px rgba(91, 45, 142, 0.15);
+  }
+
+  /* ─── FAQ АККОРДЕОН ─────────────────────────────────── */
+  .faq-item__body {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .faq-item__body:not([hidden]) {
+    opacity: 1;
+  }
+
+  /* ─── ПРОЦЕСС: ШАГИ ЗАГОРАЮТСЯ ──────────────────────── */
+  .process-step {
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+  }
+
+  .process-step.is-active {
+    opacity: 1;
+  }
+
+  .process-step__number {
+    transition: background 0.5s ease, border-color 0.5s ease;
+  }
+
+  .process-step.is-active .process-step__number {
+    background: rgba(91, 45, 142, 0.35);
+    border-color: var(--color-accent-lt);
+  }
+
+  /* ─── @keyframes ────────────────────────────────────── */
+
+  @keyframes bot-bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(91, 45, 142, 0.3); }
+    50%       { box-shadow: 0 0 40px rgba(91, 45, 142, 0.6); }
+  }
+
+  @keyframes fade-scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ─── BOT WIDGET ────────────────────────────────────── */
+  .bot-widget__avatar {
+    animation: bot-bounce 2s ease-in-out infinite;
+  }
+
+  .bot-widget.is-open .bot-widget__avatar {
+    animation-play-state: paused;
+  }
+
+  /* ─── CTA ПУЛЬСАЦИЯ ─────────────────────────────────── */
+  .btn--glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .btn--glow:hover {
+    animation-play-state: paused;
+  }
+
+  /* ─── FORM SUCCESS ──────────────────────────────────── */
+  .contact-form__success:not([hidden]) {
+    animation: fade-scale-in 0.4s ease forwards;
+  }
+
+  /* ─── TRUST COUNT-UP КУРСОР ─────────────────────────── */
+  .trust-item__number.is-counting::after {
+    content: '|';
+    animation: cursor-blink 0.7s step-end infinite;
+  }
+
+}
