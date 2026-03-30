@@ -993,3 +993,64 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   opacity: 0;
 }
 
+/* ─── ПРЕМИАЛЬНЫЕ АКЦЕНТЫ ────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(
+    135deg, #C084FC 0%, #9B7FE8 40%,
+    #F0ECFF 70%, #9B7FE8 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.text-accent {
+  color: var(--color-accent-lt);
+  font-style: italic;
+}
+
+.trust__number {
+  background: linear-gradient(135deg, #C084FC, #9B7FE8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(155,127,232,0.4));
+}
+
+.nav__link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #9B7FE8, #C084FC);
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after { width: 100%; }
+.nav__link:hover { color: var(--color-accent-lt); }
+
+.section + .section {
+  position: relative;
+}
+
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 0.5px;
+  background: linear-gradient(
+    90deg, transparent,
+    rgba(155,127,232,0.2), transparent
+  );
+}
+
