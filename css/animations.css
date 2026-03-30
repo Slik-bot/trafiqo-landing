@@ -5,26 +5,13 @@
 
 @media (prefers-reduced-motion: no-preference) {
 
-  /* ─── GSAP СТАРТОВЫЕ СОСТОЯНИЯ ─────────────────────── */
+  /* ─── GSAP УТИЛИТАРНЫЕ КЛАССЫ (выставляются через JS) ── */
   .gsap-fade-up    { opacity: 0; transform: translateY(40px); }
   .gsap-fade-in    { opacity: 0; }
   .gsap-slide-left { opacity: 0; transform: translateX(-40px); }
   .gsap-slide-right{ opacity: 0; transform: translateX(40px); }
 
-  .section-hero__title,
-  .section-label,
-  .section-hero__subtitle,
-  .section-hero__cta-group {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .hero__ui-browser,
-  .hero__ui-phone,
-  .hero__ui-chat {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+  /* Hero-элементы: начальные состояния только через gsap.set() в JS */
 
   /* ─── UI-ОБЪЕКТЫ: will-change ───────────────────────── */
   .hero__ui-browser { will-change: transform; }

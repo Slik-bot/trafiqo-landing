@@ -20,19 +20,37 @@ const initAOS = () => {
 };
 
 // ─── 2. GSAP HERO АНИМАЦИЯ ───────────────────────────────
+const HERO_SELECTORS = [
+  '.section-hero .section-label',
+  '.section-hero__title',
+  '.section-hero__subtitle',
+  '.section-hero__cta-group',
+  '.hero__ui-browser',
+  '.hero__ui-phone',
+  '.hero__ui-chat'
+];
+
 const initHeroAnimation = () => {
   if (prefersReducedMotion()) return;
-  if (typeof gsap === 'undefined') return;
+
+  if (typeof gsap === 'undefined') {
+    document.querySelectorAll(HERO_SELECTORS.join(','))
+      .forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    return;
+  }
+
+  gsap.set(HERO_SELECTORS.slice(0, 4), { opacity: 0, y: 30 });
+  gsap.set(HERO_SELECTORS.slice(4),    { opacity: 0, y: 20 });
 
   const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.8 } });
 
-  tl.from('.section-hero .section-label', { opacity: 0, y: 30 })
-    .from('.section-hero__title',       { opacity: 0, y: 30 }, '-=0.55')
-    .from('.section-hero__subtitle',    { opacity: 0, y: 30 }, '-=0.55')
-    .from('.section-hero__cta-group',   { opacity: 0, y: 30 }, '-=0.55')
-    .from(
+  tl.to('.section-hero .section-label', { opacity: 1, y: 0 })
+    .to('.section-hero__title',          { opacity: 1, y: 0 }, '-=0.55')
+    .to('.section-hero__subtitle',       { opacity: 1, y: 0 }, '-=0.55')
+    .to('.section-hero__cta-group',      { opacity: 1, y: 0 }, '-=0.55')
+    .to(
       ['.hero__ui-browser', '.hero__ui-phone', '.hero__ui-chat'],
-      { opacity: 0, y: 40, stagger: 0.2 },
+      { opacity: 1, y: 0, stagger: 0.2 },
       '-=0.4'
     );
 };
