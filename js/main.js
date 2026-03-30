@@ -159,12 +159,8 @@ const initFAQ = () => {
     if (!answer) return;
     item.classList.add('is-open');
     btn?.setAttribute('aria-expanded', 'true');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-    answer.addEventListener('transitionend', () => {
-      if (item.classList.contains('is-open')) {
-        answer.style.maxHeight = 'none';
-      }
-    }, { once: true });
+    const height = answer.scrollHeight;
+    answer.style.maxHeight = height + 'px';
   };
 
   list.addEventListener('click', (e) => {

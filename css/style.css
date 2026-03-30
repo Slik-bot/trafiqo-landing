@@ -495,11 +495,13 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   display: block;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
 }
 
 .faq-item.is-open .faq-item__answer,
-.faq-item.is-open .faq-item__body { padding-bottom: 20px; }
+.faq-item.is-open .faq-item__body { opacity: 1; padding-bottom: 20px; }
 
 .faq-item__body p { font-size: 14px; color: var(--color-text-muted); }
 
