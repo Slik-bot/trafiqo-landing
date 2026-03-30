@@ -63,32 +63,49 @@
         </div>
       </div>
       <div class="section-hero__visuals" aria-hidden="true">
-        <div class="hero__ui-browser">
-          <div class="hero__ui-browser-bar">
-            <span class="hero__ui-dot"></span>
-            <span class="hero__ui-dot"></span>
-            <span class="hero__ui-dot"></span>
-          </div>
-          <div class="hero__ui-browser-screen">
-            <div class="hero__ui-line hero__ui-line--wide"></div>
-            <div class="hero__ui-line hero__ui-line--medium"></div>
-            <div class="hero__ui-line hero__ui-line--narrow"></div>
-            <div class="hero__ui-block"></div>
-          </div>
-        </div>
-        <div class="hero__ui-phone">
-          <div class="hero__ui-phone-notch"></div>
-          <div class="hero__ui-phone-screen">
-            <div class="hero__ui-line"></div>
-            <div class="hero__ui-line hero__ui-line--medium"></div>
-            <div class="hero__ui-card"></div>
-            <div class="hero__ui-card"></div>
+        <div class="ui-browser">
+          <div class="ui-browser__bar"><span class="ui-dot"></span><span class="ui-dot"></span><span class="ui-dot"></span><div class="ui-browser__addr"></div></div>
+          <div class="ui-browser__content">
+            <div class="ui-browser__section">
+              <div class="ui-browser__section-label">Hero</div>
+              <div class="ui-browser__section-line accent"></div><div class="ui-browser__section-line"></div></div>
+            <div class="ui-browser__section">
+              <div class="ui-browser__section-label">Услуги</div>
+              <div class="ui-browser__section-line accent" style="width:50%"></div><div class="ui-browser__section-line"></div>
+              <div class="ui-browser__section-line" style="width:60%"></div></div>
+            <div class="ui-browser__section">
+              <div class="ui-browser__section-label">О нас</div>
+              <div class="ui-browser__section-line"></div><div class="ui-browser__section-line accent" style="width:40%"></div></div>
+            <div class="ui-browser__section">
+              <div class="ui-browser__section-label">Контакты</div>
+              <div class="ui-browser__section-line accent" style="width:80%"></div><div class="ui-browser__section-line" style="width:55%"></div></div>
           </div>
         </div>
-        <div class="hero__ui-chat">
-          <div class="hero__ui-chat-msg hero__ui-chat-msg--in">Привет! Нужен сайт</div>
-          <div class="hero__ui-chat-msg hero__ui-chat-msg--out">Уже делаем!</div>
-          <div class="hero__ui-chat-msg hero__ui-chat-msg--in">Когда готово?</div>
+        <div class="ui-phone">
+          <div class="ui-phone__notch"></div>
+          <div class="ui-phone__screens-wrap">
+            <div class="ui-phone__screen is-active" data-screen="0">
+              <div class="ui-phone__screen-label">Главная</div>
+              <div class="ui-ph-s a"></div><div class="ui-ph-s b"></div><div class="ui-ph-btn"></div>
+            </div>
+            <div class="ui-phone__screen" data-screen="1">
+              <div class="ui-phone__screen-label">Каталог</div>
+              <div class="ui-ph-s"></div><div class="ui-ph-s a" style="width:60%"></div><div class="ui-ph-s b"></div>
+            </div>
+            <div class="ui-phone__screen" data-screen="2">
+              <div class="ui-phone__screen-label">Профиль</div>
+              <div class="ui-ph-s a" style="width:40%"></div><div class="ui-ph-s"></div><div class="ui-ph-btn"></div>
+            </div>
+          </div>
+          <div class="ui-phone__nav"><span class="ui-ph-dot a"></span><span class="ui-ph-dot"></span><span class="ui-ph-dot"></span></div>
+        </div>
+        <div class="ui-chat">
+          <div class="ui-chat__header">
+            <div class="ui-chat__avatar">T</div>
+            <div class="ui-chat__name">TRAFIQO</div>
+            <div class="ui-chat__status"></div>
+          </div>
+          <div class="ui-chat__body" id="heroChat"></div>
         </div>
       </div>
     </div>

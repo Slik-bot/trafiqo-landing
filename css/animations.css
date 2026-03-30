@@ -13,10 +13,11 @@
 
   /* Hero-элементы: начальные состояния только через gsap.set() в JS */
 
-  /* ─── UI-ОБЪЕКТЫ: will-change ───────────────────────── */
-  .hero__ui-browser { will-change: transform; }
-  .hero__ui-phone   { will-change: transform; }
-  .hero__ui-chat    { will-change: transform; }
+  /* ─── UI-ОБЪЕКТЫ: will-change + float-анимации ─────── */
+  .ui-browser { will-change: transform; animation: float-browser 6s ease-in-out infinite; }
+  .ui-phone   { will-change: transform; animation: float-phone 7s ease-in-out infinite 1s; }
+  .ui-chat    { will-change: transform; animation: float-chat 5s ease-in-out infinite 0.5s; }
+  .ui-browser__content { animation: browser-scroll 5s ease-in-out infinite; }
 
   /* ─── КНОПКИ ────────────────────────────────────────── */
   .btn--primary:active {
@@ -58,6 +59,26 @@
   }
 
   /* ─── @keyframes ────────────────────────────────────── */
+
+  @keyframes float-browser {
+    0%, 100% { transform: rotate(-3deg) translateY(0px); }
+    50%       { transform: rotate(-3deg) translateY(-12px); }
+  }
+  @keyframes float-phone {
+    0%, 100% { transform: rotate(4deg) translateY(0px); }
+    50%       { transform: rotate(4deg) translateY(-16px); }
+  }
+  @keyframes float-chat {
+    0%, 100% { transform: rotate(-1deg) translateY(0px); }
+    50%       { transform: rotate(-1deg) translateY(-8px); }
+  }
+  @keyframes browser-scroll {
+    0%   { transform: translateY(0); }
+    30%  { transform: translateY(0); }
+    60%  { transform: translateY(-40px); }
+    90%  { transform: translateY(-40px); }
+    100% { transform: translateY(0); }
+  }
 
   @keyframes bot-bounce {
     0%   { transform: translateY(0); }

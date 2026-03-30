@@ -228,9 +228,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 /* UI-объекты Hero */
-.hero__ui-browser,
-.hero__ui-phone,
-.hero__ui-chat {
+.ui-browser, .ui-phone, .ui-chat {
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.03);
   overflow: hidden;
@@ -239,70 +237,41 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
-.hero__ui-browser { width: 100%; max-width: 320px; transform: rotate(-3deg); }
+.ui-browser { width: 100%; max-width: 320px; }
+.ui-browser__bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 0.5px solid var(--color-border); background: rgba(255,255,255,0.02); }
+.ui-dot { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); }
+.ui-browser__addr { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.04); margin-left: 8px; }
+.ui-browser__content { overflow: hidden; }
+.ui-browser__section { padding: 8px; border-bottom: 0.5px solid rgba(255,255,255,0.05); margin-bottom: 4px; }
+.ui-browser__section-label { font-size: 7px; color: rgba(155,127,232,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; font-family: var(--font-body); }
+.ui-browser__section-line { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.08); margin-bottom: 2px; }
+.ui-browser__section-line.accent { background: rgba(91,45,142,0.5); width: 70%; }
 
-.hero__ui-browser-bar {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  padding: 10px 14px;
-  border-bottom: 0.5px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.02);
-}
+.ui-phone { width: 100%; max-width: 160px; align-self: flex-end; }
+.ui-phone__notch { width: 40px; height: 8px; margin: 10px auto; border-radius: 4px; background: var(--color-border); }
+.ui-phone__screens-wrap { position: relative; height: 80px; overflow: hidden; }
+.ui-phone__screen { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.5s ease; padding: 6px 8px; }
+.ui-phone__screen.is-active { opacity: 1; }
+.ui-phone__screen-label { font-size: 7px; color: rgba(155,127,232,0.6); margin-bottom: 4px; font-family: var(--font-body); }
+.ui-ph-s { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.07); margin-bottom: 4px; }
+.ui-ph-s.a { background: rgba(91,45,142,0.3); width: 75%; }
+.ui-ph-s.b { width: 50%; }
+.ui-ph-btn { height: 16px; border-radius: var(--radius-sm); background: rgba(91,45,142,0.4); width: 60%; margin-top: 4px; }
+.ui-phone__nav { display: flex; justify-content: center; gap: 4px; padding: 6px; }
+.ui-ph-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+.ui-ph-dot.a { background: rgba(155,127,232,0.7); }
 
-.hero__ui-dot { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); }
-
-.hero__ui-browser-screen { display: flex; flex-direction: column; gap: 10px; padding: 16px; }
-
-.hero__ui-line { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.07); }
-.hero__ui-line--wide   { width: 80%; }
-.hero__ui-line--medium { width: 55%; }
-.hero__ui-line--narrow { width: 35%; }
-
-.hero__ui-block {
-  height: 56px;
-  border-radius: var(--radius-md);
-  background: rgba(91, 45, 142, 0.2);
-  margin-top: 4px;
-}
-
-.hero__ui-phone { width: 100%; max-width: 160px; transform: rotate(4deg); align-self: flex-end; }
-
-.hero__ui-phone-notch { width: 40px; height: 8px; margin: 10px auto; border-radius: 4px; background: var(--color-border); }
-
-.hero__ui-phone-screen { display: flex; flex-direction: column; gap: 8px; padding: 8px 12px 16px; }
-
-.hero__ui-card { height: 36px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.05); }
-
-.hero__ui-chat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  max-width: 240px;
-  padding: 14px;
-  transform: rotate(-1deg);
-}
-
-.hero__ui-chat-msg {
-  padding: 8px 12px;
-  font-size: 12px;
-  line-height: 1.4;
-  color: var(--color-text-muted);
-}
-
-.hero__ui-chat-msg--in {
-  align-self: flex-start;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md);
-}
-
-.hero__ui-chat-msg--out {
-  align-self: flex-end;
-  background: var(--color-accent);
-  color: var(--color-text);
-  border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md);
-}
+.ui-chat { display: flex; flex-direction: column; width: 100%; max-width: 240px; }
+.ui-chat__header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border); background: rgba(255,255,255,0.02); }
+.ui-chat__avatar { width: 20px; height: 20px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--color-text); }
+.ui-chat__name { font-size: 9px; font-weight: 600; color: var(--color-text); letter-spacing: 1px; font-family: var(--font-body); flex: 1; }
+.ui-chat__status { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+.ui-chat__body { display: flex; flex-direction: column; padding: 8px; gap: 4px; min-height: 60px; overflow: hidden; }
+.ui-chat__message { font-size: 8px; line-height: 1.4; padding: 5px 8px; border-radius: 3px 8px 8px 8px; margin-bottom: 4px; max-width: 85%; color: rgba(232,228,240,0.7); font-family: var(--font-body); opacity: 0; transform: translateY(4px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.ui-chat__message.is-visible { opacity: 1; transform: translateY(0); }
+.ui-chat__message.bot { background: rgba(91,45,142,0.2); border: 0.5px solid rgba(91,45,142,0.3); }
+.ui-chat__message.user { background: rgba(255,255,255,0.06); margin-left: auto; border-radius: 8px 3px 8px 8px; }
+.ui-chat__cursor { display: inline-block; width: 1px; height: 9px; background: rgba(155,127,232,0.8); margin-left: 1px; vertical-align: middle; animation: cursor-blink 0.7s ease-in-out infinite; }
 
 /* ─── TRUST BAR ─────────────────────────────────────────── */
 .section-trust {
@@ -639,9 +608,9 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
     min-height: 340px;
   }
 
-  .hero__ui-browser { position: absolute; top: 0; left: 0; max-width: 280px; }
-  .hero__ui-phone   { position: absolute; top: 40px; right: 0; max-width: 130px; }
-  .hero__ui-chat    { position: absolute; bottom: 0; left: 20px; max-width: 200px; }
+  .ui-browser { position: absolute; top: 0; left: 0; max-width: 280px; }
+  .ui-phone   { position: absolute; top: 40px; right: 0; max-width: 130px; }
+  .ui-chat    { position: absolute; bottom: 0; left: 20px; max-width: 200px; }
 
   .section-trust__container { grid-template-columns: repeat(4, 1fr); }
 

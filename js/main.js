@@ -25,9 +25,9 @@ const HERO_SELECTORS = [
   '.section-hero__title',
   '.section-hero__subtitle',
   '.section-hero__cta-group',
-  '.hero__ui-browser',
-  '.hero__ui-phone',
-  '.hero__ui-chat'
+  '.ui-browser',
+  '.ui-phone',
+  '.ui-chat'
 ];
 
 const initHeroAnimation = () => {
@@ -49,7 +49,7 @@ const initHeroAnimation = () => {
     .to('.section-hero__subtitle',       { opacity: 1, y: 0 }, '-=0.55')
     .to('.section-hero__cta-group',      { opacity: 1, y: 0 }, '-=0.55')
     .to(
-      ['.hero__ui-browser', '.hero__ui-phone', '.hero__ui-chat'],
+      ['.ui-browser', '.ui-phone', '.ui-chat'],
       { opacity: 1, y: 0, stagger: 0.2 },
       '-=0.4'
     );
@@ -78,9 +78,9 @@ const initParallax = () => {
     });
   };
 
-  makeParallax('.hero__ui-browser', -60);
-  makeParallax('.hero__ui-phone',   -40);
-  makeParallax('.hero__ui-chat',    -30);
+  makeParallax('.ui-browser', -60);
+  makeParallax('.ui-phone',   -40);
+  makeParallax('.ui-chat',    -30);
 };
 
 // ─── 4. БУРГЕР-МЕНЮ ──────────────────────────────────────
@@ -259,6 +259,56 @@ const initSmoothScroll = () => {
   });
 };
 
+// ─── ЖИВОЙ ЧАТ В HERO ────────────────────────────────────
+const initHeroChat = () => {
+  const container = document.getElementById('heroChat');
+  if (!container) return;
+
+  const messages = [
+    { type: 'bot',  text: 'Привет! Чем могу помочь?' },
+    { type: 'user', text: 'Нужен сайт под бизнес' },
+    { type: 'bot',  text: 'Отлично! Расскажите подробнее о задаче' },
+    { type: 'user', text: 'Хочу лендинг с анимациями' },
+    { type: 'bot',  text: 'Сделаем. Когда хотите начать?' },
+    { type: 'user', text: 'Как можно скорее' },
+    { type: 'bot',  text: 'Обсудим завтра в 10:00?' }
+  ];
+
+  let index = 0;
+  const showNext = () => {
+    if (index >= messages.length) {
+      setTimeout(() => { container.innerHTML = ''; index = 0; showNext(); }, 2000);
+      return;
+    }
+    const msg = messages[index];
+    const el = document.createElement('div');
+    el.className = `ui-chat__message ${msg.type}`;
+    el.textContent = msg.text;
+    container.appendChild(el);
+    container.scrollTop = container.scrollHeight;
+    requestAnimationFrame(() => el.classList.add('is-visible'));
+    index++;
+    setTimeout(showNext, 1200 + msg.text.length * 30);
+  };
+  setTimeout(showNext, 1000);
+};
+
+// ─── ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ ТЕЛЕФОНА ───────────────────────
+const initPhoneScreens = () => {
+  const screens = document.querySelectorAll('.ui-phone__screen');
+  const dots    = document.querySelectorAll('.ui-phone__nav .ui-ph-dot');
+  if (!screens.length) return;
+
+  let current = 0;
+  setInterval(() => {
+    screens[current].classList.remove('is-active');
+    dots[current]?.classList.remove('a');
+    current = (current + 1) % screens.length;
+    screens[current].classList.add('is-active');
+    dots[current]?.classList.add('a');
+  }, 2500);
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initAOS();
@@ -268,6 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initNavHighlight();
   initHeroAnimation();
+  initHeroChat();
+  initPhoneScreens();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
