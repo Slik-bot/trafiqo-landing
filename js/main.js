@@ -353,6 +353,48 @@ const initScrollDots = () => {
   });
 };
 
+// ─── SMART HEADER ────────────────────────────────────────
+const initSmartHeader = () => {
+  const header = document.querySelector(
+    'header, .site-header, #main-header'
+  );
+  if (!header) return;
+
+  let lastScroll = 0;
+  let ticking = false;
+
+  const updateHeader = () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll <= 10) {
+      header.classList.remove('is-hidden', 'is-scrolled');
+      lastScroll = currentScroll;
+      ticking = false;
+      return;
+    }
+
+    if (currentScroll > 50) {
+      header.classList.add('is-scrolled');
+    }
+
+    if (currentScroll > lastScroll && currentScroll > 80) {
+      header.classList.add('is-hidden');
+    } else if (currentScroll < lastScroll) {
+      header.classList.remove('is-hidden');
+    }
+
+    lastScroll = currentScroll;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -366,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroChat();
   initPhoneScreens();
   initScrollDots();
+  initSmartHeader();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();

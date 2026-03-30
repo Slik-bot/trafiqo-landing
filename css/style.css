@@ -138,16 +138,9 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 .btn--outline:hover { transform: translateY(-2px); border-color: var(--color-accent-lt); }
 
 /* ─── HEADER ────────────────────────────────────────────── */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  width: 100%;
-  border-bottom: 0.5px solid var(--color-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(7, 5, 15, 0.8);
-}
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; transform: translateY(0); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, backdrop-filter 0.3s ease; }
+.header.is-hidden { transform: translateY(-110%); }
+.header.is-scrolled { background: rgba(6,3,15,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 0.5px solid rgba(255,255,255,0.08); }
 
 .header__container {
   display: flex;
