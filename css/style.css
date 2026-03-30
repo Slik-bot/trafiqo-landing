@@ -486,17 +486,20 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 
 .faq-item__btn:hover { color: var(--color-accent-lt); }
 
-.faq-item__icon { flex-shrink: 0; color: var(--color-accent-lt); transition: transform 0.3s ease; }
+.faq-item__icon { flex-shrink: 0; color: var(--color-accent-lt); }
+.faq-item__icon, .faq-item__btn svg { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.faq-item.is-open .faq-item__icon, .faq-item.is-open .faq-item__btn svg { transform: rotate(45deg); }
 
-.faq-item__btn[aria-expanded="true"] .faq-item__icon { transform: rotate(180deg); }
-
+.faq-item__answer,
 .faq-item__body {
-  overflow: hidden;
+  display: block;
   max-height: 0;
-  transition: max-height 0.3s ease, padding-bottom 0.3s ease;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.faq-item__body:not([hidden]) { max-height: 400px; padding-bottom: 20px; }
+.faq-item.is-open .faq-item__answer,
+.faq-item.is-open .faq-item__body { padding-bottom: 20px; }
 
 .faq-item__body p { font-size: 14px; color: var(--color-text-muted); }
 
@@ -778,6 +781,8 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .faq-item__question { padding: 14px 0; font-size: 14px; }
   .contact-form { gap: 10px; }
   .footer { padding: 20px 16px; }
+  * { -webkit-overflow-scrolling: touch; }
+  .section-hero::before, .section-hero::after, body::before, body::after { display: none; }
 }
 
 /* ─── СЕКЦИЯ О НАС ──────────────────────────────────────── */
