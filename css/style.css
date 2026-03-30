@@ -1054,3 +1054,55 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   );
 }
 
+/* ─── SHIMMER ─────────────────────────────────────────────── */
+.section-label {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-lt) 0%,
+    #ffffff 40%,
+    var(--color-accent-lt) 60%,
+    #C084FC 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  animation: shimmer-slow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.service-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(155,127,232,0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+.service-card:hover::before {
+  animation: shimmer 1s ease forwards;
+}
+

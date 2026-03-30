@@ -193,3 +193,13 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-bubble { animation: none; display: none; }
 }
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes shimmer-slow {
+  0%   { background-position: -300% center; }
+  100% { background-position: 300% center; }
+}
