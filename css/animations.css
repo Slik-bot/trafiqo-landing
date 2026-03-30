@@ -137,38 +137,59 @@
 
   /* ─── ПУЗЫРЬКИ HERO ─────────────────────────────────── */
   @keyframes bubble-rise {
-    0%   { transform: translateY(100vh) scale(0.8); opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 0.6; }
-    100% { transform: translateY(-100px) scale(1.1); opacity: 0; }
+    0%   { transform: translateY(110vh) scale(0.6); opacity: 0; }
+    5%   { opacity: 1; }
+    85%  { transform: translateY(-20vh) scale(1.2); opacity: 0.7; }
+    95%  { transform: translateY(-30vh) scale(1.8); opacity: 0.2; }
+    100% { transform: translateY(-35vh) scale(0.1); opacity: 0; }
+  }
+
+  @keyframes bubble-rise-sway {
+    0%   { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+    5%   { opacity: 1; }
+    30%  { transform: translateY(70vh) translateX(15px) scale(0.8); }
+    60%  { transform: translateY(30vh) translateX(-10px) scale(1.1); }
+    85%  { transform: translateY(-15vh) translateX(8px) scale(1.3); opacity: 0.6; }
+    95%  { transform: translateY(-28vh) translateX(0) scale(2.0); opacity: 0.15; }
+    100% { transform: translateY(-35vh) scale(0.1); opacity: 0; }
+  }
+
+  @keyframes bubble-rise-fast {
+    0%   { transform: translateY(110vh) scale(0.4); opacity: 0; }
+    8%   { opacity: 0.8; }
+    80%  { transform: translateY(-10vh) scale(1.0); opacity: 0.5; }
+    92%  { transform: translateY(-25vh) scale(1.6); opacity: 0.1; }
+    100% { transform: translateY(-30vh) scale(0.05); opacity: 0; }
   }
 
   .hero-bubble {
     position: absolute;
     bottom: -20px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, rgba(155,127,232,0.6), rgba(91,45,142,0.2));
-    border: 0.5px solid rgba(155,127,232,0.3);
-    animation: bubble-rise linear infinite;
+    background: radial-gradient(circle at 30% 30%, rgba(180,140,255,0.7), rgba(91,45,142,0.2));
+    border: 0.5px solid rgba(155,127,232,0.4);
     will-change: transform, opacity;
   }
 
-  .hero-bubble:nth-child(1)  { width:8px;  height:8px;  left:8%;   animation-duration:12s; animation-delay:0s;    }
-  .hero-bubble:nth-child(2)  { width:14px; height:14px; left:18%;  animation-duration:18s; animation-delay:2s;    }
-  .hero-bubble:nth-child(3)  { width:6px;  height:6px;  left:28%;  animation-duration:10s; animation-delay:4s;    }
-  .hero-bubble:nth-child(4)  { width:18px; height:18px; left:38%;  animation-duration:22s; animation-delay:1s;    }
-  .hero-bubble:nth-child(5)  { width:5px;  height:5px;  left:48%;  animation-duration:9s;  animation-delay:6s;    }
-  .hero-bubble:nth-child(6)  { width:12px; height:12px; left:58%;  animation-duration:15s; animation-delay:3s;    }
-  .hero-bubble:nth-child(7)  { width:7px;  height:7px;  left:65%;  animation-duration:11s; animation-delay:5s;    }
-  .hero-bubble:nth-child(8)  { width:16px; height:16px; left:72%;  animation-duration:20s; animation-delay:0.5s;  }
-  .hero-bubble:nth-child(9)  { width:5px;  height:5px;  left:80%;  animation-duration:8s;  animation-delay:7s;    }
-  .hero-bubble:nth-child(10) { width:10px; height:10px; left:88%;  animation-duration:14s; animation-delay:2.5s;  }
-  .hero-bubble:nth-child(11) { width:4px;  height:4px;  left:93%;  animation-duration:7s;  animation-delay:9s;    }
-  .hero-bubble:nth-child(12) { width:13px; height:13px; left:12%;  animation-duration:17s; animation-delay:4.5s;  }
+  .hero-bubble:nth-child(1)  { width:8px;  height:8px;  left:8%;  animation: bubble-rise-sway 14s ease-in-out infinite; animation-delay:0s;   }
+  .hero-bubble:nth-child(2)  { width:14px; height:14px; left:22%; animation: bubble-rise-sway 20s ease-in-out infinite; animation-delay:3s;   }
+  .hero-bubble:nth-child(3)  { width:18px; height:18px; left:42%; animation: bubble-rise-sway 24s ease-in-out infinite; animation-delay:1s;   }
+  .hero-bubble:nth-child(4)  { width:10px; height:10px; left:68%; animation: bubble-rise-sway 16s ease-in-out infinite; animation-delay:5s;   }
+  .hero-bubble:nth-child(5)  { width:6px;  height:6px;  left:15%; animation: bubble-rise 11s linear infinite;           animation-delay:2s;   }
+  .hero-bubble:nth-child(6)  { width:12px; height:12px; left:55%; animation: bubble-rise 17s linear infinite;           animation-delay:4s;   }
+  .hero-bubble:nth-child(7)  { width:5px;  height:5px;  left:75%; animation: bubble-rise 9s linear infinite;            animation-delay:7s;   }
+  .hero-bubble:nth-child(8)  { width:16px; height:16px; left:85%; animation: bubble-rise 22s linear infinite;           animation-delay:0.5s; }
+  .hero-bubble:nth-child(9)  { width:4px;  height:4px;  left:32%; animation: bubble-rise-fast 8s linear infinite;       animation-delay:6s;   }
+  .hero-bubble:nth-child(10) { width:5px;  height:5px;  left:48%; animation: bubble-rise-fast 7s linear infinite;       animation-delay:2.5s; }
+  .hero-bubble:nth-child(11) { width:4px;  height:4px;  left:62%; animation: bubble-rise-fast 9s linear infinite;       animation-delay:8s;   }
+  .hero-bubble:nth-child(12) { width:6px;  height:6px;  left:90%; animation: bubble-rise-fast 10s linear infinite;      animation-delay:1.5s; }
 
   @media (max-width: 767px) {
     .hero-bubble:nth-child(n+7) { display: none; }
-    .hero-bubble { opacity: 0.7; }
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bubble { animation: none; display: none; }
 }

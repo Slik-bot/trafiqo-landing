@@ -35,10 +35,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 /* ─── BODY + ФОН ────────────────────────────────────────── */
 body {
   position: relative;
-  background-color: var(--color-bg);
+  background-color: #06030F;
   background-image:
-    radial-gradient(ellipse 120% 80% at 50% -10%, #2D1060 0%, #1A0A3A 35%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(91, 45, 142, 0.2) 0%, transparent 60%);
+    radial-gradient(ellipse 160% 100% at 50% -10%, #4A1A9E 0%, #2D0E6B 20%, #180840 45%, #06030F 70%),
+    radial-gradient(ellipse 70% 50% at 85% 85%, rgba(120,60,200,0.2) 0%, transparent 65%);
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 400;
