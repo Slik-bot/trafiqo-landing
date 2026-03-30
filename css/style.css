@@ -215,6 +215,8 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   max-width: 560px;
 }
 
+.section-hero__title { font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; }
+
 .section-hero__subtitle { font-size: 15px; color: var(--color-text-muted); }
 
 .section-hero__cta-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
@@ -351,6 +353,10 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 .service-card:hover::before { left: 120%; }
+
+.service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,127,232,0.4), transparent); opacity: 0; transition: opacity 0.3s ease; }
+.service-card:hover::after { opacity: 1; }
+.section-divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,127,232,0.5), transparent); margin: 0 auto 48px; }
 
 .service-card__icon   { color: var(--color-accent-lt); }
 .service-card__title  { font-size: 16px; font-weight: 600; color: var(--color-text); }

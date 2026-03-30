@@ -41,16 +41,16 @@ const initHeroAnimation = () => {
     return;
   }
 
-  const tl = gsap.timeline({ delay: 0.2 });
+  const tl = gsap.timeline({ delay: 0.1 });
 
-  tl.from('.section-hero .section-label', { opacity: 0, x: -30, duration: 0.6, ease: 'power2.out' })
-    .from('.section-hero__title',    { opacity: 0, y: 60, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-    .from('.section-hero__subtitle', { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out' }, '-=0.4')
-    .from('.section-hero__cta-group .btn--primary, .section-hero__cta-group .btn--outline',
-      { opacity: 0, y: 20, stagger: 0.15, duration: 0.5, ease: 'power2.out' }, '-=0.3')
-    .from('.ui-browser', { opacity: 0, y: 80, rotation: -3, duration: 0.9, ease: 'power3.out' }, '-=0.4')
-    .from('.ui-chat',    { opacity: 0, y: 100, rotation: -1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
-    .from('.ui-phone',   { opacity: 0, y: 60, rotation: 4, duration: 0.9, ease: 'power3.out' }, '-=0.7');
+  tl.from('.section-hero .section-label', { opacity: 0, x: -50, duration: 0.7, ease: 'power3.out' })
+    .from('.section-hero__title',    { opacity: 0, y: 80, duration: 1.0, ease: 'power4.out' }, '-=0.4')
+    .from('.section-hero__subtitle', { opacity: 0, x: 40, duration: 0.6, ease: 'power2.out' }, '-=0.5')
+    .from('.section-hero__cta-group .btn--primary',   { opacity: 0, y: 30, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3')
+    .from('.section-hero__cta-group .btn--outline',   { opacity: 0, y: 30, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.35')
+    .from('.ui-browser', { opacity: 0, x: 60, y: -30, rotation: -3, duration: 1.0, ease: 'power3.out' }, '-=0.6')
+    .from('.ui-chat',    { opacity: 0, x: -40, y: 50, rotation: -1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
+    .from('.ui-phone',   { opacity: 0, x: 30, y: 60, rotation: 4, duration: 0.9, ease: 'power3.out' }, '-=0.8');
 };
 
 // ─── 3. GSAP ПАРАЛЛАКС ───────────────────────────────────
@@ -79,6 +79,11 @@ const initParallax = () => {
   makeParallax('.ui-browser', -60);
   makeParallax('.ui-phone',   -40);
   makeParallax('.ui-chat',    -30);
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY * 0.03;
+    document.body.style.backgroundPositionY = `${-y}px`;
+  }, { passive: true });
 };
 
 // ─── 4. БУРГЕР-МЕНЮ ──────────────────────────────────────
