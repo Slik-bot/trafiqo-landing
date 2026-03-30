@@ -419,6 +419,66 @@ const initReviews = () => {
   });
 };
 
+// ─── MODAL ───────────────────────────────────────────────
+const initModal = () => {
+  const modal = document.getElementById('modal-form');
+  if (!modal) return;
+
+  const overlay = modal.querySelector('.modal__overlay');
+  const closeBtn = modal.querySelector('.modal__close');
+
+  const openModal = () => {
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('input')?.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll(
+    '[href="#contact"], .btn--primary:not(.modal-form__submit)'
+  ).forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
+  const form = document.getElementById('modal-contact-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('.modal-form__submit');
+    const success = form.querySelector('.modal-form__success');
+    const error = form.querySelector('.modal-form__error');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправляю...';
+    const data = Object.fromEntries(new FormData(form));
+    const ok = await sendToTelegram(data);
+    if (ok) {
+      success.hidden = false;
+      form.reset();
+      setTimeout(closeModal, 2500);
+    } else {
+      error.hidden = false;
+      setTimeout(() => { error.hidden = true; }, 4000);
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Отправить заявку';
+  });
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -434,6 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollDots();
   initSmartHeader();
   initReviews();
+  initModal();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
