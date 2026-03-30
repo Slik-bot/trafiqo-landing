@@ -790,3 +790,106 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 .section-about__highlight-text { font-size: 15px; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px; max-width: 600px; }
 .section-about__platform { font-size: 14px; color: var(--color-text-dim); line-height: 1.6; border-left: 2px solid rgba(155,127,232,0.3); padding-left: 16px; margin-top: 8px; }
 @media (max-width: 767px) { .section-about .container { padding: 0 20px; } .section-about__highlight { padding: 20px; } }
+
+/* ─── REVIEWS ─────────────────────────────────────────────── */
+.section-reviews__title {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+.reviews-swiper {
+  padding: 0 40px 48px;
+  overflow: hidden;
+}
+
+.review-card {
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.review-card:hover {
+  border-color: rgba(155,127,232,0.3);
+  transform: translateY(-4px);
+}
+
+.review-card__stars {
+  color: #9B7FE8;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.review-card__text {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.review-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(91,45,142,0.4);
+  border: 0.5px solid rgba(155,127,232,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-accent-lt);
+  flex-shrink: 0;
+}
+
+.review-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.review-card__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.review-card__meta {
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+
+.reviews-pagination {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.reviews-pagination .swiper-pagination-bullet {
+  background: rgba(155,127,232,0.3);
+  opacity: 1;
+}
+
+.reviews-pagination .swiper-pagination-bullet-active {
+  background: var(--color-accent-lt);
+  width: 20px;
+  border-radius: 3px;
+}
+
+@media (max-width: 767px) {
+  .reviews-swiper { padding: 0 16px 40px; }
+  .review-card { padding: 20px; }
+}

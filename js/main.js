@@ -395,6 +395,30 @@ const initSmartHeader = () => {
   }, { passive: true });
 };
 
+// ─── REVIEWS SWIPER ──────────────────────────────────────
+const initReviews = () => {
+  if (typeof Swiper === 'undefined') return;
+
+  new Swiper('.reviews-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    pagination: {
+      el: '.reviews-pagination',
+      clickable: true
+    },
+    breakpoints: {
+      768: { slidesPerView: 2, spaceBetween: 24 },
+      1200: { slidesPerView: 3, spaceBetween: 28 }
+    }
+  });
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -409,6 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneScreens();
   initScrollDots();
   initSmartHeader();
+  initReviews();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
