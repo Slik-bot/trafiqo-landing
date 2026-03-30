@@ -792,6 +792,12 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 @media (max-width: 767px) { .section-about .container { padding: 0 20px; } .section-about__highlight { padding: 20px; } }
 
 /* ─── REVIEWS ─────────────────────────────────────────────── */
+.section-reviews .container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .section-reviews__title {
   font-size: clamp(24px, 3vw, 40px);
   font-weight: 700;
@@ -800,7 +806,10 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 .reviews-swiper {
+  max-width: var(--container);
+  margin: 0 auto;
   padding: 0 40px 48px;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -890,6 +899,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 @media (max-width: 767px) {
+  .section-reviews .container { padding: 0 16px; }
   .reviews-swiper { padding: 0 16px 40px; }
   .review-card { padding: 20px; }
 }
