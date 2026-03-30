@@ -554,63 +554,6 @@
   </button>
 </div>
 
-<div class="modal" id="modal-form" role="dialog"
-     aria-modal="true" aria-label="Обсудить проект">
-  <div class="modal__overlay"></div>
-  <div class="modal__content">
-    <button class="modal__close" aria-label="Закрыть">
-      <svg width="20" height="20" viewBox="0 0 20 20"
-           fill="none" stroke="currentColor"
-           stroke-width="1.5" stroke-linecap="round">
-        <line x1="4" y1="4" x2="16" y2="16"/>
-        <line x1="16" y1="4" x2="4" y2="16"/>
-      </svg>
-    </button>
-    <span class="section-label">НАЧНЁМ?</span>
-    <h2 class="modal__title">
-      Расскажите о проекте
-    </h2>
-    <p class="modal__subtitle">
-      Ответим в течение 24 часов. Без скриптов — только по делу.
-    </p>
-    <form class="modal-form" id="modal-contact-form"
-          novalidate>
-      <div class="modal-form__grid">
-        <input type="text" name="name"
-               class="modal-form__input"
-               placeholder="Ваше имя" required>
-        <input type="text" name="contact"
-               class="modal-form__input"
-               placeholder="Telegram или телефон" required>
-      </div>
-      <select name="service" class="modal-form__input">
-        <option value="" disabled selected>
-          Что нужно сделать?
-        </option>
-        <option value="site">Сайт или лендинг</option>
-        <option value="app">Мобильное приложение</option>
-        <option value="bot">Бот или автоматизация</option>
-        <option value="platform">Платформа или форум</option>
-        <option value="other">Другое</option>
-      </select>
-      <textarea name="comment" class="modal-form__input
-                modal-form__textarea"
-                placeholder="Комментарий (необязательно)"
-                rows="3"></textarea>
-      <button type="submit" class="btn btn--primary
-              modal-form__submit">
-        Отправить заявку
-      </button>
-      <div class="modal-form__success" hidden>
-        Получено! Свяжемся в ближайшее время.
-      </div>
-      <div class="modal-form__error" hidden>
-        Ошибка отправки. Напишите нам напрямую.
-      </div>
-    </form>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
