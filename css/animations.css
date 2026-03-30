@@ -168,7 +168,7 @@
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, rgba(180,140,255,0.7), rgba(91,45,142,0.2));
     border: 0.5px solid rgba(155,127,232,0.4);
-    will-change: transform, opacity;
+    contain: layout style;
   }
 
   .hero-bubble:nth-child(1)  { width:8px;  height:8px;  left:8%;  animation: bubble-rise-sway 14s ease-in-out infinite; animation-delay:0s;   }
