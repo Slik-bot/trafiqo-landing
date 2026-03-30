@@ -2,6 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+<script>
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
+  }
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRAFIQO — Разработка сайтов, приложений и автоматизации</title>
   <meta name="description" content="Цифровое агентство TRAFIQO: сайты, мобильные приложения, боты, автоматизация бизнеса. Полный цикл от дизайна до запуска.">
