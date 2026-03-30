@@ -131,38 +131,34 @@ const initFAQ = () => {
   const list = document.querySelector('.faq-list');
   if (!list) return;
 
-  const closeItem = (item) => {
-    const btn  = item.querySelector('.faq-item__btn');
-    const body = item.querySelector('.faq-item__body');
-    if (!btn || !body) return;
-
-    item.classList.remove('is-open');
-    btn.setAttribute('aria-expanded', 'false');
-    body.style.maxHeight = '0';
-    setTimeout(() => body.setAttribute('hidden', ''), 350);
-  };
-
-  const openItem = (item) => {
-    const btn  = item.querySelector('.faq-item__btn');
-    const body = item.querySelector('.faq-item__body');
-    if (!btn || !body) return;
-
-    item.classList.add('is-open');
-    btn.setAttribute('aria-expanded', 'true');
-    body.removeAttribute('hidden');
-    body.style.maxHeight = body.scrollHeight + 'px';
-  };
-
   list.addEventListener('click', (e) => {
     const btn = e.target.closest('.faq-item__btn');
     if (!btn) return;
 
-    const item    = btn.closest('.faq-item');
-    const isOpen  = item.classList.contains('is-open');
-    const allItems = list.querySelectorAll('.faq-item');
+    const item   = btn.closest('.faq-item');
+    const body   = item.querySelector('.faq-item__body');
+    const isOpen = item.classList.contains('is-open');
 
-    allItems.forEach(closeItem);
-    if (!isOpen) openItem(item);
+    list.querySelectorAll('.faq-item.is-open').forEach(openItem => {
+      if (openItem === item) return;
+      openItem.classList.remove('is-open');
+      openItem.querySelector('.faq-item__btn').setAttribute('aria-expanded', 'false');
+      const ob = openItem.querySelector('.faq-item__body');
+      ob.style.maxHeight = '0';
+      setTimeout(() => ob.setAttribute('hidden', ''), 350);
+    });
+
+    if (isOpen) {
+      item.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      body.style.maxHeight = '0';
+      setTimeout(() => body.setAttribute('hidden', ''), 350);
+    } else {
+      item.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      body.removeAttribute('hidden');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
   });
 };
 

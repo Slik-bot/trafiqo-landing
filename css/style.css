@@ -1,6 +1,6 @@
 /* ─── RESET ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
 img, svg { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul, ol { list-style: none; }
@@ -783,10 +783,13 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .section-label { margin-bottom: 6px; }
   .trust-bar__item { padding: 16px 8px; }
   .trust-bar__number { font-size: 26px; }
-  .service-card { padding: 16px 14px; min-width: 130px; }
+  .container { padding: 0 16px; width: 100%; max-width: 100%; }
+  .services__scroll-wrap { padding: 0 16px 16px; gap: 10px; }
+  .services__scroll-hint { font-size: 11px; color: rgba(232,228,240,0.3); padding: 0 16px 8px; display: flex; align-items: center; gap: 4px; }
+  .service-card { padding: 14px 12px; min-width: 140px; max-width: 160px; }
   .service-card__icon { width: 24px; height: 24px; margin-bottom: 8px; }
-  .service-card__title { font-size: 13px; }
-  .service-card__description { font-size: 12px; line-height: 1.4; }
+  .service-card__title { font-size: 12px; line-height: 1.3; }
+  .service-card__description { font-size: 11px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .process__step { gap: 10px; margin-bottom: 20px; }
   .faq-item__question { padding: 14px 0; font-size: 14px; }
   .contact-form { gap: 10px; }
