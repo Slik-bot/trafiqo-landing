@@ -430,6 +430,40 @@ const initReviews = () => {
   });
 };
 
+// ─── СЧЁТЧИК АКТИВНОСТИ ──────────────────────────────────
+const initActivityCounter = () => {
+  const el = document.getElementById('activityText');
+  if (!el) return;
+
+  const phrases = [
+    'Последняя заявка — 43 минуты назад',
+    'Сейчас в работе 3 проекта',
+    'Сегодня ответили на 2 запроса',
+    'Последний проект сдан вчера',
+    'Новый клиент из Дубая — час назад',
+    'Сайт запущен сегодня в 14:30',
+    'Заявка из Москвы — 28 минут назад',
+    'Бот для клиента сдан сегодня',
+    'Команда онлайн — ответим быстро',
+    'Проект из СПб завершён вчера'
+  ];
+
+  let current = Math.floor(Math.random() * phrases.length);
+  el.textContent = phrases[current];
+
+  const rotate = () => {
+    el.classList.add('is-fading');
+
+    setTimeout(() => {
+      current = (current + 1) % phrases.length;
+      el.textContent = phrases[current];
+      el.classList.remove('is-fading');
+    }, 500);
+  };
+
+  setInterval(rotate, 5000);
+};
+
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -445,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollDots();
   initSmartHeader();
   initReviews();
+  initActivityCounter();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();

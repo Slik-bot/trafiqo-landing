@@ -953,3 +953,43 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   }
 }
 
+/* ─── HERO ACTIVITY ──────────────────────────────────────── */
+.hero-activity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hero-activity__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(74,222,128,0.6);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(74,222,128,0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(74,222,128,0.9);
+    transform: scale(1.2);
+  }
+}
+
+.hero-activity__text {
+  font-size: 13px;
+  color: rgba(232,228,240,0.5);
+  font-family: var(--font-body);
+  transition: opacity 0.5s ease;
+}
+
+.hero-activity__text.is-fading {
+  opacity: 0;
+}
+
