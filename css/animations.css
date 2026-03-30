@@ -135,4 +135,40 @@
     animation: cursor-blink 0.7s step-end infinite;
   }
 
+  /* ─── ПУЗЫРЬКИ HERO ─────────────────────────────────── */
+  @keyframes bubble-rise {
+    0%   { transform: translateY(100vh) scale(0.8); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-100px) scale(1.1); opacity: 0; }
+  }
+
+  .hero-bubble {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(155,127,232,0.6), rgba(91,45,142,0.2));
+    border: 0.5px solid rgba(155,127,232,0.3);
+    animation: bubble-rise linear infinite;
+    will-change: transform, opacity;
+  }
+
+  .hero-bubble:nth-child(1)  { width:8px;  height:8px;  left:8%;   animation-duration:12s; animation-delay:0s;    }
+  .hero-bubble:nth-child(2)  { width:14px; height:14px; left:18%;  animation-duration:18s; animation-delay:2s;    }
+  .hero-bubble:nth-child(3)  { width:6px;  height:6px;  left:28%;  animation-duration:10s; animation-delay:4s;    }
+  .hero-bubble:nth-child(4)  { width:18px; height:18px; left:38%;  animation-duration:22s; animation-delay:1s;    }
+  .hero-bubble:nth-child(5)  { width:5px;  height:5px;  left:48%;  animation-duration:9s;  animation-delay:6s;    }
+  .hero-bubble:nth-child(6)  { width:12px; height:12px; left:58%;  animation-duration:15s; animation-delay:3s;    }
+  .hero-bubble:nth-child(7)  { width:7px;  height:7px;  left:65%;  animation-duration:11s; animation-delay:5s;    }
+  .hero-bubble:nth-child(8)  { width:16px; height:16px; left:72%;  animation-duration:20s; animation-delay:0.5s;  }
+  .hero-bubble:nth-child(9)  { width:5px;  height:5px;  left:80%;  animation-duration:8s;  animation-delay:7s;    }
+  .hero-bubble:nth-child(10) { width:10px; height:10px; left:88%;  animation-duration:14s; animation-delay:2.5s;  }
+  .hero-bubble:nth-child(11) { width:4px;  height:4px;  left:93%;  animation-duration:7s;  animation-delay:9s;    }
+  .hero-bubble:nth-child(12) { width:13px; height:13px; left:12%;  animation-duration:17s; animation-delay:4.5s;  }
+
+  @media (max-width: 767px) {
+    .hero-bubble:nth-child(n+7) { display: none; }
+    .hero-bubble { opacity: 0.7; }
+  }
+
 }
