@@ -39,20 +39,16 @@ const initHeroAnimation = () => {
     return;
   }
 
-  gsap.set(HERO_SELECTORS.slice(0, 4), { opacity: 0, y: 30 });
-  gsap.set(HERO_SELECTORS.slice(4),    { opacity: 0, y: 20 });
+  const tl = gsap.timeline({ delay: 0.2 });
 
-  const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.8 } });
-
-  tl.to('.section-hero .section-label', { opacity: 1, y: 0 })
-    .to('.section-hero__title',          { opacity: 1, y: 0 }, '-=0.55')
-    .to('.section-hero__subtitle',       { opacity: 1, y: 0 }, '-=0.55')
-    .to('.section-hero__cta-group',      { opacity: 1, y: 0 }, '-=0.55')
-    .to(
-      ['.ui-browser', '.ui-phone', '.ui-chat'],
-      { opacity: 1, y: 0, stagger: 0.2 },
-      '-=0.4'
-    );
+  tl.from('.section-hero .section-label', { opacity: 0, x: -30, duration: 0.6, ease: 'power2.out' })
+    .from('.section-hero__title',    { opacity: 0, y: 60, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+    .from('.section-hero__subtitle', { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+    .from('.section-hero__cta-group .btn--primary, .section-hero__cta-group .btn--outline',
+      { opacity: 0, y: 20, stagger: 0.15, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+    .from('.ui-browser', { opacity: 0, y: 80, rotation: -3, duration: 0.9, ease: 'power3.out' }, '-=0.4')
+    .from('.ui-chat',    { opacity: 0, y: 100, rotation: -1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
+    .from('.ui-phone',   { opacity: 0, y: 60, rotation: 4, duration: 0.9, ease: 'power3.out' }, '-=0.7');
 };
 
 // ─── 3. GSAP ПАРАЛЛАКС ───────────────────────────────────
@@ -311,6 +307,7 @@ const initPhoneScreens = () => {
 
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo({ top: 0, behavior: 'instant' });
   initAOS();
   initBurger();
   initFAQ();
@@ -325,4 +322,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initProcessSteps();
   }
+  document.documentElement.style.scrollBehavior = 'smooth';
 });

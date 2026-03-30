@@ -325,20 +325,39 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   background: rgba(255, 255, 255, 0.03);
   border: 0.5px solid var(--color-border);
   border-radius: var(--radius-lg);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -100%; left: -60%;
+  width: 40%; height: 300%;
+  background: linear-gradient(105deg, transparent 40%, rgba(155,127,232,0.08) 50%, transparent 60%);
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(155, 127, 232, 0.4);
-  box-shadow: 0 8px 32px rgba(91, 45, 142, 0.2);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(155,127,232,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(155,127,232,0.2), 0 0 40px rgba(91,45,142,0.1);
 }
+
+.service-card:hover::before { left: 120%; }
 
 .service-card__icon   { color: var(--color-accent-lt); }
 .service-card__title  { font-size: 16px; font-weight: 600; color: var(--color-text); }
 .service-card__desc   { font-size: 13px; color: var(--color-text-muted); flex: 1; }
-.service-card__link   { font-size: 13px; font-weight: 500; color: var(--color-accent-lt); transition: opacity 0.3s ease; }
-.service-card__link:hover { opacity: 0.7; }
+.service-card:hover .service-card__icon { transform: translateY(-3px) scale(1.1); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.service-card__link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--color-accent-lt); transition: gap 0.3s ease, color 0.3s ease; }
+.service-card:hover .service-card__link { gap: 10px; color: var(--color-accent-lt); }
 
 /* ─── PROCESS ───────────────────────────────────────────── */
 .section-process { padding-top: 80px; padding-bottom: 80px; background: rgba(255, 255, 255, 0.01); }
