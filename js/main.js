@@ -44,7 +44,10 @@ const initHeroAnimation = () => {
   const tl = gsap.timeline({ delay: 0.1 });
 
   tl.from('.section-hero .section-label', { opacity: 0, x: -50, duration: 0.7, ease: 'power3.out' })
-    .from('.section-hero__title',    { opacity: 0, y: 80, duration: 1.0, ease: 'power4.out' }, '-=0.4')
+    .to('.section-hero__title', {
+      x: 0, opacity: 1, duration: 1.0, ease: 'power4.out',
+      onStart: () => { gsap.set('.section-hero__title', { x: '-100%', opacity: 1 }); }
+    }, '-=0.4')
     .from('.section-hero__subtitle', { opacity: 0, x: 40, duration: 0.6, ease: 'power2.out' }, '-=0.5')
     .from('.section-hero__cta-group .btn--primary',   { opacity: 0, y: 30, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3')
     .from('.section-hero__cta-group .btn--outline',   { opacity: 0, y: 30, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.35')
@@ -76,9 +79,10 @@ const initParallax = () => {
     });
   };
 
-  makeParallax('.ui-browser', -60);
-  makeParallax('.ui-phone',   -40);
-  makeParallax('.ui-chat',    -30);
+  gsap.to('.ui-browser', { x: 40, y: -60, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.5 } });
+  gsap.to('.ui-chat',    { x: -30, y: 40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 2 } });
+  gsap.to('.ui-phone',   { x: 20, y: 80,  ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 } });
+  gsap.to('.section-hero__content', { y: 60, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 2 } });
 
   window.addEventListener('scroll', () => {
     const y = window.scrollY * 0.03;
