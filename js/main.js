@@ -430,6 +430,29 @@ const initReviews = () => {
   });
 };
 
+// ─── CURSOR GLOW ─────────────────────────────────────────
+const initCursorGlow = () => {
+  if (isMobile()) return;
+  const glow = document.getElementById('cursorGlow');
+  if (!glow) return;
+
+  let visible = false;
+
+  document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+    if (!visible) {
+      glow.style.opacity = '1';
+      visible = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+    visible = false;
+  });
+};
+
 // ─── СЧЁТЧИК АКТИВНОСТИ ──────────────────────────────────
 const initActivityCounter = () => {
   const el = document.getElementById('activityText');
@@ -480,6 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmartHeader();
   initReviews();
   initActivityCounter();
+  initCursorGlow();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
