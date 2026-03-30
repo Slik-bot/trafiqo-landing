@@ -676,6 +676,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 /* ─── @MEDIA 1200px ─────────────────────────────────────── */
 @media (min-width: 1200px) {
   .section-services__grid { grid-template-columns: repeat(5, 1fr); }
+  .directions-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(3, 1fr); }
   .bot-widget { bottom: 24px; right: 24px; }
   .bot-widget__toggle { width: 60px; height: 60px; }
@@ -683,6 +684,15 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 /* ─── БОТ-ЧАТ ───────────────────────────────────────────── */
+.bot-widget__chat {
+  width: 300px;
+  background: rgba(7, 5, 15, 0.97);
+  border: 0.5px solid rgba(155, 127, 232, 0.3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
 .bot-widget__messages {
   display: flex;
   flex-direction: column;

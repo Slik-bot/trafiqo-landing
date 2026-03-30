@@ -26,7 +26,7 @@ const initHeroAnimation = () => {
 
   const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.8 } });
 
-  tl.from('.section-label',            { opacity: 0, y: 30 })
+  tl.from('.section-hero .section-label', { opacity: 0, y: 30 })
     .from('.section-hero__title',       { opacity: 0, y: 30 }, '-=0.55')
     .from('.section-hero__subtitle',    { opacity: 0, y: 30 }, '-=0.55')
     .from('.section-hero__cta-group',   { opacity: 0, y: 30 }, '-=0.55')
@@ -95,6 +95,10 @@ const initBurger = () => {
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.header__container')) closeBurger();
   });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= BREAKPOINT_MOBILE) closeBurger();
+  });
 };
 
 // ─── 5. FAQ АККОРДЕОН ────────────────────────────────────
@@ -110,7 +114,7 @@ const initFAQ = () => {
     item.classList.remove('is-open');
     btn.setAttribute('aria-expanded', 'false');
     body.style.maxHeight = '0';
-    body.setAttribute('hidden', '');
+    setTimeout(() => body.setAttribute('hidden', ''), 350);
   };
 
   const openItem = (item) => {

@@ -127,11 +127,12 @@ const sendBotData = async () => {
 // ─── ОТКРЫТЬ / ЗАКРЫТЬ ───────────────────────────────────
 const toggleWidget = () => {
   const widget = document.querySelector('.bot-widget');
+  const chat   = document.querySelector('.bot-widget__chat');
   if (!widget) return;
   state.isOpen = !state.isOpen;
   widget.classList.toggle('is-open', state.isOpen);
-  widget.querySelector('.bot-widget__toggle')
-    ?.setAttribute('aria-expanded', String(state.isOpen));
+  widget.querySelector('.bot-widget__toggle')?.setAttribute('aria-expanded', String(state.isOpen));
+  if (chat) state.isOpen ? chat.removeAttribute('hidden') : chat.setAttribute('hidden', '');
   if (state.isOpen && !state.started) { state.started = true; nextStep('greeting'); }
 };
 
