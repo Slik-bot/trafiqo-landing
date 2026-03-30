@@ -904,3 +904,52 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .review-card { padding: 20px; }
 }
 
+/* ─── TG FLOAT ───────────────────────────────────────────── */
+.tg-float {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .tg-float {
+    position: fixed;
+    bottom: 24px;
+    left: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #229ED9;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    text-decoration: none;
+    box-shadow:
+      0 4px 20px rgba(34,158,217,0.4),
+      0 0 0 1px rgba(255,255,255,0.1) inset;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+    animation: tg-appear 0.5s ease 2s both;
+  }
+
+  .tg-float:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 30px rgba(34,158,217,0.5),
+      0 0 0 1px rgba(255,255,255,0.15) inset;
+  }
+}
+
+@keyframes tg-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
