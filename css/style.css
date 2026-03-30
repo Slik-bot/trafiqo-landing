@@ -37,8 +37,8 @@ body {
   position: relative;
   background-color: #06030F;
   background-image:
-    radial-gradient(ellipse 160% 100% at 50% -10%, #4A1A9E 0%, #2D0E6B 20%, #180840 45%, #06030F 70%),
-    radial-gradient(ellipse 70% 50% at 85% 85%, rgba(120,60,200,0.2) 0%, transparent 65%);
+    radial-gradient(ellipse 120% 70% at 50% -5%, #3D1585 0%, #220B55 25%, #0F0530 50%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(100,45,180,0.15) 0%, transparent 60%);
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 400;
