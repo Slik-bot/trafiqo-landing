@@ -79,6 +79,33 @@
 .bot-widget__bubble.is-hidden { opacity: 0; transform: translateY(8px); pointer-events: none; }
 
 
+.bot-widget__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  color: rgba(232,228,240,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.bot-widget.is-open .bot-widget__close {
+  display: flex;
+}
+
+.bot-widget__close:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--color-text);
+}
+
 /* ─── БОТ-ЧАТ ───────────────────────────────────────────── */
 .bot-widget__chat {
   width: 300px;

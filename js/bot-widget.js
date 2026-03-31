@@ -143,6 +143,13 @@ const initBotWidget = () => {
   if (!toggle) return;
   bubble?.classList.add('is-hidden');
   toggle.addEventListener('click', () => { bubble?.classList.add('is-hidden'); toggleWidget(); });
+  const closeBtn = document.getElementById('botClose');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleWidget();
+    });
+  }
   setTimeout(() => bubble?.classList.remove('is-hidden'), 3000);
 };
 
