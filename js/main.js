@@ -1,16 +1,13 @@
 history.scrollRestoration = 'manual';
 
-// ─── КОНСТАНТЫ ───────────────────────────────────────────
 const BREAKPOINT_MOBILE = 768;
 const BREAKPOINT_TABLET = 1200;
 const COUNTUP_DURATION  = 2000;
 
-// ─── УТИЛИТЫ ─────────────────────────────────────────────
 const isMobile = () => window.innerWidth < BREAKPOINT_MOBILE;
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ─── 1. AOS ИНИЦИАЛИЗАЦИЯ ────────────────────────────────
 const initAOS = () => {
   AOS.init({
     duration: 700,
@@ -21,7 +18,6 @@ const initAOS = () => {
   });
 };
 
-// ─── 2. GSAP HERO АНИМАЦИЯ ───────────────────────────────
 const HERO_SELECTORS = [
   '.section-hero .section-label',
   '.section-hero__title',
@@ -56,7 +52,6 @@ const initHeroAnimation = () => {
     .from('.ui-phone',   { opacity: 0, x: 30, y: 60, rotation: 4, duration: 0.9, ease: 'power3.out' }, '-=0.8');
 };
 
-// ─── 3. GSAP ПАРАЛЛАКС ───────────────────────────────────
 const initParallax = () => {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
@@ -85,7 +80,6 @@ const initParallax = () => {
   gsap.to('.section-hero__content', { y: 40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 3 } });
 };
 
-// ─── 4. БУРГЕР-МЕНЮ ──────────────────────────────────────
 const initBurger = () => {
   const burger = document.querySelector('.header__burger');
   const nav    = document.querySelector('.header__nav');
@@ -121,7 +115,6 @@ const initBurger = () => {
   });
 };
 
-// ─── 5. FAQ АККОРДЕОН ────────────────────────────────────
 const initFAQ = () => {
   const list = document.querySelector('.faq-list');
   if (!list) return;
@@ -177,7 +170,6 @@ const initFAQ = () => {
   });
 };
 
-// ─── 6. COUNT-UP ─────────────────────────────────────────
 const animateCount = (el, target) => {
   if (prefersReducedMotion()) {
     el.textContent = target;
@@ -221,7 +213,6 @@ const initCountUp = () => {
   targets.forEach((el) => observer.observe(el));
 };
 
-// ─── 7. PROCESS ШАГИ — SCROLLTRIGGER ────────────────────
 const initProcessSteps = () => {
   if (typeof ScrollTrigger === 'undefined') return;
 
@@ -235,7 +226,6 @@ const initProcessSteps = () => {
   });
 };
 
-// ─── 8. НАВИГАЦИЯ — ACTIVE LINK ──────────────────────────
 const initNavHighlight = () => {
   const sections = document.querySelectorAll('section[id]');
   const links    = document.querySelectorAll('.header__nav-link');
@@ -254,7 +244,6 @@ const initNavHighlight = () => {
   sections.forEach((section) => observer.observe(section));
 };
 
-// ─── 9. ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ ─────────────────────────
 const initSmoothScroll = () => {
   const burger = document.querySelector('.header__burger');
   const nav    = document.querySelector('.header__nav');
@@ -288,7 +277,6 @@ const initSmoothScroll = () => {
   });
 };
 
-// ─── ЖИВОЙ ЧАТ В HERO ────────────────────────────────────
 const initHeroChat = () => {
   const container = document.getElementById('heroChat');
   if (!container) return;
@@ -322,7 +310,6 @@ const initHeroChat = () => {
   setTimeout(showNext, 1000);
 };
 
-// ─── ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ ТЕЛЕФОНА ───────────────────────
 const initPhoneScreens = () => {
   const screens = document.querySelectorAll('.ui-phone__screen');
   const dots    = document.querySelectorAll('.ui-phone__nav .ui-ph-dot');
@@ -338,7 +325,6 @@ const initPhoneScreens = () => {
   }, 2500);
 };
 
-// ─── ТОЧКИ ПРОГРЕССА СКРОЛЛА ─────────────────────────────
 const initScrollDots = () => {
   const pairs = [
     {
@@ -359,7 +345,6 @@ const initScrollDots = () => {
   });
 };
 
-// ─── SMART HEADER ────────────────────────────────────────
 const initSmartHeader = () => {
   const header = document.querySelector(
     'header, .site-header, #main-header'
@@ -401,7 +386,6 @@ const initSmartHeader = () => {
   }, { passive: true });
 };
 
-// ─── REVIEWS SWIPER ──────────────────────────────────────
 const initReviews = () => {
   if (typeof Swiper === 'undefined') return;
 
@@ -425,7 +409,6 @@ const initReviews = () => {
   });
 };
 
-// ─── CURSOR GLOW ─────────────────────────────────────────
 const initCursorGlow = () => {
   if (isMobile()) return;
   const glow = document.getElementById('cursorGlow');
@@ -448,7 +431,6 @@ const initCursorGlow = () => {
   });
 };
 
-// ─── СЧЁТЧИК АКТИВНОСТИ ──────────────────────────────────
 const initActivityCounter = () => {
   const el = document.getElementById('activityText');
   if (!el) return;
@@ -482,7 +464,6 @@ const initActivityCounter = () => {
   setInterval(rotate, 5000);
 };
 
-// ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
   initAOS();
