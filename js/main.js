@@ -83,11 +83,6 @@ const initParallax = () => {
   gsap.to('.ui-chat',    { x: -20, y: 30, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 3 } });
   gsap.to('.ui-phone',   { x: 15, y: 50,  ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 2 } });
   gsap.to('.section-hero__content', { y: 40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 3 } });
-
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY * 0.03;
-    document.body.style.backgroundPositionY = `${-y}px`;
-  }, { passive: true });
 };
 
 // ─── 4. БУРГЕР-МЕНЮ ──────────────────────────────────────
