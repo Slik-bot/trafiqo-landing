@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бриф — TRAFIQO</title>
+  <meta name="description" content="Расскажите о своём проекте — получите предложение за 24 часа">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#06030F;--bg-card:#0F0820;--accent:#5B2D8E;--accent-lt:#9B7FE8;--text:#F0ECFF;--text-muted:rgba(232,228,240,0.5);--text-dim:rgba(232,228,240,0.25);--border:rgba(255,255,255,0.08);--font-d:'Syne',sans-serif;--font-b:'Inter',sans-serif}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100vh;background:var(--bg);color:var(--text)}
+    body{background-image:radial-gradient(ellipse 120% 70% at 50% -5%,#3D1585 0%,#220B55 25%,#0F0530 50%,transparent 70%);font-family:var(--font-b);padding-bottom:80px}
+    header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:.5px solid var(--border);backdrop-filter:blur(12px);background:rgba(6,3,15,.85)}
+    .logo{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--text);text-decoration:none}
+    .logo span{color:var(--accent-lt)}
+    #stepCounter{font-size:13px;color:var(--text-muted);font-family:var(--font-d)}
+    .progress{height:2px;background:rgba(255,255,255,.06)}
+    #progressFill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-lt));transition:width .5s ease;width:16.67%}
+    main{max-width:640px;margin:0 auto;padding:48px 20px}
+    .step{display:none;animation:fi .3s ease}
+    .step.active{display:block}
+    @keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    h1.st{font-family:var(--font-d);font-size:clamp(22px,5vw,32px);font-weight:700;margin-bottom:8px}
+    .sub{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+    .field{margin-bottom:20px}
+    label{display:block;font-size:14px;font-weight:500;margin-bottom:8px}
+    input,textarea{width:100%;background:rgba(255,255,255,.04);border:.5px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font-b);font-size:15px;outline:none;transition:border-color .2s;resize:vertical}
+    input:focus,textarea:focus{border-color:rgba(155,127,232,.5)}
+    textarea{min-height:90px}
+    .hint{font-size:12px;color:var(--text-dim);border-left:2px solid rgba(155,127,232,.2);padding-left:10px;line-height:1.6;margin-top:8px}
+    .hint-block{background:rgba(91,45,142,.08);border:.5px solid rgba(155,127,232,.15);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--text-muted);line-height:1.6;margin-top:8px}
+    .gl{font-size:13px;color:var(--text-muted);margin:20px 0 10px;font-weight:500}
+    .opts{display:flex;flex-direction:column;gap:8px}
+    .oc{background:rgba(255,255,255,.03);border:.5px solid var(--border);border-radius:10px;padding:14px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:12px;user-select:none}
+    .oc:hover{background:rgba(255,255,255,.05)}
+    .oc.sel{border-color:rgba(155,127,232,.5);background:rgba(91,45,142,.12)}
+    .chk{width:18px;height:18px;min-width:18px;border:1px solid rgba(255,255,255,.2);border-radius:4px;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .oc.r .chk{border-radius:50%}
+    .oc.sel .chk{background:var(--accent-lt);border-color:var(--accent-lt)}
+    .chk svg{display:none}
+    .oc.sel .chk svg{display:block}
+    .oname{font-size:15px;font-weight:500}
+    .osub{font-size:12px;color:var(--text-muted);margin-top:2px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{padding:8px 14px;border:.5px solid var(--border);border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.03)}
+    .tag:hover{background:rgba(255,255,255,.06)}
+    .tag.sel{border-color:rgba(155,127,232,.5);background:rgba(91,45,142,.15);color:var(--accent-lt)}
+    footer{position:fixed;bottom:0;left:0;right:0;background:rgba(6,3,15,.9);backdrop-filter:blur(12px);border-top:.5px solid var(--border);padding:12px 24px;display:flex;gap:12px;justify-content:flex-end}
+    .btn{padding:12px 32px;border-radius:8px;font-family:var(--font-b);font-size:15px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
+    .bb{background:transparent;color:var(--text-muted);border:.5px solid var(--border)}
+    .bb:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+    .bn{background:var(--accent);color:var(--text);position:relative;overflow:hidden}
+    .bn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:sh 2.5s infinite}
+    @keyframes sh{to{left:160%}}
+    .bn:hover{background:#7040A8}
+    #btnBack{display:none}
+    #ss{display:none;text-align:center;padding:48px 0}
+    .chkanim{width:72px;height:72px;border-radius:50%;border:2px solid var(--accent-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;animation:pu .5s ease}
+    @keyframes pu{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+    #ss h2{font-family:var(--font-d);font-size:28px;font-weight:700;margin-bottom:16px}
+    #ssText{color:var(--text-muted);line-height:1.7;margin-bottom:32px}
+    .sbtns{display:flex;flex-direction:column;gap:10px;max-width:280px;margin:0 auto}
+    .btg{background:var(--accent);color:var(--text);padding:14px;border-radius:8px;text-decoration:none;font-weight:500;display:block;text-align:center}
+    .bhome{color:var(--text-muted);text-decoration:none;font-size:14px;padding:10px;display:block;text-align:center}
+    @media(max-width:767px){main{padding:32px 16px}.oc{padding:12px 14px}footer{padding:10px 16px;justify-content:space-between}.btn{padding:12px 20px;font-size:14px}#btnBack{flex:1}#btnNext{flex:2}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html">TRAFIQO<span>.</span></a>
+    <span id="stepCounter">Шаг 1 из 6</span>
+  </header>
+  <div class="progress"><div id="progressFill"></div></div>
+  <main>
+
+    <div class="step active" id="step1">
+      <h1 class="st">Давайте познакомимся</h1><p class="sub">Это займёт не больше 5 минут</p>
+      <div class="field"><label>Ваше имя *</label><input type="text" id="name" placeholder="Имя или псевдоним"><p class="hint">Как к вам обращаться в переписке</p></div>
+      <div class="field"><label>Telegram @username или телефон *</label><input type="text" id="contact" placeholder="@username или +7 ..."><p class="hint">Свяжемся удобным для вас способом</p></div>
+      <div class="field"><label>Город / страна</label><input type="text" id="city" placeholder="Москва, Казахстан, Берлин..."><p class="hint">Работаем по всему миру — нужно знать часовой пояс</p></div>
+    </div>
+
+    <div class="step" id="step2">
+      <h1 class="st">Что нужно сделать?</h1><p class="sub">Можно выбрать несколько вариантов</p>
+      <div class="opts" id="types">
+        <div class="oc" data-v="Сайт или лендинг"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Сайт или лендинг</div><div class="osub">Визитка, портфолио, продающая страница</div></div></div>
+        <div class="oc" data-v="Мобильное приложение"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Мобильное приложение</div><div class="osub">iOS, Android или сразу оба. Полный цикл.</div></div></div>
+        <div class="oc" data-v="Telegram-бот"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Telegram-бот</div><div class="osub">Автоответы, приём заявок, воронка продаж</div></div></div>
+        <div class="oc" data-v="Автоматизация процессов"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Автоматизация процессов</div><div class="osub">Связать сервисы, убрать ручной труд</div></div></div>
+        <div class="oc" data-v="Платформа или форум"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Платформа или форум</div><div class="osub">Независимая площадка — ваши правила</div></div></div>
+        <div class="oc" data-v="Реклама и продвижение"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Реклама и продвижение</div><div class="osub">Яндекс.Директ, SEO, настройка трафика</div></div></div>
+        <div class="oc" data-v="Не знаю — помогите разобраться"><div class="chk"><svg width="10" height="8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div><div class="oname">Не знаю — помогите разобраться</div><div class="osub">Расскажите задачу — сами предложим решение</div></div></div>
+      </div>
+    </div>
+
+    <div class="step" id="step3">
+      <h1 class="st">Расскажите о бизнесе</h1>
+      <div class="field"><label>Ниша / сфера деятельности</label><textarea id="niche" placeholder="Например: кафе, онлайн-школа, юридические услуги"></textarea><p class="hint">Чем занимаетесь или что планируете запустить</p></div>
+      <p class="gl">Статус</p>
+      <div class="opts" id="status">
+        <div class="oc r" data-g="status" data-v="Уже работаем — нужно улучшить или расширить"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Уже работаем — нужно улучшить или расширить</div></div>
+        <div class="oc r" data-g="status" data-v="Только запускаемся — нужно всё с нуля"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Только запускаемся — нужно всё с нуля</div></div>
+        <div class="oc r" data-g="status" data-v="Есть идея — нужна помощь в реализации"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Есть идея — нужна помощь в реализации</div></div>
+      </div>
+      <p class="gl">Клиенты</p>
+      <div class="opts" id="clients">
+        <div class="oc r" data-g="clients" data-v="Физические лица (B2C)"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Физические лица (B2C)</div></div>
+        <div class="oc r" data-g="clients" data-v="Другой бизнес (B2B)"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Другой бизнес (B2B)</div></div>
+        <div class="oc r" data-g="clients" data-v="И те и другие"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">И те и другие</div></div>
+      </div>
+      <p class="gl">Главная цель</p>
+      <div class="tags" id="goals">
+        <span class="tag" data-v="Получать заявки и звонки">Получать заявки и звонки</span>
+        <span class="tag" data-v="Продавать онлайн">Продавать онлайн</span>
+        <span class="tag" data-v="Автоматизировать процессы">Автоматизировать процессы</span>
+        <span class="tag" data-v="Создать имидж и присутствие">Создать имидж и присутствие</span>
+        <span class="tag" data-v="Независимая платформа">Независимая платформа</span>
+      </div>
+    </div>
+
+    <div class="step" id="step4">
+      <h1 class="st">Детали проекта</h1>
+      <p class="gl">Есть ли сайт?</p>
+      <div class="opts" id="hasSite">
+        <div class="oc r" data-g="hasSite" data-v="Да — нужно переделать"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Да — нужно переделать</div></div>
+        <div class="oc r" data-g="hasSite" data-v="Да — нужно доработать"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Да — нужно доработать</div></div>
+        <div class="oc r" data-g="hasSite" data-v="Нет — делаем с нуля"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Нет — делаем с нуля</div></div>
+        <div class="oc r" data-g="hasSite" data-v="Сайт не нужен"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Сайт не нужен</div></div>
+      </div>
+      <p class="gl">Дизайн или референсы?</p>
+      <div class="opts" id="design">
+        <div class="oc r" data-g="design" data-v="Да, есть готовый дизайн"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Да, есть готовый дизайн</div></div>
+        <div class="oc r" data-g="design" data-v="Есть примеры которые нравятся"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Есть примеры которые нравятся</div></div>
+        <div class="oc r" data-g="design" data-v="Нет — доверяю вашему вкусу"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Нет — доверяю вашему вкусу</div></div>
+      </div>
+      <p class="hint" style="margin-bottom:16px">Референсы — сайты которые нравятся. Помогают понять стиль.</p>
+      <p class="gl">Нужны интеграции?</p>
+      <div class="tags" id="intg">
+        <span class="tag" data-v="Онлайн-оплата">Онлайн-оплата</span>
+        <span class="tag" data-v="CRM система">CRM система</span>
+        <span class="tag" data-v="Telegram-бот">Telegram-бот</span>
+        <span class="tag" data-v="Аналитика (Метрика, GA)">Аналитика</span>
+        <span class="tag" data-v="Не знаю — подскажите">Не знаю</span>
+      </div>
+      <p class="hint" style="margin-bottom:16px">Интеграции — связь сайта с другими сервисами</p>
+      <p class="gl">Техническое задание</p>
+      <div class="opts" id="tz">
+        <div class="oc r" data-g="tz" data-v="Да, есть готовое ТЗ"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Да, есть готовое ТЗ</div></div>
+        <div class="oc r" data-g="tz" data-v="Есть частичное понимание"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Есть частичное понимание</div></div>
+        <div class="oc r" data-g="tz" data-v="Нет ТЗ — прошу разработать"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Нет ТЗ — прошу разработать</div></div>
+      </div>
+      <div class="hint-block">ℹ️ ТЗ — документ который описывает что именно нужно сделать. От него зависит точность сроков и стоимости. Если ТЗ нет — составим вместе. Это входит в работу.</div>
+    </div>
+
+    <div class="step" id="step5">
+      <h1 class="st">Бюджет и сроки</h1><p class="sub">Помогает предложить оптимальное решение</p>
+      <p class="gl">Примерный бюджет</p>
+      <div class="opts" id="budget">
+        <div class="oc r" data-g="budget" data-v="До 50 000 ₽"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">До 50 000 ₽</div></div>
+        <div class="oc r" data-g="budget" data-v="50 000 — 150 000 ₽"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">50 000 — 150 000 ₽</div></div>
+        <div class="oc r" data-g="budget" data-v="150 000 — 400 000 ₽"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">150 000 — 400 000 ₽</div></div>
+        <div class="oc r" data-g="budget" data-v="От 400 000 ₽"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">От 400 000 ₽</div></div>
+        <div class="oc r" data-g="budget" data-v="Хочу сначала узнать стоимость"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Хочу сначала узнать стоимость</div></div>
+      </div>
+      <p class="hint" style="margin-bottom:16px">Мы не навязываем лишнего — работаем в рамках задачи</p>
+      <p class="gl">Когда нужно запустить</p>
+      <div class="opts" id="deadline">
+        <div class="oc r" data-g="deadline" data-v="Срочно — до 2 недель"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Срочно — до 2 недель</div></div>
+        <div class="oc r" data-g="deadline" data-v="В течение месяца"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">В течение месяца</div></div>
+        <div class="oc r" data-g="deadline" data-v="2-3 месяца"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">2-3 месяца</div></div>
+        <div class="oc r" data-g="deadline" data-v="Не горит — важнее сделать хорошо"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Не горит — важнее сделать хорошо</div></div>
+      </div>
+      <p class="hint">Срочные проекты возможны — расскажите ситуацию</p>
+    </div>
+
+    <div class="step" id="step6">
+      <h1 class="st">Последние детали</h1>
+      <p class="gl">Откуда узнали о TRAFIQO?</p>
+      <div class="opts" id="source">
+        <div class="oc r" data-g="source" data-v="Telegram канал"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Telegram канал</div></div>
+        <div class="oc r" data-g="source" data-v="Рекомендация знакомых"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Рекомендация знакомых</div></div>
+        <div class="oc r" data-g="source" data-v="Яндекс или Google"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Яндекс или Google</div></div>
+        <div class="oc r" data-g="source" data-v="Увидел сайт"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Увидел сайт</div></div>
+        <div class="oc r" data-g="source" data-v="Другое"><div class="chk"><svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#fff"/></svg></div><div class="oname">Другое</div></div>
+      </div>
+      <div class="field" style="margin-top:20px"><label>Расскажите о задаче своими словами</label><textarea id="desc" placeholder="Любые детали помогают — даже если кажется что это мелочи..."></textarea><p class="hint">Необязательно, но помогает дать точный ответ</p></div>
+      <div class="field"><label>Ссылка на референс или документ</label><input type="url" id="ref" placeholder="https://..."><p class="hint">Сайты которые нравятся, конкуренты, ТЗ в Google Docs</p></div>
+    </div>
+
+    <div id="ss">
+      <div class="chkanim"><svg width="32" height="32" viewBox="0 0 32 32"><path d="M6 16l8 8 12-12" stroke="var(--accent-lt)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>Анкета получена</h2>
+      <p id="ssText">Спасибо. Изучим детали и свяжемся в течение 24 часов с конкретным предложением по вашему проекту.</p>
+      <div class="sbtns">
+        <a href="https://t.me/trafiqo" class="btg">Написать в Telegram</a>
+        <a href="index.html" class="bhome">← Вернуться на сайт</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <button class="btn bb" id="btnBack" onclick="go(-1)">← Назад</button>
+    <button class="btn bn" id="btnNext" onclick="go(1)">Далее →</button>
+  </footer>
+
+  <script>
+    const BOT_TOKEN = 'YOUR_BOT_TOKEN';
+    const CHAT_ID = 'YOUR_CHAT_ID';
+    const SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
+    let cur = 1; const fd = {};
+
+    function ui() {
+      document.getElementById('stepCounter').textContent = `Шаг ${cur} из 6`;
+      document.getElementById('progressFill').style.width = `${cur/6*100}%`;
+      document.getElementById('btnBack').style.display = cur === 1 ? 'none' : '';
+      document.getElementById('btnNext').textContent = cur === 6 ? 'Отправить анкету' : 'Далее →';
+    }
+
+    function show(n) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step'+n).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'}); ui();
+    }
+
+    function collect() {
+      if(cur===1){ fd.name=document.getElementById('name').value.trim(); fd.contact=document.getElementById('contact').value.trim(); fd.city=document.getElementById('city').value.trim(); }
+      else if(cur===2){ fd.types=[...document.querySelectorAll('#types .sel')].map(e=>e.dataset.v); }
+      else if(cur===3){ fd.niche=document.getElementById('niche').value.trim(); fd.status=document.querySelector('#status .sel')?.dataset.v||''; fd.clients=document.querySelector('#clients .sel')?.dataset.v||''; fd.goals=[...document.querySelectorAll('#goals .sel')].map(e=>e.dataset.v); }
+      else if(cur===4){ fd.hasSite=document.querySelector('#hasSite .sel')?.dataset.v||''; fd.design=document.querySelector('#design .sel')?.dataset.v||''; fd.intg=[...document.querySelectorAll('#intg .sel')].map(e=>e.dataset.v); fd.tz=document.querySelector('#tz .sel')?.dataset.v||''; }
+      else if(cur===5){ fd.budget=document.querySelector('#budget .sel')?.dataset.v||''; fd.deadline=document.querySelector('#deadline .sel')?.dataset.v||''; }
+      else if(cur===6){ fd.source=document.querySelector('#source .sel')?.dataset.v||''; fd.desc=document.getElementById('desc').value.trim(); fd.ref=document.getElementById('ref').value.trim(); }
+    }
+
+    function go(dir) {
+      if(dir===1 && cur===1){ if(!document.getElementById('name').value.trim()||!document.getElementById('contact').value.trim()){ alert('Пожалуйста, укажите имя и контакт'); return; } }
+      collect();
+      if(dir===1 && cur===6){ submit(); return; }
+      cur = Math.max(1, Math.min(6, cur+dir)); show(cur);
+    }
+
+    function submit() {
+      const nl = '\n', q = (v,arr) => arr&&arr.length ? arr.join(', ') : (v||'—');
+      const msg = `📋 *Новая анкета TRAFIQO*${nl}${nl}` +
+        `👤 *Имя:* ${fd.name}${nl}📱 *Контакт:* ${fd.contact}${nl}🌍 *Город:* ${fd.city||'—'}${nl}${nl}` +
+        `🔧 *Тип проекта:* ${q('',[...fd.types||[]])}${nl}${nl}` +
+        `🏢 *Ниша:* ${fd.niche||'—'}${nl}📊 *Статус:* ${fd.status||'—'}${nl}👥 *Клиенты:* ${fd.clients||'—'}${nl}🎯 *Цели:* ${q('',[...fd.goals||[]])}${nl}${nl}` +
+        `🌐 *Сайт:* ${fd.hasSite||'—'}${nl}🎨 *Дизайн:* ${fd.design||'—'}${nl}🔌 *Интеграции:* ${q('',[...fd.intg||[]])}${nl}📄 *ТЗ:* ${fd.tz||'—'}${nl}${nl}` +
+        `💰 *Бюджет:* ${fd.budget||'—'}${nl}⏱ *Сроки:* ${fd.deadline||'—'}${nl}${nl}` +
+        `📣 *Источник:* ${fd.source||'—'}${nl}💬 *Описание:* ${fd.desc||'—'}${nl}🔗 *Референс:* ${fd.ref||'—'}`;
+      if(BOT_TOKEN!=='YOUR_BOT_TOKEN') fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}).catch(()=>{});
+      if(SHEET_URL!=='YOUR_APPS_SCRIPT_URL') fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fd)}).catch(()=>{});
+      document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+      document.querySelector('footer').style.display='none';
+      document.getElementById('ss').style.display='block';
+      if(fd.name) document.getElementById('ssText').textContent=`${fd.name}, спасибо. Изучим детали и свяжемся в течение 24 часов с конкретным предложением по вашему проекту.`;
+      document.getElementById('stepCounter').textContent='Готово';
+      document.getElementById('progressFill').style.width='100%';
+    }
+
+    document.querySelectorAll('.oc').forEach(c => c.addEventListener('click', () => {
+      const g = c.dataset.g;
+      if(g){ document.querySelectorAll(`[data-g="${g}"]`).forEach(x=>x.classList.remove('sel')); c.classList.add('sel'); }
+      else c.classList.toggle('sel');
+    }));
+    document.querySelectorAll('.tag').forEach(t => t.addEventListener('click', () => t.classList.toggle('sel')));
+    ui();
+  </script>
+</body>
+</html>
