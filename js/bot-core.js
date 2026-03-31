@@ -15,7 +15,8 @@ const getBotContainer = () =>
 
 const scrollToBottom = () => {
   const c = getBotContainer();
-  if (c) c.scrollTop = c.scrollHeight;
+  if (!c) return;
+  c.scrollTop = c.scrollHeight;
 };
 
 // ─── РЕНДЕР СООБЩЕНИЯ ────────────────────────────────────

@@ -278,6 +278,7 @@ const initSmoothScroll = () => {
 };
 
 const initHeroChat = () => {
+  if (isMobile()) return;
   const container = document.getElementById('heroChat');
   if (!container) return;
 
@@ -311,6 +312,7 @@ const initHeroChat = () => {
 };
 
 const initPhoneScreens = () => {
+  if (isMobile()) return;
   const screens = document.querySelectorAll('.ui-phone__screen');
   const dots    = document.querySelectorAll('.ui-phone__nav .ui-ph-dot');
   if (!screens.length) return;
@@ -432,6 +434,7 @@ const initCursorGlow = () => {
 };
 
 const initActivityCounter = () => {
+  if (isMobile()) return;
   const el = document.getElementById('activityText');
   if (!el) return;
 
@@ -465,7 +468,9 @@ const initActivityCounter = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (!isMobile()) {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
   initAOS();
   initBurger();
   initFAQ();
