@@ -279,6 +279,11 @@
 
 .section-why__title { margin-top: 8px; margin-bottom: 40px; }
 
+.why-us__item::before,
+.section-why-us__item::before {
+  background: linear-gradient(135deg, #F0B429, #FFD97D);
+}
+
 .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
 .why-item { display: flex; align-items: flex-start; gap: 14px; }
