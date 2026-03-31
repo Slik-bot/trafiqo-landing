@@ -1,156 +1,188 @@
 // ─── КОНФИГ ──────────────────────────────────────────────
-const BOT_DELAY_SHORT = 600;
-const BOT_DELAY_LONG  = 1000;
+const WEBHOOK_URL = 'https://fenesotired.beget.app/webhook-test/trafiqo-assistant';
+const BOT_DELAY = 800;
 
-// ─── СЦЕНАРИЙ ДИАЛОГА ────────────────────────────────────
-const STEPS = [
-  { id: 'greeting', msg: 'Привет! Помогу оформить заявку. Как вас зовут?',
-    type: 'input',   field: 'name',    nextId: 'service' },
-  { id: 'service',  msg: (s) => `${s.name}, отлично! Что вас интересует?`,
-    type: 'options', field: 'service', nextId: 'budget',
-    options: ['Сайт', 'Приложение', 'Бот / Автоматизация', 'Другое'] },
-  { id: 'budget',   msg: 'Понял. Есть примерное понимание бюджета?',
-    type: 'options', field: 'budget',  nextId: 'contact',
-    options: ['До 50 000 ₽', '50–150 000 ₽', 'Выше', 'Пока не знаю'] },
-  { id: 'contact',  msg: (s) => `Отлично, ${s.name}! Оставьте контакт — свяжемся в течение 24 часов.`,
-    type: 'input',   field: 'contact', nextId: 'end' },
-  { id: 'end',      msg: 'Заявка принята! Ждите — скоро свяжемся.', type: 'end' }
-];
+// ─── СОСТОЯНИЕ ───────────────────────────────────────────
+const botState = {
+  isOpen: false,
+  messages: [],
+  isTyping: false
+};
 
-// ─── СОСТОЯНИЕ + УТИЛИТЫ ─────────────────────────────────
-const state      = { isOpen: false, started: false, data: {} };
-const botDelay   = (ms) => new Promise((r) => setTimeout(r, ms));
-const getBox     = ()   => document.querySelector('.bot-widget__messages');
-const scrollDown = (el) => { if (el) el.scrollTop = el.scrollHeight; };
+// ─── УТИЛИТЫ ─────────────────────────────────────────────
+const getBotContainer = () =>
+  document.querySelector('.bot-widget__messages');
+
+const scrollToBottom = () => {
+  const c = getBotContainer();
+  if (c) c.scrollTop = c.scrollHeight;
+};
 
 // ─── РЕНДЕР СООБЩЕНИЯ ────────────────────────────────────
 const renderMessage = (text, type) => {
-  const box = getBox();
-  if (!box) return;
-  const div = Object.assign(document.createElement('div'), {
-    className: `bot-message bot-message--${type}`,
-    textContent: text
+  const container = getBotContainer();
+  if (!container) return;
+  const msg = document.createElement('div');
+  msg.className = `bot-message bot-message--${type}`;
+  msg.textContent = text;
+  container.appendChild(msg);
+  requestAnimationFrame(() => {
+    msg.classList.add('is-visible');
+    scrollToBottom();
   });
-  box.appendChild(div);
-  scrollDown(box);
 };
 
-// ─── РЕНДЕР ВАРИАНТОВ ────────────────────────────────────
-const renderOptions = (options, onSelect) => {
-  const box  = getBox();
-  if (!box) return;
-  const wrap = Object.assign(document.createElement('div'), { className: 'bot-options' });
-  options.forEach((opt) => {
-    const btn = Object.assign(document.createElement('button'), {
-      className: 'bot-option', textContent: opt
-    });
-    btn.addEventListener('click', () => {
-      renderMessage(opt, 'user');
-      wrap.remove();
-      onSelect(opt);
-    }, { once: true });
-    wrap.appendChild(btn);
-  });
-  box.appendChild(wrap);
-  scrollDown(box);
-};
-
-// ─── РЕНДЕР ПОЛЯ ВВОДА ───────────────────────────────────
-const renderInput = (placeholder, onSubmit) => {
-  const box  = getBox();
-  if (!box) return;
-  const wrap  = Object.assign(document.createElement('div'), { className: 'bot-input-wrap' });
-  const input = Object.assign(document.createElement('input'), {
-    className: 'bot-input', placeholder
-  });
-  const btn = Object.assign(document.createElement('button'), {
-    className: 'bot-send', textContent: 'Отправить'
-  });
-  const submit = () => {
-    const val = input.value.trim();
-    if (!val) return;
-    renderMessage(val, 'user');
-    wrap.remove();
-    onSubmit(val);
-  };
-  btn.addEventListener('click', submit);
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
-  wrap.append(input, btn);
-  box.appendChild(wrap);
-  input.focus();
-  scrollDown(box);
-};
-
-// ─── ИНДИКАТОР ПЕЧАТИ ────────────────────────────────────
+// ─── ИНДИКАТОР ПЕЧАТАНИЯ ─────────────────────────────────
 const showTyping = () => {
-  const box = getBox();
-  if (!box) return null;
-  const el = Object.assign(document.createElement('div'), {
-    className: 'bot-message bot-message--bot bot-typing', textContent: '...'
-  });
-  box.appendChild(el);
-  scrollDown(box);
+  const container = getBotContainer();
+  if (!container) return null;
+  const el = document.createElement('div');
+  el.className = 'bot-typing';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  el.id = 'botTyping';
+  container.appendChild(el);
+  scrollToBottom();
   return el;
 };
 
-// ─── СЛЕДУЮЩИЙ ШАГ ───────────────────────────────────────
-const nextStep = async (stepId, userValue) => {
-  const step = STEPS.find((s) => s.id === stepId);
-  if (!step) return;
-  if (userValue !== undefined && step.field) state.data[step.field] = userValue;
+const hideTyping = () => {
+  const el = document.getElementById('botTyping');
+  if (el) el.remove();
+};
 
-  const typing = showTyping();
-  await botDelay(stepId === 'greeting' ? BOT_DELAY_SHORT : BOT_DELAY_LONG);
-  typing?.remove();
-
-  const text = typeof step.msg === 'function' ? step.msg(state.data) : step.msg;
-  renderMessage(text, 'bot');
-
-  if (step.type === 'options') {
-    renderOptions(step.options, (val) => nextStep(step.nextId, val));
-  } else if (step.type === 'input') {
-    const ph = step.field === 'name' ? 'Ваше имя...' : '@username или +7...';
-    renderInput(ph, (val) => nextStep(step.nextId, val));
-  } else if (step.type === 'end') {
-    sendBotData();
+// ─── ОТПРАВКА В ВЕБХУК ───────────────────────────────────
+const sendToWebhook = async (userMessage) => {
+  try {
+    const response = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: userMessage,
+        history: botState.messages,
+        source: 'trafiqo-site'
+      })
+    });
+    if (!response.ok) throw new Error('Webhook error');
+    const data = await response.json();
+    return data.reply || data.text ||
+           data.output || data.response ||
+           'Понял! Свяжемся с вами в ближайшее время.';
+  } catch (error) {
+    console.error('Webhook error:', error);
+    return 'Что-то пошло не так. Напишите нам напрямую → @trafiqo';
   }
 };
 
-// ─── ОТПРАВКА ДАННЫХ ─────────────────────────────────────
-const sendBotData = async () => {
-  try {
-    if (typeof sendToTelegram === 'function') await sendToTelegram(state.data);
-    if (typeof sendToSheets === 'function')  await sendToSheets(state.data);
-  } catch (error) { console.error('Bot send failed:', error); }
+// ─── ОБРАБОТКА СООБЩЕНИЯ ─────────────────────────────────
+const handleUserMessage = async (text) => {
+  if (!text.trim() || botState.isTyping) return;
+  botState.isTyping = true;
+
+  renderMessage(text, 'user');
+  botState.messages.push({ role: 'user', content: text });
+
+  const typing = showTyping();
+  const reply = await sendToWebhook(text);
+  hideTyping();
+
+  renderMessage(reply, 'bot');
+  botState.messages.push({ role: 'assistant', content: reply });
+  botState.isTyping = false;
+};
+
+// ─── РЕНДЕР ИНПУТА ───────────────────────────────────────
+const renderInput = () => {
+  const wrap = document.querySelector('.bot-widget__input-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'bot-input';
+  input.placeholder = 'Напишите сообщение...';
+  input.setAttribute('aria-label', 'Сообщение боту');
+
+  const btn = document.createElement('button');
+  btn.className = 'bot-send';
+  btn.setAttribute('aria-label', 'Отправить');
+  btn.innerHTML = `<svg width="16" height="16"
+    viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13"/>
+    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+  </svg>`;
+
+  const submit = () => {
+    const val = input.value.trim();
+    if (!val) return;
+    input.value = '';
+    handleUserMessage(val);
+  };
+
+  btn.addEventListener('click', submit);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submit();
+  });
+
+  wrap.appendChild(input);
+  wrap.appendChild(btn);
+  setTimeout(() => input.focus(), 100);
 };
 
 // ─── ОТКРЫТЬ / ЗАКРЫТЬ ───────────────────────────────────
 const toggleWidget = () => {
   const widget = document.querySelector('.bot-widget');
-  const chat   = document.querySelector('.bot-widget__chat');
   if (!widget) return;
-  state.isOpen = !state.isOpen;
-  widget.classList.toggle('is-open', state.isOpen);
-  widget.querySelector('.bot-widget__toggle')?.setAttribute('aria-expanded', String(state.isOpen));
-  if (chat) state.isOpen ? chat.removeAttribute('hidden') : chat.setAttribute('hidden', '');
-  if (state.isOpen && !state.started) { state.started = true; nextStep('greeting'); }
+
+  botState.isOpen = !botState.isOpen;
+  widget.classList.toggle('is-open', botState.isOpen);
+
+  const toggle = widget.querySelector('.bot-widget__toggle');
+  toggle?.setAttribute('aria-expanded',
+    String(botState.isOpen));
+
+  if (botState.isOpen && botState.messages.length === 0) {
+    setTimeout(() => {
+      renderMessage(
+        'Привет! Я помощник TRAFIQO. Расскажите о вашем проекте — помогу разобраться.',
+        'bot'
+      );
+      botState.messages.push({
+        role: 'assistant',
+        content: 'Привет! Я помощник TRAFIQO. Расскажите о вашем проекте — помогу разобраться.'
+      });
+      renderInput();
+    }, BOT_DELAY);
+  }
 };
 
 // ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 const initBotWidget = () => {
-  const toggle = document.querySelector('.bot-widget__toggle');
-  const bubble = document.querySelector('.bot-widget__bubble');
-  if (!toggle) return;
-  bubble?.classList.add('is-hidden');
-  toggle.addEventListener('click', () => { bubble?.classList.add('is-hidden'); toggleWidget(); });
+  const widget = document.querySelector('.bot-widget');
+  if (!widget) return;
+
+  const toggle = widget.querySelector('.bot-widget__toggle');
+  toggle?.addEventListener('click', toggleWidget);
+
   const closeBtn = document.getElementById('botClose');
   if (closeBtn) {
     closeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      toggleWidget();
+      if (botState.isOpen) toggleWidget();
     });
   }
-  setTimeout(() => bubble?.classList.remove('is-hidden'), 3000);
+
+  const bubble = widget.querySelector('.bot-widget__bubble');
+  if (bubble) {
+    setTimeout(() => {
+      bubble.style.opacity = '1';
+      bubble.style.transform = 'translateY(0)';
+    }, 3000);
+    toggle?.addEventListener('click', () => {
+      bubble.style.display = 'none';
+    }, { once: true });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', initBotWidget);
