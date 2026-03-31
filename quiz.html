@@ -210,10 +210,41 @@ const showStep = (index) => {
 };
 
 const getResult = () => {
-  const limit = budgetLimits[budget] ?? 99999999;
-  const affordable = Object.keys(services).filter(k => services[k].priceNum <= limit);
-  const pool = affordable.length ? affordable : ['bot'];
-  return pool.reduce((best, k) => (scores[k] || 0) > (scores[best] || 0) ? k : best, pool[0]);
+  const limit = budgetLimits[budget] || 99999999;
+
+  // При большом бюджете показываем лучшее решение
+  // При малом — только то что входит в бюджет
+  let candidates = Object.entries(services);
+
+  if (limit < 99999999) {
+    const affordable = candidates.filter(
+      ([key, svc]) => svc.priceNum <= limit
+    );
+    if (affordable.length > 0) {
+      candidates = affordable;
+    }
+  }
+
+  // Из кандидатов берём с максимальным score
+  let winner = candidates[0][0];
+  let maxScore = -1;
+
+  candidates.forEach(([key]) => {
+    const s = scores[key] || 0;
+    if (s > maxScore) {
+      maxScore = s;
+      winner = key;
+    }
+  });
+
+  // Если все scores = 0 — берём по бюджету
+  if (maxScore === 0) {
+    if (limit <= 50000) winner = 'bot';
+    else if (limit <= 150000) winner = 'site_basic';
+    else winner = 'site_full';
+  }
+
+  return winner;
 };
 
 document.querySelectorAll('.quiz-card').forEach(card => {
