@@ -23,6 +23,8 @@
   box-shadow:
     0 20px 60px rgba(0,0,0,0.6),
     0 0 0 0.5px rgba(255,255,255,0.05) inset;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .bot-widget.is-open .bot-widget__window { display: flex; }
@@ -187,6 +189,7 @@
     bottom: 76px;
     right: 16px;
     z-index: 999;
+    left: auto;
   }
 
   .bot-widget__window {
@@ -195,21 +198,27 @@
     right: 16px;
     left: 16px;
     width: auto;
-    max-width: none;
-    max-height: 50vh;
+    max-height: 55vh;
     border-radius: 14px;
-    transition: bottom 0.3s ease;
+    transform-origin: bottom right;
+  }
+
+  .bot-widget.is-open .bot-widget__window {
+    display: flex;
+    flex-direction: column;
   }
 
   .bot-widget__messages {
-    max-height: calc(50vh - 110px);
-    min-height: 80px;
+    max-height: calc(55vh - 110px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .bot-widget__input-wrap {
     flex-shrink: 0;
-    position: sticky;
-    bottom: 0;
+    position: relative;
+    bottom: auto;
   }
 
   .bot-input {
