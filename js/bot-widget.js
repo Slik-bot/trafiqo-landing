@@ -68,19 +68,19 @@ const initBotWidget = () => {
   const widget = document.querySelector('.bot-widget');
   if (!widget) return;
 
-  const toggle = widget.querySelector('.bot-widget__toggle');
-  const bubble = widget.querySelector('.bot-widget__bubble');
-
+  const toggle   = widget.querySelector('.bot-widget__toggle');
+  const bubble   = widget.querySelector('.bot-widget__bubble');
+  const closeBtn = widget.querySelector('.bot-widget__close');
   toggle?.addEventListener('click', (e) => {
     e.stopPropagation();
     toggleWidget();
     if (bubble) bubble.style.display = 'none';
   });
 
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.bot-widget__close')) {
-      if (botState.isOpen) toggleWidget();
-    }
+  closeBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (botState.isOpen) toggleWidget();
   });
 
   if (bubble) {
