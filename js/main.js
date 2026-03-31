@@ -263,6 +263,7 @@ const initSmoothScroll = () => {
 };
 
 const initHeroChat = () => {
+  if (isMobile()) return;
   const container = document.getElementById('heroChat');
   if (!container) return;
 
