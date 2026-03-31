@@ -460,6 +460,8 @@ const initPortfolioSlider = () => {
   track.addEventListener('mouseleave', () => { isDragging = false; track.style.cursor = 'grab'; });
   track.addEventListener('mouseup',    () => { isDragging = false; track.style.cursor = 'grab'; });
   track.addEventListener('mousemove', (e) => { if (!isDragging) return; e.preventDefault(); track.parentElement.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5; });
+  const slider = track.parentElement;
+  slider.addEventListener('scroll', () => { const sw = track.children[0]?.offsetWidth + 24; const idx = Math.round(slider.scrollLeft / sw); document.querySelectorAll('.portfolio-dot').forEach((d, i) => d.classList.toggle('active', i === idx)); }, { passive: true });
 };
 
 window.goToSlide = (index) => {
