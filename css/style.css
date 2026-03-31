@@ -30,6 +30,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
   --radius-md: 10px;
   --radius-lg: 16px;
   --container: 1200px;
+  --color-gold:     #F0B429;
+  --color-gold-lt:  #FFD97D;
+  --gradient-gold:  linear-gradient(135deg, #F0B429, #FFD97D);
 }
 
 /* ─── BODY + ФОН ────────────────────────────────────────── */

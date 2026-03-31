@@ -600,3 +600,74 @@
   .section-banner { padding: 48px 0; }
   .section-banner .container { padding: 0 20px; }
 }
+
+/* ── Gold accents ── */
+.trust__number {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(240,180,41,0.3));
+}
+
+.process__number,
+.section-process__number,
+.process-step__number {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.review-card__stars {
+  color: var(--color-gold);
+  filter: drop-shadow(0 0 6px rgba(240,180,41,0.4));
+}
+
+.review-card__avatar {
+  background: linear-gradient(135deg, rgba(240,180,41,0.3), rgba(255,217,125,0.15));
+  border-color: rgba(240,180,41,0.4);
+  color: var(--color-gold);
+}
+
+.direction__link,
+.section-directions__link,
+.directions-card__link { color: var(--color-gold); transition: opacity 0.2s ease; }
+.direction__link:hover,
+.section-directions__link:hover { opacity: 0.8; }
+
+.why-us__item::before,
+.section-why-us__item::before,
+.why-us-item::before {
+  color: var(--color-gold);
+  background: var(--gradient-gold);
+}
+
+.faq-item__icon,
+.faq-item__btn svg,
+.faq-item__arrow { color: var(--color-gold); stroke: var(--color-gold); }
+
+.service-card__icon,
+.service-card__icon svg { color: var(--color-gold-lt); stroke: var(--color-gold-lt); }
+
+.contact-path__icon {
+  background: linear-gradient(135deg, rgba(240,180,41,0.15), rgba(240,180,41,0.05));
+  border-color: rgba(240,180,41,0.2);
+  color: var(--color-gold);
+}
+
+.contact-path--primary .contact-path__icon { color: var(--color-gold); }
+
+.contact-path__perks li::before { background: var(--color-gold); }
+
+.section-about__highlight-title em,
+.section-about__title em {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: normal;
+}
+
+.swiper-pagination-bullet-active,
+.portfolio-dot.active { background: var(--color-gold); }
