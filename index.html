@@ -2,11 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-<script>
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname);
-  }
-</script>
+<script>if(window.location.hash)history.replaceState(null,'',window.location.pathname);</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRAFIQO — Разработка сайтов, приложений и автоматизации</title>
   <meta name="description" content="Цифровое агентство TRAFIQO: сайты, мобильные приложения, боты, автоматизация бизнеса. Полный цикл от дизайна до запуска.">
@@ -15,24 +11,16 @@
   <meta property="og:image" content="/img/og-cover.jpg">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://trafiqo.ru/">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/style.css">
   <style>html { scroll-behavior: auto; }</style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "TRAFIQO",
-    "description": "Digital Agency — сайты, приложения, автоматизация",
-    "url": "https://trafiqo.ru"
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"TRAFIQO","description":"Digital Agency — сайты, приложения, автоматизация","url":"https://trafiqo.ru"}</script>
 </head>
 <body>
 
@@ -59,29 +47,12 @@
 <main>
 
   <section id="hero" class="section-hero">
-    <div class="hero-bubbles" aria-hidden="true">
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-      <span class="hero-bubble"></span>
-    </div>
+    <div class="hero-bubbles" aria-hidden="true"><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span><span class="hero-bubble"></span></div>
     <div class="section-hero__container">
       <div class="section-hero__content">
         <span class="section-label">DIGITAL AGENCY</span>
         <div class="section-hero__title-wrap">
-          <h1 class="section-hero__title">
-            Сайт который приносит клиентов.
-            Приложение которым пользуются.
-            Автоматизация которая работает.
-          </h1>
+          <h1 class="section-hero__title">Сайт который приносит клиентов. Приложение которым пользуются. Автоматизация которая работает.</h1>
         </div>
         <p class="section-hero__subtitle">Берёмся за задачи которые другие считают сложными. Сдаём в срок. Без лишних слов.</p>
         <div class="section-hero__cta-group">
@@ -90,45 +61,25 @@
         </div>
         <div class="hero-activity">
           <span class="hero-activity__dot"></span>
-          <span class="hero-activity__text" id="activityText">
-            Последняя заявка — 43 минуты назад
-          </span>
+          <span class="hero-activity__text" id="activityText">Последняя заявка — 43 минуты назад</span>
         </div>
       </div>
       <div class="section-hero__visuals" aria-hidden="true">
         <div class="ui-browser">
           <div class="ui-browser__bar"><span class="ui-dot"></span><span class="ui-dot"></span><span class="ui-dot"></span><div class="ui-browser__addr"></div></div>
           <div class="ui-browser__content">
-            <div class="ui-browser__section">
-              <div class="ui-browser__section-label">Hero</div>
-              <div class="ui-browser__section-line accent"></div><div class="ui-browser__section-line"></div></div>
-            <div class="ui-browser__section">
-              <div class="ui-browser__section-label">Услуги</div>
-              <div class="ui-browser__section-line accent" style="width:50%"></div><div class="ui-browser__section-line"></div>
-              <div class="ui-browser__section-line" style="width:60%"></div></div>
-            <div class="ui-browser__section">
-              <div class="ui-browser__section-label">О нас</div>
-              <div class="ui-browser__section-line"></div><div class="ui-browser__section-line accent" style="width:40%"></div></div>
-            <div class="ui-browser__section">
-              <div class="ui-browser__section-label">Контакты</div>
-              <div class="ui-browser__section-line accent" style="width:80%"></div><div class="ui-browser__section-line" style="width:55%"></div></div>
+            <div class="ui-browser__section"><div class="ui-browser__section-label">Hero</div><div class="ui-browser__section-line accent"></div><div class="ui-browser__section-line"></div></div>
+            <div class="ui-browser__section"><div class="ui-browser__section-label">Услуги</div><div class="ui-browser__section-line accent" style="width:50%"></div><div class="ui-browser__section-line"></div><div class="ui-browser__section-line" style="width:60%"></div></div>
+            <div class="ui-browser__section"><div class="ui-browser__section-label">О нас</div><div class="ui-browser__section-line"></div><div class="ui-browser__section-line accent" style="width:40%"></div></div>
+            <div class="ui-browser__section"><div class="ui-browser__section-label">Контакты</div><div class="ui-browser__section-line accent" style="width:80%"></div><div class="ui-browser__section-line" style="width:55%"></div></div>
           </div>
         </div>
         <div class="ui-phone">
           <div class="ui-phone__notch"></div>
           <div class="ui-phone__screens-wrap">
-            <div class="ui-phone__screen is-active" data-screen="0">
-              <div class="ui-phone__screen-label">Главная</div>
-              <div class="ui-ph-s a"></div><div class="ui-ph-s b"></div><div class="ui-ph-btn"></div>
-            </div>
-            <div class="ui-phone__screen" data-screen="1">
-              <div class="ui-phone__screen-label">Каталог</div>
-              <div class="ui-ph-s"></div><div class="ui-ph-s a" style="width:60%"></div><div class="ui-ph-s b"></div>
-            </div>
-            <div class="ui-phone__screen" data-screen="2">
-              <div class="ui-phone__screen-label">Профиль</div>
-              <div class="ui-ph-s a" style="width:40%"></div><div class="ui-ph-s"></div><div class="ui-ph-btn"></div>
-            </div>
+            <div class="ui-phone__screen is-active" data-screen="0"><div class="ui-phone__screen-label">Главная</div><div class="ui-ph-s a"></div><div class="ui-ph-s b"></div><div class="ui-ph-btn"></div></div>
+            <div class="ui-phone__screen" data-screen="1"><div class="ui-phone__screen-label">Каталог</div><div class="ui-ph-s"></div><div class="ui-ph-s a" style="width:60%"></div><div class="ui-ph-s b"></div></div>
+            <div class="ui-phone__screen" data-screen="2"><div class="ui-phone__screen-label">Профиль</div><div class="ui-ph-s a" style="width:40%"></div><div class="ui-ph-s"></div><div class="ui-ph-btn"></div></div>
           </div>
           <div class="ui-phone__nav"><span class="ui-ph-dot a"></span><span class="ui-ph-dot"></span><span class="ui-ph-dot"></span></div>
         </div>
@@ -146,34 +97,10 @@
 
   <section id="trust" class="section-trust">
     <div class="section-trust__container">
-      <div class="trust-item" data-aos="fade-up">
-        <div class="trust-item__value">
-          <span class="trust-item__number" data-countup="300">0</span>
-          <span class="trust-item__suffix">+</span>
-        </div>
-        <p class="trust-item__label">выполненных проектов</p>
-      </div>
-      <div class="trust-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="trust-item__value">
-          <span class="trust-item__number" data-countup="5">0</span>
-          <span class="trust-item__suffix">+</span>
-        </div>
-        <p class="trust-item__label">стран — клиенты</p>
-      </div>
-      <div class="trust-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="trust-item__value">
-          <span class="trust-item__number" data-countup="3">0</span>
-          <span class="trust-item__suffix"></span>
-        </div>
-        <p class="trust-item__label">года на рынке</p>
-      </div>
-      <div class="trust-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="trust-item__value">
-          <span class="trust-item__number" data-countup="24">0</span>
-          <span class="trust-item__suffix">ч</span>
-        </div>
-        <p class="trust-item__label">время первого ответа</p>
-      </div>
+      <div class="trust-item" data-aos="fade-up"><div class="trust-item__value"><span class="trust-item__number" data-countup="300">0</span><span class="trust-item__suffix">+</span></div><p class="trust-item__label">выполненных проектов</p></div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="100"><div class="trust-item__value"><span class="trust-item__number" data-countup="5">0</span><span class="trust-item__suffix">+</span></div><p class="trust-item__label">стран — клиенты</p></div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="200"><div class="trust-item__value"><span class="trust-item__number" data-countup="3">0</span><span class="trust-item__suffix"></span></div><p class="trust-item__label">года на рынке</p></div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="300"><div class="trust-item__value"><span class="trust-item__number" data-countup="24">0</span><span class="trust-item__suffix">ч</span></div><p class="trust-item__label">время первого ответа</p></div>
     </div>
   </section>
 
@@ -183,52 +110,38 @@
       <h2 class="section-services__title" data-aos="fade-up" data-aos-delay="50">Цифровые продукты под любую задачу</h2>
       <div class="services__scroll-wrap">
         <article class="service-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="service-card__icon" aria-hidden="true">
-            <img src="img/icons/icon-web.svg" alt="Сайты" width="32" height="32" loading="lazy">
-          </div>
+          <div class="service-card__icon" aria-hidden="true"><img src="img/icons/icon-web.svg" alt="Сайты" width="32" height="32" loading="lazy"></div>
           <h3 class="service-card__title">Сайты и лендинги</h3>
           <p class="service-card__desc">Проектируем и разрабатываем — от одностраничника до корпоративного портала. Каждый элемент работает <span class="text-accent">на конверсию</span>.</p>
           <a href="brief.html?service=site" class="service-card__link">Обсудить →</a>
         </article>
         <article class="service-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-card__icon" aria-hidden="true">
-            <img src="img/icons/icon-app.svg" alt="Приложения" width="32" height="32" loading="lazy">
-          </div>
+          <div class="service-card__icon" aria-hidden="true"><img src="img/icons/icon-app.svg" alt="Приложения" width="32" height="32" loading="lazy"></div>
           <h3 class="service-card__title">Мобильные приложения</h3>
           <p class="service-card__desc">iOS и Android. Полный цикл — прототип, дизайн, разработка, публикация. Ваш продукт в руках у пользователей.</p>
           <a href="brief.html?service=app" class="service-card__link">Обсудить →</a>
         </article>
         <article class="service-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-card__icon" aria-hidden="true">
-            <img src="img/icons/icon-bot.svg" alt="Автоматизация" width="32" height="32" loading="lazy">
-          </div>
+          <div class="service-card__icon" aria-hidden="true"><img src="img/icons/icon-bot.svg" alt="Автоматизация" width="32" height="32" loading="lazy"></div>
           <h3 class="service-card__title">Боты и автоматизация</h3>
           <p class="service-card__desc">Telegram-боты, CRM-интеграции, автоворонки. Рутина уходит — <span class="text-accent">вы занимаетесь бизнесом</span>.</p>
           <a href="brief.html?service=bot" class="service-card__link">Обсудить →</a>
         </article>
         <article class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-card__icon" aria-hidden="true">
-            <img src="img/icons/icon-crm.svg" alt="Интеграции" width="32" height="32" loading="lazy">
-          </div>
+          <div class="service-card__icon" aria-hidden="true"><img src="img/icons/icon-crm.svg" alt="Интеграции" width="32" height="32" loading="lazy"></div>
           <h3 class="service-card__title">Интеграции и системы</h3>
           <p class="service-card__desc">Платёжные системы, CRM, аналитика, API. Всё работает как единый механизм.</p>
           <a href="brief.html?service=site" class="service-card__link">Обсудить →</a>
         </article>
         <article class="service-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="service-card__icon" aria-hidden="true">
-            <img src="img/icons/icon-platform.svg" alt="Платформы" width="32" height="32" loading="lazy">
-          </div>
+          <div class="service-card__icon" aria-hidden="true"><img src="img/icons/icon-platform.svg" alt="Платформы" width="32" height="32" loading="lazy"></div>
           <h3 class="service-card__title">Платформы и форумы</h3>
-          <p class="service-card__desc">Форумы возвращаются — и это не ностальгия. Когда соцсети блокируют и алгоритмы меняются — своё сообщество становится активом. <span class="text-accent">Ваши правила</span>, ваша аудитория, ваш контроль.</p>
+          <p class="service-card__desc">Форумы возвращаются — и это не ностальгия. Своё сообщество — это актив. <span class="text-accent">Ваши правила</span>, ваша аудитория, ваш контроль.</p>
           <a href="brief.html?service=platform" class="service-card__link">Обсудить →</a>
         </article>
       </div>
       <div class="scroll-dots" id="servicesDots" aria-hidden="true">
-        <span class="scroll-dot is-active"></span>
-        <span class="scroll-dot"></span>
-        <span class="scroll-dot"></span>
-        <span class="scroll-dot"></span>
-        <span class="scroll-dot"></span>
+        <span class="scroll-dot is-active"></span><span class="scroll-dot"></span><span class="scroll-dot"></span><span class="scroll-dot"></span><span class="scroll-dot"></span>
       </div>
     </div>
   </section>
@@ -265,90 +178,30 @@
   <section id="reviews" class="section section-reviews">
     <div class="container">
       <span class="section-label">ОТЗЫВЫ</span>
-      <h2 class="section-reviews__title">
-        Говорят клиенты — не мы
-      </h2>
+      <h2 class="section-reviews__title">Говорят клиенты — не мы</h2>
     </div>
     <div class="swiper reviews-swiper">
       <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="review-card__stars">★★★★★</div>
-            <p class="review-card__text">«Сделали лендинг за 8 дней.
-            Я не ожидал такого уровня — анимации, адаптив, форма
-            сразу в Telegram. Первая заявка пришла через 2 часа
-            после запуска.»</p>
-            <div class="review-card__author">
-              <div class="review-card__avatar">А</div>
-              <div class="review-card__info">
-                <span class="review-card__name">Алексей М.</span>
-                <span class="review-card__meta">
-                  Москва · Автосервис
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="review-card__stars">★★★★★</div>
-            <p class="review-card__text">«Заказывала сайт для
-            студии красоты. Всё чётко — договор, ТЗ, промежуточные
-            версии. Никаких сюрпризов. Результат превзошёл
-            ожидания — клиенты говорят что сайт выглядит
-            дорого.»</p>
-            <div class="review-card__author">
-              <div class="review-card__avatar">М</div>
-              <div class="review-card__info">
-                <span class="review-card__name">Марина К.</span>
-                <span class="review-card__meta">
-                  СПб · Студия красоты
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="review-card__stars">★★★★★</div>
-            <p class="review-card__text">«Подключили Telegram-бота
-            и CRM. Теперь все заявки в одном месте — менеджер
-            успевает обработать каждую. Оборот вырос на 40%
-            за первый месяц.»</p>
-            <div class="review-card__author">
-              <div class="review-card__avatar">Д</div>
-              <div class="review-card__info">
-                <span class="review-card__name">Дмитрий В.</span>
-                <span class="review-card__meta">
-                  Краснодар · Онлайн-школа
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="review-card__stars">★★★★★</div>
-            <p class="review-card__text">«Делали мобильное
-            приложение под iOS. Команда на связи всегда —
-            правки вносили быстро. Сдали в срок, опубликовали
-            в App Store. Работаем дальше.»</p>
-            <div class="review-card__author">
-              <div class="review-card__avatar">Р</div>
-              <div class="review-card__info">
-                <span class="review-card__name">Роман Т.</span>
-                <span class="review-card__meta">
-                  Дубай · Fitness App
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <div class="swiper-slide"><div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Сделали лендинг за 8 дней. Анимации, адаптив, форма сразу в Telegram. Первая заявка пришла через 2 часа после запуска.»</p>
+          <div class="review-card__author"><div class="review-card__avatar">А</div><div class="review-card__info"><span class="review-card__name">Алексей М.</span><span class="review-card__meta">Москва · Автосервис</span></div></div>
+        </div></div>
+        <div class="swiper-slide"><div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Заказывала сайт для студии красоты. Всё чётко — договор, ТЗ, промежуточные версии. Никаких сюрпризов. Клиенты говорят что сайт выглядит дорого.»</p>
+          <div class="review-card__author"><div class="review-card__avatar">М</div><div class="review-card__info"><span class="review-card__name">Марина К.</span><span class="review-card__meta">СПб · Студия красоты</span></div></div>
+        </div></div>
+        <div class="swiper-slide"><div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Подключили Telegram-бота и CRM. Теперь все заявки в одном месте — менеджер успевает обработать каждую. Оборот вырос на 40% за первый месяц.»</p>
+          <div class="review-card__author"><div class="review-card__avatar">Д</div><div class="review-card__info"><span class="review-card__name">Дмитрий В.</span><span class="review-card__meta">Краснодар · Онлайн-школа</span></div></div>
+        </div></div>
+        <div class="swiper-slide"><div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Делали мобильное приложение под iOS. Команда на связи всегда — правки вносили быстро. Сдали в срок, опубликовали в App Store. Работаем дальше.»</p>
+          <div class="review-card__author"><div class="review-card__avatar">Р</div><div class="review-card__info"><span class="review-card__name">Роман Т.</span><span class="review-card__meta">Дубай · Fitness App</span></div></div>
+        </div></div>
       </div>
       <div class="swiper-pagination reviews-pagination"></div>
     </div>
@@ -388,42 +241,12 @@
       <span class="section-label" data-aos="fade-up">ПОЧЕМУ TRAFIQO</span>
       <h2 class="section-why__title" data-aos="fade-up" data-aos-delay="50">Работаем так чтобы возвращались</h2>
       <div class="why-grid">
-        <div class="why-item" data-aos="fade-left" data-aos-delay="0">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">Договор и ТЗ до старта — вы знаете за что платите</p>
-        </div>
-        <div class="why-item" data-aos="fade-left" data-aos-delay="100">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">Исходники ваши — навсегда и без условий</p>
-        </div>
-        <div class="why-item" data-aos="fade-left" data-aos-delay="200">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">Фиксированная стоимость — итоговая цифра не меняется</p>
-        </div>
-        <div class="why-item" data-aos="fade-left" data-aos-delay="300">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">Один менеджер — ведёт проект от начала до конца</p>
-        </div>
-        <div class="why-item" data-aos="fade-left" data-aos-delay="400">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">Поддержка после сдачи — 30 дней на связи</p>
-        </div>
-        <div class="why-item" data-aos="fade-left" data-aos-delay="500">
-          <svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <p class="why-item__text">География не важна — работаем по всему миру</p>
-        </div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="0"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">Договор и ТЗ до старта — вы знаете за что платите</p></div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="100"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">Исходники ваши — навсегда и без условий</p></div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="200"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">Фиксированная стоимость — итоговая цифра не меняется</p></div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="300"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">Один менеджер — ведёт проект от начала до конца</p></div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="400"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">Поддержка после сдачи — 30 дней на связи</p></div>
+        <div class="why-item" data-aos="fade-left" data-aos-delay="500"><svg class="why-item__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="why-item__text">География не важна — работаем по всему миру</p></div>
       </div>
     </div>
   </section>
@@ -435,7 +258,7 @@
       <p class="section-about__text">TRAFIQO — команда разработчиков и дизайнеров. Не работаем по конвейеру и не продаём шаблоны. Каждый проект разбираем отдельно и делаем под конкретную задачу.</p>
       <div class="section-about__highlight">
         <h3 class="section-about__highlight-title">Интернет меняется. Мы знаем что делать.</h3>
-        <p class="section-about__highlight-text">YouTube тормозит. Instagram заблокирован. Telegram под угрозой. Бизнес который держится на чужих платформах — уязвим. Собственный форум, закрытый клуб, независимая площадка — это не роскошь. Это страховка. Мы строили такие решения когда это ещё не было очевидным.</p>
+        <p class="section-about__highlight-text">YouTube тормозит. Instagram заблокирован. Telegram под угрозой. Бизнес который держится на чужих платформах — уязвим. Собственный форум, закрытый клуб, независимая площадка — это страховка. Мы строили такие решения когда это ещё не было очевидным.</p>
         <a href="#contact" class="btn btn--primary">Обсудить свою платформу</a>
       </div>
       <p class="section-about__platform">Параллельно строим собственную платформу — биржу для бизнеса и специалистов. Без посредников. Когда запустим — вы узнаете первыми.</p>
@@ -475,7 +298,6 @@
     </div>
   </section>
 
-  <!-- СЕКЦИЯ 8: ФОРМА -->
   <section id="contact" class="section section-contact">
     <div class="container">
       <span class="section-label">НАЧНЁМ?</span>
@@ -484,9 +306,7 @@
       <div class="contact-paths">
         <div class="contact-path contact-path--primary">
           <div class="contact-path__badge">Рекомендуем</div>
-          <div class="contact-path__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M9 8h6M9 16h4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
-          </div>
+          <div class="contact-path__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M9 8h6M9 16h4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
           <h3 class="contact-path__title">Заполнить анкету</h3>
           <p class="contact-path__desc">Выберите услугу, расскажите о задаче. Получите точную оценку и план работ.</p>
           <ul class="contact-path__perks">
@@ -498,9 +318,7 @@
         </div>
         <div class="contact-divider"><span>или</span></div>
         <div class="contact-path contact-path--secondary">
-          <div class="contact-path__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
+          <div class="contact-path__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3 class="contact-path__title">Оставьте контакт</h3>
           <p class="contact-path__desc">Напишите имя и Telegram — мы свяжемся и разберёмся в деталях вместе.</p>
           <form class="quick-form" id="contact-form" novalidate>
@@ -535,13 +353,9 @@
 
 <footer class="footer">
   <div class="footer__container">
-    <a href="#hero" class="footer__logo" aria-label="TRAFIQO — наверх">
-      <img src="img/logo.svg" alt="TRAFIQO" width="100" height="34" loading="lazy">
-    </a>
+    <a href="#hero" class="footer__logo" aria-label="TRAFIQO — наверх"><img src="img/logo.svg" alt="TRAFIQO" width="100" height="34" loading="lazy"></a>
     <a href="https://t.me/trafiqo" class="btn btn--outline footer__tg" target="_blank" rel="noopener noreferrer">
-      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M21.4 2.6L2.1 9.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 11.3-7.1c.5-.3 1 0 .6.4L8.6 16.5l-.4 5c.6 0 .9-.3 1.2-.6l2.9-2.8 5 3.7c.9.5 1.6.2 1.8-.8l3.2-15.2c.4-1.4-.5-2-1.9-1.2z" fill="currentColor"/>
-      </svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 2.6L2.1 9.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 11.3-7.1c.5-.3 1 0 .6.4L8.6 16.5l-.4 5c.6 0 .9-.3 1.2-.6l2.9-2.8 5 3.7c.9.5 1.6.2 1.8-.8l3.2-15.2c.4-1.4-.5-2-1.9-1.2z" fill="currentColor"/></svg>
       Telegram
     </a>
     <p class="footer__copy">© 2023–2026 TRAFIQO</p>
@@ -549,14 +363,11 @@
   </div>
 </footer>
 
-<!-- БОТ-ВИДЖЕТ -->
 <div class="bot-widget" id="bot-widget" aria-label="Бот-ассистент">
   <div class="bot-widget__chat" id="bot-chat" hidden>
     <div class="bot-widget__messages" id="bot-messages" role="log" aria-live="polite"></div>
   </div>
-  <div class="bot-widget__bubble" id="bot-bubble" aria-live="polite">
-    Привет! Помогу оформить заявку. Что вас интересует?
-  </div>
+  <div class="bot-widget__bubble" id="bot-bubble" aria-live="polite">Привет! Помогу оформить заявку. Что вас интересует?</div>
   <button class="bot-widget__toggle" id="bot-toggle" aria-label="Открыть чат с ботом" aria-expanded="false">
     <span class="bot-widget__avatar">T</span>
   </button>
@@ -564,21 +375,8 @@
 
 <div class="cursor-glow" id="cursorGlow"></div>
 
-<a href="https://t.me/trafiqo"
-   class="tg-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Написать в Telegram">
-  <svg width="22" height="22" viewBox="0 0 24 24"
-       fill="currentColor">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-             10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68
-             7.93c-.13.58-.47.72-.95.45l-2.62-1.93-1.27
-             1.22c-.14.14-.26.26-.53.26l.19-2.68 4.87-4.4
-             c.21-.19-.05-.29-.33-.1L8.34 14.77l-2.57-.8
-             c-.56-.17-.57-.56.12-.83l10.03-3.87c.46-.17
-             .87.11.72.83z"/>
-  </svg>
+<a href="https://t.me/trafiqo" class="tg-float" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.93c-.13.58-.47.72-.95.45l-2.62-1.93-1.27 1.22c-.14.14-.26.26-.53.26l.19-2.68 4.87-4.4c.21-.19-.05-.29-.33-.1L8.34 14.77l-2.57-.8c-.56-.17-.57-.56.12-.83l10.03-3.87c.46-.17.87.11.72.83z"/></svg>
   <span>Написать</span>
 </a>
 
