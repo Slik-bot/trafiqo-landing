@@ -263,7 +263,6 @@ const initSmoothScroll = () => {
 };
 
 const initHeroChat = () => {
-  if (isMobile()) return;
   const container = document.getElementById('heroChat');
   if (!container) return;
 
@@ -297,7 +296,6 @@ const initHeroChat = () => {
 };
 
 const initPhoneScreens = () => {
-  if (isMobile()) return;
   const screens = document.querySelectorAll('.ui-phone__screen');
   const dots    = document.querySelectorAll('.ui-phone__nav .ui-ph-dot');
   if (!screens.length) return;
