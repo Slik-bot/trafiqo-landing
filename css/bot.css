@@ -1,36 +1,42 @@
-/* ─── BOT WIDGET CHAT ────────────────────────────────────── */
-.bot-widget__close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  border: 0.5px solid rgba(255,255,255,0.1);
-  color: rgba(232,228,240,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 10;
+/* Основное окно чата */
+.bot-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
 }
 
-.bot-widget.is-open .bot-widget__close { display: flex; }
-.bot-widget__close:hover { background: rgba(255,255,255,0.1); color: var(--color-text); }
-
-.bot-widget__header {
+/* Окно чата — появляется при is-open */
+.bot-widget__window {
   display: none;
+  flex-direction: column;
+  width: 320px;
+  max-height: 440px;
+  background: #0F0820;
+  border: 0.5px solid rgba(155,127,232,0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 0 0.5px rgba(255,255,255,0.05) inset;
+}
+
+.bot-widget.is-open .bot-widget__window { display: flex; }
+
+/* Заголовок */
+.bot-widget__header {
+  display: flex;
   align-items: center;
   gap: 10px;
   padding: 14px 16px;
-  border-bottom: 0.5px solid var(--color-border);
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
   background: rgba(255,255,255,0.03);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  position: relative;
 }
-
-.bot-widget.is-open .bot-widget__header { display: flex; }
 
 .bot-widget__avatar-sm {
   width: 32px; height: 32px; border-radius: 50%;
@@ -57,12 +63,39 @@
   animation: dot-pulse 2s ease-in-out infinite;
 }
 
-.bot-widget__messages {
-  display: none; flex-direction: column; gap: 8px;
-  padding: 12px; max-height: 260px; overflow-y: auto; scrollbar-width: thin;
+/* Крестик */
+.bot-widget__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  color: rgba(232,228,240,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.bot-widget.is-open .bot-widget__messages { display: flex; }
+.bot-widget__close:hover { background: rgba(255,255,255,0.12); color: #F0ECFF; }
+
+/* Сообщения */
+.bot-widget__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 160px;
+  max-height: 260px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155,127,232,0.2) transparent;
+}
 
 .bot-message {
   max-width: 85%; padding: 8px 12px;
@@ -100,12 +133,14 @@
   30% { transform: translateY(-5px); }
 }
 
+/* Инпут */
 .bot-widget__input-wrap {
-  display: none; gap: 8px; padding: 10px 12px;
-  border-top: 0.5px solid var(--color-border);
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 0.5px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
 }
-
-.bot-widget.is-open .bot-widget__input-wrap { display: flex; }
 
 .bot-input {
   flex: 1; background: rgba(255,255,255,0.05);
@@ -126,3 +161,21 @@
 }
 
 .bot-send:hover { background: #7B3DBE; transform: scale(1.05); }
+
+/* Пузырь подсказка */
+.bot-widget__bubble {
+  background: #1A0A3A;
+  border: 0.5px solid rgba(155,127,232,0.3);
+  border-radius: 12px 12px 0 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: rgba(232,228,240,0.8);
+  max-width: 240px;
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 767px) {
+  .bot-widget { bottom: 80px; right: 16px; }
+  .bot-widget__window { width: 280px; }
+}

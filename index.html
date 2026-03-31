@@ -365,36 +365,38 @@
 </footer>
 
 <div class="bot-widget" id="bot-widget" aria-label="Бот-ассистент">
-  <button class="bot-widget__close"
-          id="botClose" aria-label="Закрыть">
-    <svg width="14" height="14" viewBox="0 0 14 14"
-         fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round">
-      <line x1="1" y1="1" x2="13" y2="13"/>
-      <line x1="13" y1="1" x2="1" y2="13"/>
-    </svg>
-  </button>
-  <div class="bot-widget__header">
-    <div class="bot-widget__avatar-sm">T</div>
-    <div class="bot-widget__header-info">
-      <span class="bot-widget__name">TRAFIQO</span>
-      <span class="bot-widget__status">
-        <span class="bot-widget__dot"></span>онлайн
-      </span>
+  <div class="bot-widget__window">
+    <button class="bot-widget__close"
+            id="botClose" aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 14 14"
+           fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round">
+        <line x1="1" y1="1" x2="13" y2="13"/>
+        <line x1="13" y1="1" x2="1" y2="13"/>
+      </svg>
+    </button>
+    <div class="bot-widget__header">
+      <div class="bot-widget__avatar-sm">T</div>
+      <div class="bot-widget__header-info">
+        <span class="bot-widget__name">TRAFIQO</span>
+        <span class="bot-widget__status">
+          <span class="bot-widget__dot"></span>онлайн
+        </span>
+      </div>
     </div>
+    <div class="bot-widget__messages" id="botMessages"></div>
+    <div class="bot-widget__input-wrap" id="botInput"></div>
   </div>
-  <div class="bot-widget__messages" id="botMessages"></div>
-  <div class="bot-widget__input-wrap" id="botInput"></div>
+  <div class="bot-widget__bubble">
+    Привет! Помогу оформить заявку.
+    Что вас интересует?
+  </div>
   <button class="bot-widget__toggle"
           id="botToggle"
           aria-expanded="false"
           aria-label="Открыть чат">
     <span>T</span>
   </button>
-  <div class="bot-widget__bubble">
-    Привет! Помогу оформить заявку.
-    Что вас интересует?
-  </div>
 </div>
 
 <div class="cursor-glow" id="cursorGlow"></div>
