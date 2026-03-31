@@ -65,23 +65,29 @@
 
 /* Крестик */
 .bot-widget__close {
+  display: none;
   position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 26px;
-  height: 26px;
+  top: -12px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  border: 0.5px solid rgba(255,255,255,0.1);
-  color: rgba(232,228,240,0.5);
-  display: flex;
+  background: #1A0840;
+  border: 0.5px solid rgba(155,127,232,0.4);
+  color: rgba(232,228,240,0.7);
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 1001;
   transition: all 0.2s ease;
 }
 
-.bot-widget__close:hover { background: rgba(255,255,255,0.12); color: #F0ECFF; }
+.bot-widget.is-open .bot-widget__close { display: flex; }
+
+.bot-widget__close:hover {
+  background: rgba(91,45,142,0.5);
+  color: #F0ECFF;
+}
 
 /* Сообщения */
 .bot-widget__messages {
@@ -180,7 +186,6 @@
     position: fixed;
     bottom: 76px;
     right: 16px;
-    left: auto;
     z-index: 999;
   }
 
@@ -191,17 +196,20 @@
     left: 16px;
     width: auto;
     max-width: none;
-    max-height: 55vh;
+    max-height: 50vh;
     border-radius: 14px;
+    transition: bottom 0.3s ease;
   }
 
   .bot-widget__messages {
-    max-height: calc(55vh - 120px);
-    min-height: 100px;
+    max-height: calc(50vh - 110px);
+    min-height: 80px;
   }
 
   .bot-widget__input-wrap {
     flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
   }
 
   .bot-input {
