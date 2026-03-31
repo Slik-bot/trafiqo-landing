@@ -94,12 +94,12 @@
 .ui-ph-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.15); }
 .ui-ph-dot.a { background: rgba(155,127,232,0.7); }
 
-.ui-chat { display: flex; flex-direction: column; width: 100%; max-width: 240px; justify-content: flex-end; }
+.ui-chat { display: flex; flex-direction: column; width: 100%; max-width: 240px; }
 .ui-chat__header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border); background: rgba(255,255,255,0.02); }
 .ui-chat__avatar { width: 20px; height: 20px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--color-text); }
 .ui-chat__name { font-size: 9px; font-weight: 600; color: var(--color-text); letter-spacing: 1px; font-family: var(--font-body); flex: 1; }
 .ui-chat__status { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
-.ui-chat__body { display: flex; flex-direction: column; padding: 8px; gap: 4px; overflow: hidden; max-height: 120px; }
+.ui-chat__body { display: flex; flex-direction: column; padding: 8px; gap: 4px; min-height: 60px; overflow: hidden; }
 .ui-chat__message { font-size: 8px; line-height: 1.4; padding: 5px 8px; border-radius: 3px 8px 8px 8px; margin-bottom: 4px; max-width: 85%; color: rgba(232,228,240,0.7); font-family: var(--font-body); opacity: 0; transform: translateY(4px); transition: opacity 0.3s ease, transform 0.3s ease; }
 .ui-chat__message.is-visible { opacity: 1; transform: translateY(0); }
 .ui-chat__message.bot { background: rgba(91,45,142,0.2); border: 0.5px solid rgba(91,45,142,0.3); }
@@ -763,11 +763,4 @@
   .quiz-cta-block__right { width: 100%; align-items: center; }
   .quiz-cta-block__btn { width: 100%; text-align: center; padding: 15px 24px; display: block; }
   .quiz-cta-block__note { font-size: 11px; }
-}
-
-@media (max-width: 767px) {
-  .section-hero__visuals { overflow: hidden; }
-  .ui-chat { overflow: hidden; max-height: 160px; }
-  .ui-chat__message { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .ui-chat__body { overflow: hidden; max-height: 140px; }
 }
