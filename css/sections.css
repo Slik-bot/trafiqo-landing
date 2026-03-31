@@ -768,4 +768,6 @@
 @media (max-width: 767px) {
   .section-hero__visuals { overflow: hidden; }
   .ui-chat { overflow: hidden; max-height: 160px; }
+  .ui-chat__message { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .ui-chat__body { overflow: hidden; max-height: 140px; }
 }
