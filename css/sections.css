@@ -764,3 +764,7 @@
   .quiz-cta-block__btn { width: 100%; text-align: center; padding: 15px 24px; display: block; }
   .quiz-cta-block__note { font-size: 11px; }
 }
+
+@media (max-width: 767px) {
+  .section-hero__visuals { display: none; }
+}
