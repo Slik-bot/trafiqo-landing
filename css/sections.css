@@ -764,3 +764,20 @@
   .quiz-cta-block__btn { width: 100%; text-align: center; padding: 15px 24px; display: block; }
   .quiz-cta-block__note { font-size: 11px; }
 }
+
+@media (max-width: 767px) {
+  .section-hero__visuals {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 32px;
+    overflow: hidden;
+    padding: 0 8px;
+  }
+  .ui-browser { max-width: 45%; flex-shrink: 0; }
+  .ui-phone { max-width: 25%; flex-shrink: 0; align-self: flex-end; }
+  .ui-chat { max-width: 30%; flex-shrink: 0; }
+  .ui-browser, .ui-phone, .ui-chat { opacity: 1 !important; transform: none !important; }
+}
