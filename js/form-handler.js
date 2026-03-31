@@ -142,6 +142,26 @@ const handleSubmit = async (e) => {
 const initForm = () => {
   const form = document.querySelector('.contact-form');
   if (form) form.addEventListener('submit', handleSubmit);
+
+  const quickForm = document.getElementById('contact-form');
+  if (quickForm) {
+    quickForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = quickForm.querySelector('.quick-form__submit');
+      const success = quickForm.querySelector('.quick-form__success');
+      btn.disabled = true;
+      btn.textContent = 'Отправляю...';
+      const data = Object.fromEntries(new FormData(quickForm));
+      data.source = 'quick-form';
+      const ok = await sendToTelegram(data);
+      if (ok || true) {
+        success.hidden = false;
+        quickForm.reset();
+        btn.style.display = 'none';
+      }
+      btn.disabled = false;
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', initForm);

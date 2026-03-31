@@ -207,6 +207,15 @@
     const BOT_TOKEN = 'YOUR_BOT_TOKEN';
     const CHAT_ID = 'YOUR_CHAT_ID';
     const SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
+    const urlParams = new URLSearchParams(window.location.search);
+    const preService = urlParams.get('service');
+    if (preService) {
+      const map = {site:'сайт',app:'приложение',bot:'бот',platform:'платформа',ads:'реклама',education:'обучение'};
+      document.querySelectorAll('#types .oc').forEach(btn => {
+        const text = btn.querySelector('.oname')?.textContent.toLowerCase() || '';
+        if (map[preService] && text.includes(map[preService])) btn.classList.add('sel');
+      });
+    }
     let cur = 1; const fd = {};
 
     function ui() {
