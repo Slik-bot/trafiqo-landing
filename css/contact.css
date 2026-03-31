@@ -1,14 +1,23 @@
 /* ─── CONTACT TWO PATHS ──────────────────────────────────── */
+.section-contact .container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .section-contact__title {
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 12px;
+  line-height: 1.2;
 }
+
 .section-contact__sub {
   font-size: 16px;
   color: var(--color-text-muted);
   margin-bottom: 48px;
+  max-width: 540px;
 }
 .contact-paths {
   display: grid;
@@ -115,6 +124,8 @@
 .contact-tg__link { display: flex; align-items: center; gap: 6px; color: #38BDF8; font-weight: 500; text-decoration: none; transition: opacity 0.2s ease; }
 .contact-tg__link:hover { opacity: 0.8; }
 @media (max-width: 767px) {
+  .section-contact .container { padding: 0 20px; }
+  .section-contact__title { font-size: clamp(24px, 6vw, 36px); }
   .contact-paths { grid-template-columns: 1fr; gap: 24px; }
   .contact-divider { margin-top: 0; }
   .contact-path { padding: 24px 20px; }
