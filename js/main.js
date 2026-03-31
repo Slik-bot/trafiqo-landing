@@ -467,6 +467,38 @@ const initActivityCounter = () => {
   setInterval(rotate, 5000);
 };
 
+const initPortfolioSlider = () => {
+  const track = document.getElementById('portfolioTrack');
+  if (!track) return;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.parentElement.scrollLeft;
+    track.style.cursor = 'grabbing';
+  });
+  track.addEventListener('mouseleave', () => { isDragging = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.parentElement.scrollLeft = scrollLeft - walk;
+  });
+};
+
+window.goToSlide = (index) => {
+  const track = document.getElementById('portfolioTrack');
+  const dots = document.querySelectorAll('.portfolio-dot');
+  if (!track) return;
+  const slideWidth = track.children[0]?.offsetWidth + 24;
+  track.parentElement.scrollLeft = slideWidth * index;
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!isMobile()) {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -485,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviews();
   initActivityCounter();
   initCursorGlow();
+  initPortfolioSlider();
 
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
