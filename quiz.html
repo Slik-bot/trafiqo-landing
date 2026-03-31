@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Что вам нужно? — TRAFIQO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #06030F;
+  --accent: #5B2D8E;
+  --accent-lt: #9B7FE8;
+  --gold: #F0B429;
+  --gold-lt: #FFD97D;
+  --text: #F0ECFF;
+  --muted: rgba(232,228,240,0.5);
+  --border: rgba(255,255,255,0.08);
+  --font-d: 'Syne', sans-serif;
+  --font-b: 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-b); min-height: 100vh; }
+body::before { content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(91,45,142,0.25) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+
+.quiz-header { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 0.5px solid var(--border); }
+.quiz-logo { font-family: var(--font-d); font-size: 20px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.quiz-logo span { width: 8px; height: 8px; background: var(--accent-lt); border-radius: 50%; display: inline-block; }
+.quiz-step-counter { font-size: 13px; color: var(--muted); font-family: var(--font-b); }
+.quiz-step-counter b { color: var(--text); }
+
+.progress-wrap { height: 2px; background: rgba(255,255,255,0.06); position: relative; z-index: 1; }
+.progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-lt)); transition: width 0.5s ease; }
+
+.quiz-body { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+
+.quiz-step { display: none; animation: fadeUp 0.35s ease forwards; }
+.quiz-step.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.quiz-hint { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-lt); margin-bottom: 10px; }
+.quiz-question { font-family: var(--font-d); font-size: clamp(22px, 4vw, 32px); font-weight: 700; line-height: 1.25; margin-bottom: 32px; }
+
+.quiz-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.quiz-card { background: rgba(255,255,255,0.03); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; user-select: none; }
+.quiz-card:hover { border-color: rgba(155,127,232,0.4); transform: translateY(-2px); }
+.quiz-card.selected { border-color: rgba(240,180,41,0.5); background: rgba(240,180,41,0.05); }
+.quiz-card__title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+.quiz-radio-list { display: flex; flex-direction: column; gap: 10px; }
+.quiz-radio { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 0.5px solid var(--border); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.quiz-radio:hover { border-color: rgba(155,127,232,0.4); }
+.quiz-radio.selected { border-color: rgba(240,180,41,0.5); background: rgba(240,180,41,0.05); }
+.quiz-radio input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+.quiz-radio span { font-size: 15px; color: var(--text); }
+
+#quiz-result { display: none; }
+.result-analyzing { text-align: center; padding: 60px 0; }
+.result-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.result-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-lt); animation: dotPulse 1.2s ease-in-out infinite; }
+.result-dots span:nth-child(2) { animation-delay: 0.2s; }
+.result-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotPulse { 0%,80%,100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+.result-analyzing p { color: var(--muted); font-size: 15px; }
+
+.result-content { animation: fadeUp 0.5s ease forwards; }
+.result-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
+.result-title { font-family: var(--font-d); font-size: clamp(24px, 4vw, 36px); font-weight: 700; margin-bottom: 12px; }
+.result-desc { font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
+.result-perks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.result-perk { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text); }
+.result-perk::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.result-price { display: flex; gap: 32px; margin-bottom: 32px; padding: 24px; background: rgba(255,255,255,0.03); border: 0.5px solid var(--border); border-radius: 12px; }
+.result-price__label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+.result-price__value { font-size: 28px; font-weight: 700; color: var(--gold); font-family: var(--font-d); }
+.result-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 14px 28px; font-size: 14px; font-weight: 500; border-radius: 10px; text-decoration: none; transition: transform 0.2s, opacity 0.2s; cursor: pointer; border: none; }
+.btn--primary { background: var(--accent); color: var(--text); }
+.btn--primary:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn--secondary { background: rgba(255,255,255,0.06); color: var(--text); border: 0.5px solid var(--border); }
+.btn--secondary:hover { transform: translateY(-2px); background: rgba(255,255,255,0.1); }
+.result-note { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.result-restart { background: none; border: none; color: var(--accent-lt); font-size: 13px; cursor: pointer; margin-top: 24px; display: block; padding: 0; font-family: var(--font-b); }
+.result-restart:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .quiz-header { padding: 16px 20px; }
+  .quiz-cards { grid-template-columns: 1fr; }
+  .result-price { flex-direction: column; gap: 16px; }
+  .result-actions { flex-direction: column; }
+  .result-actions .btn { text-align: center; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="quiz-header">
+  <a href="index.html" class="quiz-logo"><span></span>TRAFIQO</a>
+  <div class="quiz-step-counter">Шаг <b id="stepNum">1</b> из 5</div>
+</header>
+<div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<div class="quiz-body">
+
+  <div class="quiz-step active" id="step-1">
+    <p class="quiz-hint">Выберите главную проблему</p>
+    <h2 class="quiz-question">Что сейчас мешает бизнесу?</h2>
+    <div class="quiz-cards">
+      <div class="quiz-card" data-score='{"site":3,"bot":1}'><p class="quiz-card__title">Нет клиентов из интернета</p></div>
+      <div class="quiz-card" data-score='{"bot":3,"auto":2}'><p class="quiz-card__title">Теряю заявки и обращения</p></div>
+      <div class="quiz-card" data-score='{"auto":3,"bot":2}'><p class="quiz-card__title">Много ручной рутины</p></div>
+      <div class="quiz-card" data-score='{"app":3,"site":2}'><p class="quiz-card__title">Хочу запустить новый продукт</p></div>
+    </div>
+  </div>
+
+  <div class="quiz-step" id="step-2">
+    <p class="quiz-hint">Это поможет подобрать решение</p>
+    <h2 class="quiz-question">Какой у вас бизнес?</h2>
+    <div class="quiz-cards">
+      <div class="quiz-card" data-score='{"site":2,"bot":2}'><p class="quiz-card__title">Услуги (запись, консультации)</p></div>
+      <div class="quiz-card" data-score='{"site":3,"app":1}'><p class="quiz-card__title">Товары и магазин</p></div>
+      <div class="quiz-card" data-score='{"app":2,"platform":2}'><p class="quiz-card__title">Онлайн (курсы, подписки)</p></div>
+      <div class="quiz-card" data-score='{"site":2}'><p class="quiz-card__title">Только запускаюсь</p></div>
+    </div>
+  </div>
+
+  <div class="quiz-step" id="step-3">
+    <p class="quiz-hint">Оцените текущую ситуацию</p>
+    <h2 class="quiz-question">Что уже есть?</h2>
+    <div class="quiz-cards">
+      <div class="quiz-card" data-score='{"site":3}'><p class="quiz-card__title">Ничего — начинаем с нуля</p></div>
+      <div class="quiz-card" data-score='{"site":3,"bot":1}'><p class="quiz-card__title">Есть соцсети, нет сайта</p></div>
+      <div class="quiz-card" data-score='{"site":2,"auto":1}'><p class="quiz-card__title">Есть сайт, но не работает</p></div>
+      <div class="quiz-card" data-score='{"auto":3,"bot":2}'><p class="quiz-card__title">Всё есть — хочу автоматизацию</p></div>
+    </div>
+  </div>
+
+  <div class="quiz-step" id="step-4">
+    <p class="quiz-hint">Это влияет на масштаб решения</p>
+    <h2 class="quiz-question">Сколько клиентов в день?</h2>
+    <div class="quiz-cards">
+      <div class="quiz-card" data-score='{"site":2,"bot":1}'><p class="quiz-card__title">До 10</p></div>
+      <div class="quiz-card" data-score='{"bot":2,"auto":1}'><p class="quiz-card__title">10–50</p></div>
+      <div class="quiz-card" data-score='{"auto":2,"platform":1}'><p class="quiz-card__title">50–200</p></div>
+      <div class="quiz-card" data-score='{"platform":3,"app":2}'><p class="quiz-card__title">200+ или планирую рост</p></div>
+    </div>
+  </div>
+
+  <div class="quiz-step" id="step-5">
+    <p class="quiz-hint">Поможет предложить оптимальное решение</p>
+    <h2 class="quiz-question">Примерный бюджет?</h2>
+    <div class="quiz-radio-list">
+      <label class="quiz-radio"><input type="radio" name="budget" data-filter='["site","bot","auto"]'><span>До 50 000 ₽</span></label>
+      <label class="quiz-radio"><input type="radio" name="budget" data-filter='["site","bot","auto","app"]'><span>50 000 — 150 000 ₽</span></label>
+      <label class="quiz-radio"><input type="radio" name="budget" data-filter="all"><span>От 150 000 ₽</span></label>
+      <label class="quiz-radio"><input type="radio" name="budget" data-filter="all"><span>Хочу узнать стоимость</span></label>
+    </div>
+  </div>
+
+  <div id="quiz-result">
+    <div class="result-analyzing" id="resultAnalyzing">
+      <div class="result-dots"><span></span><span></span><span></span></div>
+      <p>Анализируем ваши ответы...</p>
+    </div>
+    <div class="result-content" id="resultContent" hidden>
+      <span class="result-label">ВАШ РЕЗУЛЬТАТ</span>
+      <h2 class="result-title" id="resTitle"></h2>
+      <p class="result-desc" id="resDesc"></p>
+      <div class="result-perks" id="resPerks"></div>
+      <div class="result-price">
+        <div class="result-price__item"><span class="result-price__label">Стоимость</span><span class="result-price__value" id="resPrice"></span></div>
+        <div class="result-price__item"><span class="result-price__label">Срок</span><span class="result-price__value" id="resTerm"></span></div>
+      </div>
+      <div class="result-actions">
+        <a id="resBtn" href="#" class="btn btn--primary">Заполнить анкету →</a>
+        <a href="https://t.me/trafiqo" target="_blank" class="btn btn--secondary">Написать в Telegram</a>
+      </div>
+      <p class="result-note">Это приблизительная оценка. Точную стоимость рассчитаем после разбора вашей задачи — бесплатно.</p>
+      <button class="result-restart" onclick="restartQuiz()">← Пройти заново</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const services = {
+  site: { name:'Продающий сайт или лендинг', desc:'Привлечёт клиентов из интернета и превратит посетителей в заявки', price:'от 60 000 ₽', term:'7–21 день', href:'Anketa_Sait.html', perks:['Уникальный дизайн под ваш бренд','Форма заявки → Telegram уведомление','Адаптив под все устройства'] },
+  bot:  { name:'Telegram-бот с автоматизацией', desc:'Отвечает клиентам, принимает заявки и ведёт CRM пока вы спите', price:'от 30 000 ₽', term:'5–14 дней', href:'Anketa_Bot.html', perks:['Автоответы 24/7 без менеджера','Интеграция с CRM и таблицами','Воронка продаж внутри бота'] },
+  auto: { name:'Автоматизация бизнес-процессов', desc:'Убираем ручной труд — связываем сервисы, настраиваем уведомления', price:'от 40 000 ₽', term:'7–14 дней', href:'Anketa_Bot.html', perks:['Заявки автоматически в CRM','Уведомления в Telegram','Экономия 3–5 часов в день'] },
+  app:  { name:'Мобильное приложение', desc:'iOS и Android под ключ — дизайн, разработка, публикация в сторах', price:'от 250 000 ₽', term:'6–12 недель', href:'Anketa_App.html', perks:['Полный цикл от прототипа до публикации','Красивый UX и нативные анимации','Поддержка после запуска'] },
+  platform: { name:'Платформа или форум', desc:'Независимая площадка — ваши правила, ваша аудитория, ваш контроль', price:'от 400 000 ₽', term:'8–16 недель', href:'Anketa_Platform.html', perks:['Не зависите от блокировок соцсетей','Личные кабинеты, подписки, чаты','Масштабируется под любой рост'] }
+};
+
+const scores = {site:0, bot:0, auto:0, app:0, platform:0};
+let budgetFilter = null;
+let currentStep = 1;
+
+function updateProgress(step) {
+  document.getElementById('stepNum').textContent = step;
+  document.getElementById('progressBar').style.width = ((step - 1) / 5 * 100) + '%';
+}
+
+function goToStep(next) {
+  const cur = document.getElementById('step-' + currentStep);
+  const nxt = document.getElementById('step-' + next);
+  cur.style.opacity = '0';
+  cur.style.transform = 'translateY(-8px)';
+  cur.style.transition = 'opacity 0.2s, transform 0.2s';
+  setTimeout(() => {
+    cur.classList.remove('active');
+    cur.style.cssText = '';
+    if (nxt) { nxt.classList.add('active'); currentStep = next; updateProgress(next); }
+    else showResult();
+  }, 200);
+}
+
+document.querySelectorAll('.quiz-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const step = card.closest('.quiz-step');
+    step.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const s = JSON.parse(card.dataset.score);
+    Object.keys(s).forEach(k => { scores[k] = (scores[k] || 0) + s[k]; });
+    setTimeout(() => goToStep(currentStep + 1), 300);
+  });
+});
+
+document.querySelectorAll('.quiz-radio input').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('.quiz-radio').forEach(r => r.classList.remove('selected'));
+    radio.closest('.quiz-radio').classList.add('selected');
+    const f = radio.dataset.filter;
+    budgetFilter = f === 'all' ? null : JSON.parse(f);
+    setTimeout(() => goToStep(currentStep + 1), 300);
+  });
+});
+
+function showResult() {
+  document.getElementById('stepNum').textContent = '5';
+  document.getElementById('progressBar').style.width = '100%';
+  const result = document.getElementById('quiz-result');
+  result.style.display = 'block';
+
+  let winner = 'site';
+  let max = -1;
+  const candidates = budgetFilter ? Object.keys(scores).filter(k => budgetFilter.includes(k)) : Object.keys(scores);
+  candidates.forEach(k => { if (scores[k] > max) { max = scores[k]; winner = k; } });
+
+  const s = services[winner];
+  setTimeout(() => {
+    document.getElementById('resultAnalyzing').style.display = 'none';
+    const content = document.getElementById('resultContent');
+    content.hidden = false;
+    document.getElementById('resTitle').textContent = s.name;
+    document.getElementById('resDesc').textContent = s.desc;
+    document.getElementById('resPrice').textContent = s.price;
+    document.getElementById('resTerm').textContent = s.term;
+    document.getElementById('resBtn').href = s.href;
+    const perks = document.getElementById('resPerks');
+    perks.innerHTML = s.perks.map(p => `<div class="result-perk">${p}</div>`).join('');
+  }, 1500);
+}
+
+function restartQuiz() {
+  Object.keys(scores).forEach(k => scores[k] = 0);
+  budgetFilter = null;
+  currentStep = 1;
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('resultAnalyzing').style.display = 'block';
+  document.getElementById('resultContent').hidden = true;
+  document.querySelectorAll('.quiz-step').forEach(s => { s.classList.remove('active'); s.style.cssText = ''; });
+  document.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.quiz-radio').forEach(r => r.classList.remove('selected'));
+  document.querySelectorAll('input[name="budget"]').forEach(r => r.checked = false);
+  document.getElementById('step-1').classList.add('active');
+  updateProgress(1);
+}
+
+updateProgress(1);
+</script>
+</body>
+</html>
