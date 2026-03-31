@@ -120,41 +120,26 @@ const initFAQ = () => {
   if (!list) return;
 
   const closeItem = (item) => {
-    const answer = item.querySelector(
-      '.faq-item__answer, .faq-item__body'
-    );
-    const btn = item.querySelector(
-      '.faq-item__question, .faq-item__btn'
-    );
+    const answer = item.querySelector('.faq-item__answer, .faq-item__body');
+    const btn = item.querySelector('.faq-item__question, .faq-item__btn');
     if (!answer) return;
     answer.style.maxHeight = answer.scrollHeight + 'px';
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        answer.style.maxHeight = '0';
-      });
-    });
+    requestAnimationFrame(() => requestAnimationFrame(() => { answer.style.maxHeight = '0'; }));
     item.classList.remove('is-open');
     btn?.setAttribute('aria-expanded', 'false');
   };
 
   const openItem = (item) => {
-    const answer = item.querySelector(
-      '.faq-item__answer, .faq-item__body'
-    );
-    const btn = item.querySelector(
-      '.faq-item__question, .faq-item__btn'
-    );
+    const answer = item.querySelector('.faq-item__answer, .faq-item__body');
+    const btn = item.querySelector('.faq-item__question, .faq-item__btn');
     if (!answer) return;
     item.classList.add('is-open');
     btn?.setAttribute('aria-expanded', 'true');
-    const height = answer.scrollHeight;
-    answer.style.maxHeight = height + 'px';
+    answer.style.maxHeight = answer.scrollHeight + 'px';
   };
 
   list.addEventListener('click', (e) => {
-    const btn = e.target.closest(
-      '.faq-item__question, .faq-item__btn'
-    );
+    const btn = e.target.closest('.faq-item__question, .faq-item__btn');
     if (!btn) return;
     const item = btn.closest('.faq-item');
     if (!item) return;
@@ -470,33 +455,18 @@ const initActivityCounter = () => {
 const initPortfolioSlider = () => {
   const track = document.getElementById('portfolioTrack');
   if (!track) return;
-  let isDragging = false;
-  let startX = 0;
-  let scrollLeft = 0;
-  track.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.parentElement.scrollLeft;
-    track.style.cursor = 'grabbing';
-  });
+  let isDragging = false, startX = 0, scrollLeft = 0;
+  track.addEventListener('mousedown', (e) => { isDragging = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.parentElement.scrollLeft; track.style.cursor = 'grabbing'; });
   track.addEventListener('mouseleave', () => { isDragging = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mouseup', () => { isDragging = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    track.parentElement.scrollLeft = scrollLeft - walk;
-  });
+  track.addEventListener('mouseup',    () => { isDragging = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mousemove', (e) => { if (!isDragging) return; e.preventDefault(); track.parentElement.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5; });
 };
 
 window.goToSlide = (index) => {
   const track = document.getElementById('portfolioTrack');
-  const dots = document.querySelectorAll('.portfolio-dot');
   if (!track) return;
-  const slideWidth = track.children[0]?.offsetWidth + 24;
-  track.parentElement.scrollLeft = slideWidth * index;
-  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  track.parentElement.scrollLeft = (track.children[0]?.offsetWidth + 24) * index;
+  document.querySelectorAll('.portfolio-dot').forEach((d, i) => d.classList.toggle('active', i === index));
 };
 
 document.addEventListener('DOMContentLoaded', () => {
