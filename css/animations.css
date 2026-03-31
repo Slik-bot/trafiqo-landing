@@ -1,57 +1,24 @@
-/* ─── ANIMATIONS.CSS ─────────────────────────────────────
-   Только transform и opacity. GPU-анимации без reflow.
-   Все анимации — внутри prefers-reduced-motion: no-preference
-   ────────────────────────────────────────────────────── */
+/* ANIMATIONS.CSS — GPU-анимации без reflow */
 
 @media (prefers-reduced-motion: no-preference) {
 
-  /* ─── GSAP УТИЛИТАРНЫЕ КЛАССЫ (выставляются через JS) ── */
   .gsap-fade-up    { opacity: 0; transform: translateY(40px); }
   .gsap-fade-in    { opacity: 0; }
   .gsap-slide-left { opacity: 0; transform: translateX(-40px); }
   .gsap-slide-right{ opacity: 0; transform: translateX(40px); }
 
-  /* Hero-элементы: начальные состояния только через gsap.set() в JS */
-
-  /* ─── UI-ОБЪЕКТЫ: will-change + float-анимации ─────── */
   .ui-browser { will-change: transform; animation: float-browser 6s ease-in-out infinite; }
   .ui-phone   { will-change: transform; animation: float-phone 7s ease-in-out infinite 1s; }
   .ui-chat    { will-change: transform; animation: float-chat 5s ease-in-out infinite 0.5s; }
   .ui-browser__content { animation: browser-scroll 5s ease-in-out infinite; }
 
-  /* ─── КНОПКИ ────────────────────────────────────────── */
-  .btn--primary:active {
-    transform: translateY(0) scale(0.98);
-  }
-
-  /* ─── FAQ АККОРДЕОН ─────────────────────────────────── */
-  .faq-item__body {
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-
-  .faq-item__body:not([hidden]) {
-    opacity: 1;
-  }
-
-  /* ─── ПРОЦЕСС: ШАГИ ЗАГОРАЮТСЯ ──────────────────────── */
-  .process-step {
-    opacity: 0.4;
-    transition: opacity 0.5s ease;
-  }
-
-  .process-step.is-active {
-    opacity: 1;
-  }
-
-  .process-step__number {
-    transition: background 0.5s ease, border-color 0.5s ease;
-  }
-
-  .process-step.is-active .process-step__number {
-    background: rgba(91, 45, 142, 0.35);
-    border-color: var(--color-accent-lt);
-  }
+  .btn--primary:active { transform: translateY(0) scale(0.98); }
+  .faq-item__body { opacity: 0; transition: opacity 0.35s ease; }
+  .faq-item__body:not([hidden]) { opacity: 1; }
+  .process-step { opacity: 0.4; transition: opacity 0.5s ease; }
+  .process-step.is-active { opacity: 1; }
+  .process-step__number { transition: background 0.5s ease, border-color 0.5s ease; }
+  .process-step.is-active .process-step__number { background: rgba(91,45,142,0.35); border-color: var(--color-accent-lt); }
 
   /* ─── @keyframes ────────────────────────────────────── */
 
@@ -106,34 +73,12 @@
     50%       { opacity: 0; }
   }
 
-  /* ─── BOT WIDGET ────────────────────────────────────── */
-  .bot-widget__avatar {
-    animation: bot-bounce 2s ease-in-out infinite;
-  }
-
-  .bot-widget.is-open .bot-widget__avatar {
-    animation-play-state: paused;
-  }
-
-  /* ─── CTA ПУЛЬСАЦИЯ ─────────────────────────────────── */
-  .btn--glow {
-    animation: glow-pulse 3s ease-in-out infinite;
-  }
-
-  .btn--glow:hover {
-    animation-play-state: paused;
-  }
-
-  /* ─── FORM SUCCESS ──────────────────────────────────── */
-  .contact-form__success:not([hidden]) {
-    animation: fade-scale-in 0.4s ease forwards;
-  }
-
-  /* ─── TRUST COUNT-UP КУРСОР ─────────────────────────── */
-  .trust-item__number.is-counting::after {
-    content: '|';
-    animation: cursor-blink 0.7s step-end infinite;
-  }
+  .bot-widget__avatar { animation: bot-bounce 2s ease-in-out infinite; }
+  .bot-widget.is-open .bot-widget__avatar { animation-play-state: paused; }
+  .btn--glow { animation: glow-pulse 3s ease-in-out infinite; }
+  .btn--glow:hover { animation-play-state: paused; }
+  .contact-form__success:not([hidden]) { animation: fade-scale-in 0.4s ease forwards; }
+  .trust-item__number.is-counting::after { content: '|'; animation: cursor-blink 0.7s step-end infinite; }
 
   /* ─── ПУЗЫРЬКИ HERO ─────────────────────────────────── */
   @keyframes bubble-rise {
@@ -194,39 +139,28 @@
   .hero-bubble { animation: none; display: none; }
 }
 
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes shimmer-slow{0%{background-position:-300% center}100%{background-position:300% center}}
 
-@keyframes shimmer-slow {
-  0%   { background-position: -300% center; }
-  100% { background-position: 300% center; }
+@keyframes orb-float-1{
+0%,100%{transform:translate(0,0) scale(1)}
+33%{transform:translate(30px,-20px) scale(1.05)}
+66%{transform:translate(-20px,15px) scale(0.95)}
 }
-
-@keyframes orb-float-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 15px) scale(0.95); }
+@keyframes orb-float-2{
+0%,100%{transform:translate(0,0) scale(1)}
+33%{transform:translate(-25px,20px) scale(1.08)}
+66%{transform:translate(15px,-25px) scale(0.92)}
 }
-
-@keyframes orb-float-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-25px, 20px) scale(1.08); }
-  66% { transform: translate(15px, -25px) scale(0.92); }
+@keyframes orb-float-3{
+0%,100%{transform:translate(0,0) scale(1)}
+50%{transform:translate(20px,10px) scale(1.03)}
 }
-
-@keyframes orb-float-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, 10px) scale(1.03); }
+@keyframes star-twinkle{
+0%,100%{opacity:0.3;transform:scale(1)}
+50%{opacity:1;transform:scale(1.5)}
 }
-
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
-
-@keyframes grid-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+@keyframes grid-pulse{
+0%,100%{opacity:0.3}
+50%{opacity:0.6}
 }
