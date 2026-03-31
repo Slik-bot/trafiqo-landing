@@ -64,31 +64,30 @@ const toggleWidget = () => {
   }
 };
 
-// ─── ИНИЦИАЛИЗАЦИЯ ───────────────────────────────────────
 const initBotWidget = () => {
   const widget = document.querySelector('.bot-widget');
   if (!widget) return;
 
   const toggle = widget.querySelector('.bot-widget__toggle');
-  toggle?.addEventListener('click', toggleWidget);
-
-  const closeBtn = document.getElementById('botClose');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (botState.isOpen) toggleWidget();
-    });
-  }
-
   const bubble = widget.querySelector('.bot-widget__bubble');
+
+  toggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleWidget();
+    if (bubble) bubble.style.display = 'none';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.bot-widget__close')) {
+      if (botState.isOpen) toggleWidget();
+    }
+  });
+
   if (bubble) {
     setTimeout(() => {
       bubble.style.opacity = '1';
       bubble.style.transform = 'translateY(0)';
     }, 3000);
-    toggle?.addEventListener('click', () => {
-      bubble.style.display = 'none';
-    }, { once: true });
   }
 };
 

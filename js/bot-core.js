@@ -1,15 +1,15 @@
-// ─── КОНФИГ ──────────────────────────────────────────────
-const WEBHOOK_URL = 'https://fenesotired.beget.app/webhook-test/trafiqo-assistant';
+// ─── КОНФИГ
+const WEBHOOK_URL = 'https://fenesotired.beget.app/webhook/trafiqo-assistant';
 const BOT_DELAY = 800;
 
-// ─── СОСТОЯНИЕ ───────────────────────────────────────────
+// ─── СОСТОЯНИЕ
 const botState = {
   isOpen: false,
   messages: [],
-  isTyping: false
+  isTyping: false,
+  sessionId: Math.random().toString(36).slice(2, 10)
 };
 
-// ─── УТИЛИТЫ ─────────────────────────────────────────────
 const getBotContainer = () =>
   document.querySelector('.bot-widget__messages');
 
@@ -19,7 +19,6 @@ const scrollToBottom = () => {
   c.scrollTop = c.scrollHeight;
 };
 
-// ─── РЕНДЕР СООБЩЕНИЯ ────────────────────────────────────
 const renderMessage = (text, type) => {
   const container = getBotContainer();
   if (!container) return;
@@ -33,7 +32,6 @@ const renderMessage = (text, type) => {
   });
 };
 
-// ─── ИНДИКАТОР ПЕЧАТАНИЯ ─────────────────────────────────
 const showTyping = () => {
   const container = getBotContainer();
   if (!container) return null;
@@ -51,30 +49,29 @@ const hideTyping = () => {
   if (el) el.remove();
 };
 
-// ─── ОТПРАВКА В ВЕБХУК ───────────────────────────────────
 const sendToWebhook = async (userMessage) => {
   try {
     const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: userMessage,
-        history: botState.messages,
+        session_id: botState.sessionId,
+        messages: [...botState.messages],
+        new_message: userMessage,
         source: 'trafiqo-site'
       })
     });
-    if (!response.ok) throw new Error('Webhook error');
+    if (!response.ok) throw new Error('error');
     const data = await response.json();
     return data.reply || data.text ||
            data.output || data.response ||
-           'Понял! Свяжемся с вами в ближайшее время.';
+           'Понял! Свяжемся в ближайшее время.';
   } catch (error) {
-    console.error('Webhook error:', error);
-    return 'Что-то пошло не так. Напишите нам напрямую → @trafiqo';
+    console.error('Webhook:', error);
+    return 'Напишите нам напрямую — ответим быстро: @trafiqo';
   }
 };
 
-// ─── ОБРАБОТКА СООБЩЕНИЯ ─────────────────────────────────
 const handleUserMessage = async (text) => {
   if (!text.trim() || botState.isTyping) return;
   botState.isTyping = true;
@@ -84,6 +81,8 @@ const handleUserMessage = async (text) => {
   const reply = await sendToWebhook(text);
   hideTyping();
   renderMessage(reply, 'bot');
-  botState.messages.push({ role: 'assistant', content: reply });
+  botState.messages.push({
+    role: 'assistant', content: reply
+  });
   botState.isTyping = false;
 };

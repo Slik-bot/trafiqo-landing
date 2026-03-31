@@ -176,6 +176,35 @@
 }
 
 @media (max-width: 767px) {
-  .bot-widget { bottom: 80px; right: 16px; }
-  .bot-widget__window { width: 280px; }
+  .bot-widget {
+    position: fixed;
+    bottom: 76px;
+    right: 16px;
+    left: auto;
+    z-index: 999;
+  }
+
+  .bot-widget__window {
+    position: fixed;
+    bottom: 130px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-width: none;
+    max-height: 55vh;
+    border-radius: 14px;
+  }
+
+  .bot-widget__messages {
+    max-height: calc(55vh - 120px);
+    min-height: 100px;
+  }
+
+  .bot-widget__input-wrap {
+    flex-shrink: 0;
+  }
+
+  .bot-input {
+    font-size: 16px;
+  }
 }
