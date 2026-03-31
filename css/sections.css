@@ -764,3 +764,32 @@
   .quiz-cta-block__btn { width: 100%; text-align: center; padding: 15px 24px; display: block; }
   .quiz-cta-block__note { font-size: 11px; }
 }
+
+/* Орбы */
+.hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+.hero-orb--1 { width: 400px; height: 400px; background: rgba(91,45,142,0.25); top: -100px; right: 10%; animation: orb-float-1 12s ease-in-out infinite; }
+.hero-orb--2 { width: 300px; height: 300px; background: rgba(240,180,41,0.08); bottom: 0; left: 5%; animation: orb-float-2 15s ease-in-out infinite; }
+.hero-orb--3 { width: 200px; height: 200px; background: rgba(34,158,217,0.06); top: 30%; left: 40%; animation: orb-float-3 10s ease-in-out infinite; }
+
+/* Сетка */
+.hero-grid { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.4; }
+.hero-grid::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(155,127,232,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(155,127,232,0.15) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%); animation: grid-pulse 6s ease-in-out infinite; }
+
+/* Звёзды */
+.hero-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero-star { position: absolute; border-radius: 50%; background: var(--color-gold); }
+.hero-star:nth-child(1){width:2px;height:2px;top:15%;left:20%;animation:star-twinkle 3s ease-in-out infinite}
+.hero-star:nth-child(2){width:3px;height:3px;top:25%;left:75%;animation:star-twinkle 4s ease-in-out infinite .5s}
+.hero-star:nth-child(3){width:2px;height:2px;top:60%;left:85%;animation:star-twinkle 3.5s ease-in-out infinite 1s}
+.hero-star:nth-child(4){width:2px;height:2px;top:70%;left:15%;animation:star-twinkle 5s ease-in-out infinite 1.5s}
+.hero-star:nth-child(5){width:3px;height:3px;top:40%;left:90%;animation:star-twinkle 4s ease-in-out infinite 2s}
+.hero-star:nth-child(6){width:2px;height:2px;top:80%;left:50%;animation:star-twinkle 3s ease-in-out infinite 2.5s}
+.hero-star:nth-child(7){width:2px;height:2px;top:10%;left:60%;animation:star-twinkle 4.5s ease-in-out infinite .7s}
+.hero-star:nth-child(8){width:3px;height:3px;top:50%;left:30%;animation:star-twinkle 3.5s ease-in-out infinite 1.2s}
+
+@media(max-width:767px){
+  .hero-orb--1{width:250px;height:250px}
+  .hero-orb--2{width:180px;height:180px}
+  .hero-orb--3{display:none}
+  .hero-grid{opacity:0.2}
+}
