@@ -149,17 +149,11 @@ const initForm = () => {
       e.preventDefault();
       const btn = quickForm.querySelector('.quick-form__submit');
       const success = quickForm.querySelector('.quick-form__success');
-      btn.disabled = true;
-      btn.textContent = 'Отправляю...';
+      btn.disabled = true; btn.textContent = 'Отправляю...';
       const data = Object.fromEntries(new FormData(quickForm));
       data.source = 'quick-form';
-      const ok = await sendToTelegram(data);
-      if (ok || true) {
-        success.hidden = false;
-        quickForm.reset();
-        btn.style.display = 'none';
-      }
-      btn.disabled = false;
+      await sendToTelegram(data);
+      success.hidden = false; quickForm.reset(); btn.style.display = 'none';
     });
   }
 };
