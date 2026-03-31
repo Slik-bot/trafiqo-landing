@@ -602,7 +602,8 @@
 }
 
 /* ── Gold accents ── */
-.trust-item__number {
+.trust-item__number,
+.trust-item__suffix {
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -611,10 +612,11 @@
 }
 
 .process-step__number {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: var(--gradient-gold) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  opacity: 1 !important;
 }
 
 .review-card__stars {
@@ -628,8 +630,10 @@
   color: var(--color-gold);
 }
 
-.direction-card__link { color: var(--color-gold); transition: opacity 0.2s ease; }
-.direction-card__link:hover { opacity: 0.8; }
+.direction-card__link,
+.service-card__link { color: var(--color-gold); transition: opacity 0.2s ease; }
+.direction-card__link:hover,
+.service-card__link:hover { opacity: 0.8; }
 
 .why-item__icon { color: var(--color-gold); stroke: var(--color-gold); fill: none; }
 .why-item__icon path,
@@ -642,9 +646,10 @@
 .service-card__icon { filter: drop-shadow(0 0 6px rgba(240,180,41,0.3)); }
 .service-card__icon svg { stroke: var(--color-gold-lt); color: var(--color-gold-lt); }
 
+.contact-path--primary .contact-path__icon,
 .contact-path--secondary .contact-path__icon {
   background: linear-gradient(135deg, rgba(240,180,41,0.15), rgba(240,180,41,0.05));
-  border-color: rgba(240,180,41,0.2);
+  border-color: rgba(240,180,41,0.3);
   color: var(--color-gold);
 }
 
