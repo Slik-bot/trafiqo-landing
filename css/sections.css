@@ -683,8 +683,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  background: rgba(240,180,41,0.06);
-  border: 0.5px solid rgba(240,180,41,0.2);
+  background: rgba(91,45,142,0.08);
+  border: 0.5px solid rgba(155,127,232,0.2);
   border-radius: var(--radius-lg);
   padding: 40px 48px;
   position: relative;
@@ -698,7 +698,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240,180,41,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(155,127,232,0.3), transparent);
 }
 
 .quiz-cta-block__label {
