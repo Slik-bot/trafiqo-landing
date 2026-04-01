@@ -525,7 +525,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const initWidgetCollapse = () => {
   const botWidget = document.getElementById('bot-widget');
-  const botDismiss = document.getElementById('botDismiss');
   const botPanelClose = document.getElementById('botPanelClose');
   const botToggle = document.getElementById('botToggle');
 
@@ -542,13 +541,6 @@ const initWidgetCollapse = () => {
   const expand = () => {
     botWidget.classList.remove('is-collapsed');
   };
-
-  if (botDismiss) {
-    botDismiss.addEventListener('click', (e) => {
-      e.stopPropagation();
-      collapse();
-    });
-  }
 
   if (botPanelClose) {
     botPanelClose.addEventListener('click', (e) => {

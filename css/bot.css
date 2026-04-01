@@ -228,37 +228,9 @@
 }
 
 .bot-widget.is-collapsed {
-  transform: translateX(calc(100% + 32px));
+  transform: translateX(calc(100% - 16px));
 }
 
-.bot-widget__dismiss {
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.4);
-  font-size: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  transition: background 0.2s ease;
-  z-index: 2;
-}
-
-.bot-widget__dismiss:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-.bot-widget.is-open .bot-widget__dismiss {
-  display: none;
-}
 
 .bot-panel__close {
   position: absolute;
