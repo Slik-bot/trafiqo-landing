@@ -375,10 +375,12 @@ const initSmartHeader = () => {
 const initReviews = () => {
   if (typeof Swiper === 'undefined') return;
 
-  new Swiper('.reviews-swiper', {
+  const reviewsSwiper = new Swiper('.reviews-swiper', {
     slidesPerView: 1,
     spaceBetween: 20,
     loop: true,
+    touchStartPreventDefault: false,
+    nested: true,
     autoplay: {
       delay: 4000,
       disableOnInteraction: false,
@@ -392,6 +394,19 @@ const initReviews = () => {
       768: { slidesPerView: 2, spaceBetween: 24 },
       1200: { slidesPerView: 3, spaceBetween: 28 }
     }
+  });
+
+  const reviewTexts = document.querySelectorAll('.review-card__text');
+  reviewTexts.forEach(el => {
+    el.addEventListener('touchstart', () => {
+      reviewsSwiper.allowTouchMove = false;
+    }, { passive: true });
+    el.addEventListener('touchend', () => {
+      reviewsSwiper.allowTouchMove = true;
+    }, { passive: true });
+    el.addEventListener('touchcancel', () => {
+      reviewsSwiper.allowTouchMove = true;
+    }, { passive: true });
   });
 };
 
