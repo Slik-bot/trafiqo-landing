@@ -1,14 +1,7 @@
 /* ─── FAQ ───────────────────────────────────────────────── */
 .section-faq { padding-top: 80px; padding-bottom: 80px; }
 
-.section-faq__title {
-  margin-top: 8px;
-  margin-bottom: 40px;
-  background: var(--gradient-hero);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.section-faq__title { margin-top: 8px; margin-bottom: 40px; }
 
 .faq-list { display: flex; flex-direction: column; }
 

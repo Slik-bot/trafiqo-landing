@@ -11,10 +11,6 @@
   color: var(--color-text);
   margin-bottom: 12px;
   line-height: 1.2;
-  background: var(--gradient-hero);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .section-contact__sub {
