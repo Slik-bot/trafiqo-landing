@@ -534,8 +534,10 @@ const initWidgetCollapse = () => {
   let startY = 0;
 
   const collapse = () => {
-    if (botWidget.classList.contains('is-open')) return;
-    botWidget.classList.add('is-collapsed');
+    botWidget.classList.remove('is-open');
+    setTimeout(() => {
+      botWidget.classList.add('is-collapsed');
+    }, 300);
   };
 
   const expand = () => {

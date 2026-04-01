@@ -228,7 +228,20 @@
 }
 
 .bot-widget.is-collapsed {
-  transform: translateX(calc(100% - 16px));
+  transform: translateX(calc(100% - 4px));
+}
+
+.bot-widget.is-collapsed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 48px;
+  background: var(--color-accent-lt);
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
 }
 
 
