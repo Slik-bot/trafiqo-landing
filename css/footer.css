@@ -5,6 +5,18 @@
   background: linear-gradient(180deg, transparent 0%, rgba(91,45,142,0.04) 100%);
 }
 
+.site-footer .container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .site-footer .container {
+    padding: 0 20px;
+  }
+}
+
 .footer-inner {
   display: flex;
   align-items: center;
