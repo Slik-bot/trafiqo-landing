@@ -54,28 +54,34 @@
   gap: 20px;
   transition: border-color 0.3s ease, transform 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.pricing-card::before {
+.pricing-card::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-lt));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(155, 127, 232, 0.08) 50%,
+    transparent 60%
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.pricing-card:hover::after {
+  left: 150%;
 }
 
 .pricing-card:hover {
   border-color: rgba(155, 127, 232, 0.3);
   transform: translateY(-4px);
-}
-
-.pricing-card:hover::before {
-  opacity: 1;
 }
 
 .pricing-card__icon {
