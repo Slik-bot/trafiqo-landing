@@ -70,10 +70,15 @@ const initBotWidget = () => {
 
   const toggle   = widget.querySelector('.bot-widget__toggle');
   const bubble   = widget.querySelector('.bot-widget__bubble');
+  const closeBtn = widget.querySelector('.bot-widget__close');
   toggle?.addEventListener('click', (e) => {
     e.stopPropagation();
     toggleWidget();
     if (bubble) bubble.style.display = 'none';
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    widget.classList.remove('is-open');
   });
 
   if (bubble) {

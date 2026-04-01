@@ -757,7 +757,7 @@
 </footer>
 
 <div class="bot-widget" id="bot-widget" aria-label="Бот-ассистент">
-<div class="bot-widget__window">
+  <div class="bot-widget__window">
     <div class="bot-widget__header">
       <div class="bot-widget__avatar-sm">T</div>
       <div class="bot-widget__header-info">
@@ -766,23 +766,17 @@
           <span class="bot-widget__dot"></span>онлайн
         </span>
       </div>
-      <button class="bot-panel__close" id="botPanelClose" aria-label="Закрыть чат">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
     </div>
     <div class="bot-widget__messages" id="botMessages"></div>
     <div class="bot-widget__input-wrap" id="botInput"></div>
   </div>
-<div class="bot-widget__bubble">Привет! Помогу оформить заявку. Что вас интересует?</div>
-  <button class="bot-dismiss" id="botDismiss" aria-label="Свернуть бота">
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <path d="M1 1l8 8M9 1L1 9" stroke="currentColor"
+  <button class="bot-widget__close" id="botClose" aria-label="Закрыть">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M1 1l12 12M13 1L1 13" stroke="currentColor"
             stroke-width="1.5" stroke-linecap="round"/>
     </svg>
   </button>
+  <div class="bot-widget__bubble">Привет! Помогу оформить заявку. Что вас интересует?</div>
   <button class="bot-widget__toggle" id="botToggle" aria-expanded="false" aria-label="Открыть чат"><span>T</span></button>
 </div>
 
