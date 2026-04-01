@@ -27,4 +27,29 @@ const initPricingDrag = () => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', initPricingDrag);
+const initPricingDots = () => {
+  const track = document.getElementById('pricingTrack');
+  const dots = document.querySelectorAll('.pricing-dot');
+  if (!track || !dots.length) return;
+
+  track.addEventListener('scroll', () => {
+    const cardWidth = track.querySelector('.pricing-card')?.offsetWidth + 20 || 280;
+    const idx = Math.min(
+      Math.round(track.scrollLeft / cardWidth),
+      dots.length - 1
+    );
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const cardWidth = track.querySelector('.pricing-card')?.offsetWidth + 20 || 280;
+      track.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+    });
+  });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  initPricingDrag();
+  initPricingDots();
+});

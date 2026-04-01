@@ -35,6 +35,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-bottom: 8px;
+  padding-top: 12px;
+  margin-top: -12px;
   cursor: grab;
 }
 
@@ -203,4 +205,42 @@
   .pricing-footer {
     margin: 24px 20px 0;
   }
+}
+
+.pricing-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 0;
+}
+
+.pricing-hint {
+  font-size: 11px;
+  color: var(--color-text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.pricing-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.pricing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+
+.pricing-dot.active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--color-accent-lt);
 }
