@@ -525,8 +525,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const initWidgetCollapse = () => {
   const botWidget = document.getElementById('bot-widget');
+  const botDismiss = document.getElementById('botDismiss');
   const botPanelClose = document.getElementById('botPanelClose');
-  const botToggle = document.getElementById('botToggle');
 
   if (!botWidget) return;
 
@@ -534,13 +534,20 @@ const initWidgetCollapse = () => {
   let startY = 0;
 
   const collapse = () => {
+    if (botWidget.classList.contains('is-open')) return;
     botWidget.classList.add('is-collapsed');
-    botWidget.classList.remove('is-open');
   };
 
   const expand = () => {
     botWidget.classList.remove('is-collapsed');
   };
+
+  if (botDismiss) {
+    botDismiss.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collapse();
+    });
+  }
 
   if (botPanelClose) {
     botPanelClose.addEventListener('click', (e) => {
@@ -562,7 +569,10 @@ const initWidgetCollapse = () => {
     if (dx > 25 && dy < 80) collapse();
   }, { passive: true });
 
-  botWidget.addEventListener('click', () => {
-    if (botWidget.classList.contains('is-collapsed')) expand();
+  botWidget.addEventListener('click', (e) => {
+    if (botWidget.classList.contains('is-collapsed')) {
+      e.stopPropagation();
+      expand();
+    }
   });
 };

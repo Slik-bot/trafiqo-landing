@@ -254,3 +254,35 @@
   background: rgba(255,255,255,0.15);
   color: #fff;
 }
+
+.bot-dismiss {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 1000;
+}
+
+.bot-dismiss:hover {
+  background: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.8);
+}
+
+.bot-widget.is-open .bot-dismiss {
+  display: none;
+}
+
+.bot-widget.is-collapsed .bot-dismiss {
+  display: none;
+}
