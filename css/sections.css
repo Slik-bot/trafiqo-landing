@@ -349,10 +349,28 @@
 }
 
 .review-card__text {
-  font-size: 15px;
-  color: var(--color-text-muted);
+  font-size: 14px;
   line-height: 1.7;
+  color: var(--color-text-muted);
+  max-height: 160px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155,127,232,0.3) transparent;
+  padding-right: 4px;
   flex: 1;
+}
+
+.review-card__text::-webkit-scrollbar {
+  width: 3px;
+}
+
+.review-card__text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.review-card__text::-webkit-scrollbar-thumb {
+  background: rgba(155,127,232,0.3);
+  border-radius: 3px;
 }
 
 .review-card__author {
@@ -394,6 +412,21 @@
 .avatar--gold {
   background: linear-gradient(135deg, #F59E0B, #EF4444);
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.avatar--purple {
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+.avatar--orange {
+  background: linear-gradient(135deg, #EA580C, #F59E0B);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.4);
+}
+
+.avatar--teal {
+  background: linear-gradient(135deg, #0D9488, #06B6D4);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
 }
 
 .review-card__info {
