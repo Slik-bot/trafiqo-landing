@@ -1,6 +1,6 @@
 .site-footer {
   position: relative;
-  padding: 60px 0 32px;
+  padding: 48px 0 28px;
   border-top: 1px solid rgba(255,255,255,0.06);
   background: linear-gradient(180deg, transparent 0%, rgba(91,45,142,0.04) 100%);
 }
@@ -9,8 +9,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 48px;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding: 0;
 }
 
 .footer-logo {
@@ -117,22 +118,28 @@
 }
 
 @media (max-width: 768px) {
+  .site-footer {
+    padding: 36px 0 20px;
+  }
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 32px;
-  }
-  .footer-nav {
-    flex-wrap: wrap;
-    gap: 16px 24px;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   .footer-contacts {
     align-items: flex-start;
   }
+  .footer-tagline {
+    display: none;
+  }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
+  }
+  .footer-copy,
+  .footer-privacy {
+    font-size: 11px;
   }
 }
