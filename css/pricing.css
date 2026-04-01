@@ -43,7 +43,7 @@
 }
 
 .pricing-card {
-  flex: 0 0 300px;
+  flex: 0 0 260px;
   scroll-snap-align: start;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
@@ -81,6 +81,7 @@
 .pricing-card__icon {
   font-size: 36px;
   line-height: 1;
+  margin-bottom: 4px;
 }
 
 .pricing-card__name {
@@ -135,19 +136,19 @@
   display: block;
   text-align: center;
   padding: 12px 24px;
-  border: 1px solid rgba(155,127,232,0.4);
+  border: 1px solid rgba(201,168,76,0.4);
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--color-accent-lt);
+  color: #C9A84C;
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
 .pricing-card__btn:hover {
-  background: var(--color-accent);
-  color: #fff;
-  border-color: var(--color-accent);
+  background: #C9A84C;
+  color: #07050F;
+  border-color: #C9A84C;
 }
 
 .pricing-footer {
@@ -190,8 +191,8 @@
     padding: 0 20px 16px;
   }
   .pricing-card {
-    flex: 0 0 260px;
-    padding: 24px;
+    flex: 0 0 220px;
+    padding: 20px;
   }
   .pricing-footer {
     margin: 24px 20px 0;
