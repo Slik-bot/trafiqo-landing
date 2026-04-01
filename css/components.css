@@ -91,7 +91,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #229ED9;
+    background: var(--color-blue-tg);
     color: #fff;
     padding: 10px 16px;
     border-radius: 24px;
@@ -138,7 +138,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4ade80;
+  background: var(--color-green);
   flex-shrink: 0;
   box-shadow: 0 0 8px rgba(74,222,128,0.6);
   animation: dot-pulse 2s ease-in-out infinite;

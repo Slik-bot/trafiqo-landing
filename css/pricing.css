@@ -127,15 +127,15 @@
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;
-  color: #C9A84C;
+  color: var(--color-gold);
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
 .pricing-card__btn:hover {
-  background: #C9A84C;
+  background: var(--color-gold);
   color: #07050F;
-  border-color: #C9A84C;
+  border-color: var(--color-gold);
 }
 
 .pricing-footer {

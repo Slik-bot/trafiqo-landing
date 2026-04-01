@@ -131,7 +131,7 @@
 .ui-chat__header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border); background: rgba(255,255,255,0.02); }
 .ui-chat__avatar { width: 20px; height: 20px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--color-text); }
 .ui-chat__name { font-size: 9px; font-weight: 600; color: var(--color-text); letter-spacing: 1px; font-family: var(--font-body); flex: 1; }
-.ui-chat__status { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+.ui-chat__status { width: 6px; height: 6px; border-radius: 50%; background: var(--color-green); }
 .ui-online--gold {
   background: var(--color-gold) !important;
   box-shadow: 0 0 6px rgba(201, 168, 76, 0.7);
@@ -318,7 +318,7 @@
 
 .why-us__item::before,
 .section-why-us__item::before {
-  background: linear-gradient(135deg, #F0B429, #FFD97D);
+  background: linear-gradient(135deg, var(--color-gold), #FFD97D);
 }
 
 .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -550,7 +550,7 @@
 }
 
 .review-card__stars {
-  color: #C9A84C;
+  color: var(--color-gold);
   font-size: 16px;
   letter-spacing: 2px;
 }
@@ -799,7 +799,7 @@
 }
 
 .portfolio-slide__result-icon {
-  color: #4ADE80;
+  color: var(--color-green);
   font-size: 16px;
   font-weight: 700;
   flex-shrink: 0;
@@ -1039,7 +1039,7 @@
 
 .quiz-cta-block__btn {
   background: var(--color-gold);
-  color: #06030F;
+  color: var(--color-bg-deep);
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 700;

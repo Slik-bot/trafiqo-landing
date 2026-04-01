@@ -30,15 +30,19 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
   --radius-md: 10px;
   --radius-lg: 16px;
   --container: 1200px;
-  --color-gold:     #F0B429;
-  --color-gold-lt:  #FFD97D;
-  --gradient-gold:  linear-gradient(135deg, #F0B429, #FFD97D);
+  --color-gold:      #C9A84C;
+  --color-gold-lt:   #E8C97A;
+  --color-green:     #4ADE80;
+  --color-blue-tg:   #229ED9;
+  --color-bg-deep:   #06030F;
+  --color-bg-bot:    #0F0820;
+  --gradient-gold:   linear-gradient(135deg, #C9A84C, #E8C97A);
 }
 
 /* ─── BODY + ФОН ────────────────────────────────────────── */
 body {
   position: relative;
-  background-color: #06030F;
+  background-color: var(--color-bg-deep);
   background-image:
     radial-gradient(ellipse 120% 70% at 50% -5%, #3D1585 0%, #220B55 25%, #0F0530 50%, transparent 70%),
     radial-gradient(ellipse 60% 40% at 80% 80%, rgba(100,45,180,0.15) 0%, transparent 60%);
@@ -99,7 +103,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   left: 0;
   width: 24px;
   height: 1px;
-  background: linear-gradient(90deg, #F0B429, transparent);
+  background: linear-gradient(90deg, var(--color-gold), transparent);
 }
 
 /* ─── КОНТЕЙНЕР ─────────────────────────────────────────── */
@@ -520,7 +524,7 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 }
 
 .text-gold {
-  background: linear-gradient(135deg, #F0B429 0%, #FFD97D 40%, #F0B429 100%);
+  background: linear-gradient(135deg, var(--color-gold) 0%, #FFD97D 40%, var(--color-gold) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
