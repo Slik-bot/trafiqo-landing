@@ -520,15 +520,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initProcessSteps();
   }
   document.documentElement.style.scrollBehavior = 'smooth';
-  initFloatClose();
+  initWidgetCollapse();
 });
 
-const initFloatClose = () => {
+const initWidgetCollapse = () => {
   const tgWrap = document.getElementById('tgFloatWrap');
   const tgClose = document.getElementById('tgFloatClose');
-  if (!tgWrap || !tgClose) return;
-  tgClose.addEventListener('click', (e) => {
-    e.preventDefault();
-    tgWrap.classList.add('is-hidden');
-  });
+  const botWidget = document.getElementById('bot-widget');
+  const botDismiss = document.getElementById('botDismiss');
+
+  if (tgWrap && tgClose) {
+    tgClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      tgWrap.classList.toggle('is-collapsed');
+    });
+
+    tgWrap.addEventListener('click', (e) => {
+      if (tgWrap.classList.contains('is-collapsed')) {
+        e.preventDefault();
+        tgWrap.classList.remove('is-collapsed');
+      }
+    });
+  }
+
+  if (botWidget && botDismiss) {
+    botDismiss.addEventListener('click', (e) => {
+      e.stopPropagation();
+      botWidget.classList.toggle('is-collapsed');
+    });
+
+    botWidget.addEventListener('click', (e) => {
+      if (botWidget.classList.contains('is-collapsed')) {
+        botWidget.classList.remove('is-collapsed');
+      }
+    });
+  }
 };

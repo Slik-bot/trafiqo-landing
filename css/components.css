@@ -175,6 +175,7 @@
     align-items: center;
     gap: 6px;
     z-index: 99;
+    transition: transform 0.35s ease;
   }
 
   .tg-float-close {
@@ -197,7 +198,25 @@
     background: rgba(255,255,255,0.2);
   }
 
-  .tg-float-wrap.is-hidden {
-    display: none;
+  .tg-float-wrap.is-collapsed {
+    transform: translateX(calc(-100% + 8px));
+  }
+
+  .tg-float-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 32px;
+    background: var(--color-accent-lt);
+    border-radius: 0 4px 4px 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .tg-float-wrap.is-collapsed::before {
+    opacity: 1;
   }
 }
