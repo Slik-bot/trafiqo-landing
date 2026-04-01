@@ -200,7 +200,7 @@
 
   <footer>
     <button class="btn bb" id="btnBack" onclick="go(-1)">← Назад</button>
-    <button class="btn bn" id="btnNext" onclick="go(1)">Далее →</button>
+    <button class="btn bn" id="btnNext" onclick="go(1)">Далее</button>
   </footer>
 
   <script>
@@ -222,7 +222,7 @@
       document.getElementById('stepCounter').textContent = `Шаг ${cur} из 6`;
       document.getElementById('progressFill').style.width = `${cur/6*100}%`;
       document.getElementById('btnBack').style.display = cur === 1 ? 'none' : '';
-      document.getElementById('btnNext').textContent = cur === 6 ? 'Отправить анкету' : 'Далее →';
+      document.getElementById('btnNext').textContent = cur === 6 ? 'Отправить анкету' : 'Далее';
     }
 
     function show(n) {

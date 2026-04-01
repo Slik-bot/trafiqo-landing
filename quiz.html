@@ -216,7 +216,7 @@ input::placeholder{color:var(--dim)}
     <p class="result-desc" id="rDesc"></p>
     <ul class="result-perks" id="rPerks"></ul>
     <div class="result-actions">
-      <a href="brief.html" class="btn-primary" id="rBtn">Заполнить анкету →</a>
+      <a href="brief.html" class="btn-primary" id="rBtn">Заполнить анкету</a>
       <a href="https://t.me/trafiqo" target="_blank" class="btn-tg">Написать в Telegram</a>
     </div>
     <p class="result-note">Это предварительная рекомендация на основе ваших ответов. Точное решение обсудим на бесплатной консультации — без обязательств.</p>
@@ -228,7 +228,7 @@ input::placeholder{color:var(--dim)}
 
 <div class="nav-bar" id="navBar">
   <button class="btn-back hidden" id="btnBack" onclick="prev()">← Назад</button>
-  <button class="btn-next" id="btnNext" onclick="next()">Далее →</button>
+  <button class="btn-next" id="btnNext" onclick="next()">Далее</button>
 </div>
 
 <script>
@@ -257,7 +257,7 @@ function updateUI() {
   document.getElementById('stepLbl').textContent = 'Шаг ' + (cur+1) + ' из ' + total;
   document.getElementById('progressFill').style.width = ((cur+1)/total*100) + '%';
   document.getElementById('btnBack').classList.toggle('hidden', cur === 0);
-  document.getElementById('btnNext').textContent = cur === total-1 ? 'Получить результат →' : 'Далее →';
+  document.getElementById('btnNext').textContent = cur === total-1 ? 'Получить результат' : 'Далее';
 }
 
 function next() {
