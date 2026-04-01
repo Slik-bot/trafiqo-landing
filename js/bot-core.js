@@ -63,7 +63,7 @@ const sendToWebhook = async (userMessage) => {
     });
     if (!response.ok) throw new Error('error');
     const data = await response.json();
-    return data.reply || data.text ||
+    return data.content?.[0]?.text || data.reply || data.text ||
            data.output || data.response ||
            'Понял! Свяжемся в ближайшее время.';
   } catch (error) {
