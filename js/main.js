@@ -381,11 +381,9 @@ const initReviews = () => {
     loop: true,
     touchStartPreventDefault: false,
     nested: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true
-    },
+    touchReleaseOnEdges: true,
+    resistanceRatio: 0,
+    autoplay: false,
     pagination: {
       el: '.reviews-pagination',
       clickable: true
@@ -396,15 +394,27 @@ const initReviews = () => {
     }
   });
 
-  const reviewTexts = document.querySelectorAll('.review-card__text');
-  reviewTexts.forEach(el => {
-    el.addEventListener('touchstart', () => {
-      reviewsSwiper.allowTouchMove = false;
+  const reviewCards = document.querySelectorAll('.review-card');
+  reviewCards.forEach(card => {
+    let startY = 0;
+    let startX = 0;
+
+    card.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
     }, { passive: true });
-    el.addEventListener('touchend', () => {
-      reviewsSwiper.allowTouchMove = true;
+
+    card.addEventListener('touchmove', (e) => {
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      if (dy > dx) {
+        reviewsSwiper.allowTouchMove = false;
+      } else {
+        reviewsSwiper.allowTouchMove = true;
+      }
     }, { passive: true });
-    el.addEventListener('touchcancel', () => {
+
+    card.addEventListener('touchend', () => {
       reviewsSwiper.allowTouchMove = true;
     }, { passive: true });
   });
