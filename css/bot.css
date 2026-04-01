@@ -62,7 +62,8 @@
 
 .bot-widget__dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--color-green);
+  background: var(--color-emerald);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
   animation: dot-pulse 2s ease-in-out infinite;
 }
 
