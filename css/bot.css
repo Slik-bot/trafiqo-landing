@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
 /* Окно чата — появляется при is-open */
@@ -224,4 +225,10 @@
   .bot-input {
     font-size: 16px;
   }
+}
+
+.bot-widget.slide-out {
+  transform: translateX(120px);
+  opacity: 0;
+  pointer-events: none;
 }

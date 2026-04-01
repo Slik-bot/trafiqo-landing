@@ -520,4 +520,54 @@ document.addEventListener('DOMContentLoaded', () => {
     initProcessSteps();
   }
   document.documentElement.style.scrollBehavior = 'smooth';
+  initWidgetSwipe();
 });
+
+const initWidgetSwipe = () => {
+  const botWidget = document.getElementById('bot-widget');
+  const tgFloat = document.querySelector('.tg-float');
+  const recall = document.getElementById('widgetsRecall');
+  if (!botWidget || !tgFloat) return;
+
+  let startX = 0;
+  let startY = 0;
+  let hidden = false;
+
+  const hideWidgets = () => {
+    botWidget.classList.add('slide-out');
+    tgFloat.classList.add('slide-out');
+    if (recall) recall.classList.add('is-visible');
+    hidden = true;
+  };
+
+  const showWidgets = () => {
+    botWidget.classList.remove('slide-out');
+    tgFloat.classList.remove('slide-out');
+    if (recall) recall.classList.remove('is-visible');
+    hidden = false;
+  };
+
+  botWidget.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  botWidget.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+    if (!hidden && dx > 40 && dy < 60) hideWidgets();
+  }, { passive: true });
+
+  tgFloat.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  tgFloat.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+    if (!hidden && dx < -40 && dy < 60) hideWidgets();
+  }, { passive: true });
+
+  if (recall) recall.addEventListener('click', showWidgets);
+};

@@ -106,7 +106,7 @@
     box-shadow:
       0 4px 20px rgba(34,158,217,0.4),
       0 0 0 1px rgba(255,255,255,0.1) inset;
-    transition: transform 0.3s ease,
+    transition: transform 0.35s ease, opacity 0.35s ease,
                 box-shadow 0.3s ease;
     animation: tg-appear 0.5s ease 2s both;
   }
@@ -168,4 +168,39 @@
 
 .hero-activity__text.is-fading {
   opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .tg-float.slide-out {
+    transform: translateX(-120px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .widgets-recall {
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+    transform: translateY(50%);
+    width: 22px;
+    height: 52px;
+    background: rgba(91,45,142,0.7);
+    border: none;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    z-index: 998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s ease;
+  }
+
+  .widgets-recall.is-visible {
+    display: flex;
+  }
+
+  .widgets-recall svg {
+    display: block;
+  }
 }
