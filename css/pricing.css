@@ -25,6 +25,10 @@
   color: var(--color-text);
   max-width: 600px;
   line-height: 1.2;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .pricing-track {
@@ -251,4 +255,28 @@
   width: 20px;
   border-radius: 3px;
   background: var(--color-accent-lt);
+}
+
+.pricing-icon--purple path,
+.pricing-icon--purple rect,
+.pricing-icon--purple circle {
+  stroke: var(--color-accent-lt);
+}
+
+.pricing-icon--blue path,
+.pricing-icon--blue rect,
+.pricing-icon--blue circle {
+  stroke: var(--color-blue);
+}
+
+.pricing-icon--emerald path,
+.pricing-icon--emerald rect,
+.pricing-icon--emerald circle {
+  stroke: var(--color-emerald);
+}
+
+.pricing-icon--gold path,
+.pricing-icon--gold rect,
+.pricing-icon--gold circle {
+  stroke: var(--color-gold);
 }
