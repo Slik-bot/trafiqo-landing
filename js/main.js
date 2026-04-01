@@ -524,36 +524,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const initWidgetCollapse = () => {
-  const tgWrap = document.getElementById('tgFloatWrap');
-  const tgClose = document.getElementById('tgFloatClose');
   const botWidget = document.getElementById('bot-widget');
   const botDismiss = document.getElementById('botDismiss');
+  const botPanelClose = document.getElementById('botPanelClose');
+  const botToggle = document.getElementById('botToggle');
 
-  if (tgWrap && tgClose) {
-    tgClose.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      tgWrap.classList.toggle('is-collapsed');
-    });
+  if (!botWidget) return;
 
-    tgWrap.addEventListener('click', (e) => {
-      if (tgWrap.classList.contains('is-collapsed')) {
-        e.preventDefault();
-        tgWrap.classList.remove('is-collapsed');
-      }
-    });
-  }
+  let startX = 0;
+  let startY = 0;
 
-  if (botWidget && botDismiss) {
+  const collapse = () => {
+    botWidget.classList.add('is-collapsed');
+    botWidget.classList.remove('is-open');
+  };
+
+  const expand = () => {
+    botWidget.classList.remove('is-collapsed');
+  };
+
+  if (botDismiss) {
     botDismiss.addEventListener('click', (e) => {
       e.stopPropagation();
-      botWidget.classList.toggle('is-collapsed');
-    });
-
-    botWidget.addEventListener('click', (e) => {
-      if (botWidget.classList.contains('is-collapsed')) {
-        botWidget.classList.remove('is-collapsed');
-      }
+      collapse();
     });
   }
+
+  if (botPanelClose) {
+    botPanelClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      botWidget.classList.remove('is-open');
+    });
+  }
+
+  botWidget.addEventListener('touchstart', (e) => {
+    if (botWidget.classList.contains('is-open')) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  botWidget.addEventListener('touchend', (e) => {
+    if (botWidget.classList.contains('is-open')) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+    if (dx > 25 && dy < 80) collapse();
+  }, { passive: true });
+
+  botWidget.addEventListener('click', () => {
+    if (botWidget.classList.contains('is-collapsed')) expand();
+  });
 };

@@ -168,14 +168,7 @@
 
 @media (max-width: 767px) {
   .tg-float-wrap {
-    position: fixed;
-    bottom: 24px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    z-index: 99;
-    transition: transform 0.35s ease;
+    display: none !important;
   }
 
   .tg-float-close {
