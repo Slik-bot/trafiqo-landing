@@ -555,7 +555,7 @@ const initWidgetSwipe = () => {
   botWidget.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = Math.abs(e.changedTouches[0].clientY - startY);
-    if (!hidden && dx > 40 && dy < 60) hideWidgets();
+    if (!hidden && dx > 25 && dy < 80) hideWidgets();
   }, { passive: true });
 
   tgFloat.addEventListener('touchstart', (e) => {
@@ -566,7 +566,7 @@ const initWidgetSwipe = () => {
   tgFloat.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = Math.abs(e.changedTouches[0].clientY - startY);
-    if (!hidden && dx < -40 && dy < 60) hideWidgets();
+    if (!hidden && dx < -25 && dy < 80) hideWidgets();
   }, { passive: true });
 
   if (recall) recall.addEventListener('click', showWidgets);
