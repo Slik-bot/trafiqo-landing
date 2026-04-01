@@ -88,10 +88,6 @@
 
 @media (max-width: 767px) {
   .tg-float {
-    position: fixed;
-    bottom: 24px;
-    left: 20px;
-    z-index: 999;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -171,36 +167,37 @@
 }
 
 @media (max-width: 767px) {
-  .tg-float.slide-out {
-    transform: translateX(-120px);
-    opacity: 0;
-    pointer-events: none;
+  .tg-float-wrap {
+    position: fixed;
+    bottom: 24px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 99;
   }
 
-  .widgets-recall {
-    position: fixed;
-    bottom: 50%;
-    right: 0;
-    transform: translateY(50%);
-    width: 22px;
-    height: 52px;
-    background: rgba(91,45,142,0.7);
+  .tg-float-close {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
     border: none;
-    border-radius: 8px 0 0 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
     cursor: pointer;
-    z-index: 998;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(8px);
-    transition: opacity 0.3s ease;
+    line-height: 1;
+    transition: background 0.2s ease;
   }
 
-  .widgets-recall.is-visible {
-    display: flex;
+  .tg-float-close:hover {
+    background: rgba(255,255,255,0.2);
   }
 
-  .widgets-recall svg {
-    display: block;
+  .tg-float-wrap.is-hidden {
+    display: none;
   }
 }
