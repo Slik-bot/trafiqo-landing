@@ -170,13 +170,14 @@
 
   .bot-widget__window {
     position: fixed;
-    bottom: 130px;
+    bottom: 80px;
     right: 16px;
     left: 16px;
     width: auto;
     max-height: 55vh;
     border-radius: 14px;
     transform-origin: bottom right;
+    transition: bottom 0.3s ease;
   }
 
   .bot-widget.is-open .bot-widget__window {
@@ -199,6 +200,14 @@
 
   .bot-input {
     font-size: 16px;
+  }
+}
+
+@supports (height: 100dvh) {
+  @media (max-width: 767px) {
+    .bot-widget__window {
+      bottom: calc(env(safe-area-inset-bottom) + 80px);
+    }
   }
 }
 

@@ -87,6 +87,27 @@ const initBotWidget = () => {
       bubble.style.transform = 'translateY(0)';
     }, 3000);
   }
+
+  const botWindow = widget.querySelector('.bot-widget__window');
+  const botInput = widget.querySelector('input, textarea');
+
+  if (botInput && botWindow) {
+    botInput.addEventListener('focus', () => {
+      if (window.innerWidth > 767) return;
+      setTimeout(() => {
+        const vh = window.visualViewport
+          ? window.visualViewport.height
+          : window.innerHeight;
+        const keyboardHeight = window.innerHeight - vh;
+        botWindow.style.bottom = (keyboardHeight + 80) + 'px';
+      }, 300);
+    }, { passive: true });
+
+    botInput.addEventListener('blur', () => {
+      if (window.innerWidth > 767) return;
+      botWindow.style.bottom = '';
+    }, { passive: true });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', initBotWidget);
