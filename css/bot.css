@@ -68,28 +68,29 @@
 
 /* Крестик */
 .bot-widget__close {
-  display: none;
   position: absolute;
-  top: -12px;
-  right: -8px;
+  top: 12px;
+  right: 12px;
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #1A0840;
-  border: 0.5px solid rgba(155,127,232,0.4);
-  color: rgba(232,228,240,0.7);
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: none;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  z-index: 1001;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
+  z-index: 10;
 }
 
-.bot-widget.is-open .bot-widget__close { display: flex; }
+.bot-widget.is-open .bot-widget__close {
+  display: flex;
+}
 
 .bot-widget__close:hover {
-  background: rgba(91,45,142,0.5);
-  color: #F0ECFF;
+  background: rgba(255,255,255,0.15);
 }
 
 /* Сообщения */
