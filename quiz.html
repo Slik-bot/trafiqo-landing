@@ -281,7 +281,14 @@ function selectOpt(btn, groupId) {
   btn.classList.add('selected');
 }
 
-function showResult() {
+async function showResult() {
+  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0]?.[0] || 'site';
+  const sheetsData = { name: userName||'', service_recommended: winner, scores: Object.entries(scores).map(([k,v])=>k+':'+v).join(', ') };
+  sheetsData.form_source = 'site';
+  sheetsData.direction = 'Сайт TRAFIQO (quiz)';
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbxK2McWpGcFK5PLDzxg3BG4lqeZKUSwMJ4E_RvolDDl9EJXACtOckr1aZKelDumZNdl5A/exec', { method: 'POST', mode: 'no-cors', body: JSON.stringify(sheetsData) });
+  } catch(e) { console.error('Google Sheets error:', e); }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById('navBar').style.display = 'none';
   document.getElementById('result').classList.add('active');
