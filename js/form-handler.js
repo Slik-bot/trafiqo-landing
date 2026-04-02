@@ -1,7 +1,7 @@
 // ─── КОНФИГ ──────────────────────────────────────────────
 const BOT_TOKEN = 'YOUR_BOT_TOKEN';
 const CHAT_ID   = 'YOUR_CHAT_ID';
-const SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxK2McWpGcFK5PLDzxg3BG4lqeZKUSwMJ4E_RvolDDl9EJXACtOckr1aZKelDumZNdl5A/exec';
 const SITE_NAME = 'TRAFIQO Landing';
 const TG_URL    = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 const checkRateLimit = () => Date.now() - (+localStorage.getItem('trafiqo_last_submit') || 0) >= 60000;
@@ -55,19 +55,15 @@ const sendToTelegram = async (data) => {
 };
 
 // ─── ОТПРАВКА В SHEETS ──────────────────────────────────
-const sendToSheets = async (data) => {
-  if (!SHEET_URL || SHEET_URL === 'YOUR_APPS_SCRIPT_URL') return true;
-  try {
-    const res = await fetch(SHEET_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ site: SITE_NAME, date: new Date().toISOString(), ...data })
-    });
-    return res.ok;
-  } catch (error) {
-    console.error('Sheets send failed:', error);
-    return false;
-  }
+const sendToSheets = (raw) => {
+  const sheetData = {
+    form_source: 'site',
+    name: escapeHtml(raw.name||''), telegram: escapeHtml(raw.contact||''),
+    services: escapeHtml(raw.service||''), timeline: '', description: '',
+    city: '', niche: '', status: '', clients: '', goal: '',
+    has_site: '', design: '', integrations: '', tz_status: '', budget: '', source: '', reference: ''
+  };
+  fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sheetData) });
 };
 
 const showSuccess = (form) => { form.setAttribute('hidden', ''); document.querySelector('.contact-form__success')?.removeAttribute('hidden'); };
@@ -109,17 +105,10 @@ const handleSubmit = async (e) => {
   if (btn) { btn.disabled = true; btn.textContent = 'Отправляю...'; }
 
   try {
-    const [tgOk, sheetOk] = await Promise.all([
-      sendToTelegram(data),
-      sendToSheets(data)
-    ]);
-
-    if (tgOk || sheetOk) {
-      localStorage.setItem('trafiqo_last_submit', Date.now());
-      showSuccess(form);
-    } else {
-      showError('Ошибка отправки. Напишите нам в Telegram напрямую.');
-    }
+    sendToSheets(data);
+    localStorage.setItem('trafiqo_last_submit', Date.now());
+    showSuccess(form);
+    sendToTelegram(data).catch(() => {});
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = origText; }
   }
@@ -140,6 +129,7 @@ const initForm = () => {
       data.source = 'quick-form';
       if (data.website || !data.name?.trim() || !data.contact?.trim()) { showError('Заполните имя и контакт'); return; }
       btn.disabled = true; btn.textContent = 'Отправляю...';
+      sendToSheets(data);
       await sendToTelegram(data);
       success.hidden = false; quickForm.reset(); btn.style.display = 'none';
     });
