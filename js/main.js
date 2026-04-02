@@ -156,10 +156,7 @@ const initFAQ = () => {
 };
 
 const animateCount = (el, target) => {
-  if (prefersReducedMotion()) {
-    el.textContent = target;
-    return;
-  }
+  if (prefersReducedMotion()) { el.textContent = target; return; }
 
   el.classList.add('is-counting');
   const start     = performance.now();
@@ -200,14 +197,11 @@ const initCountUp = () => {
 
 const initProcessSteps = () => {
   if (typeof ScrollTrigger === 'undefined') return;
-
   const steps = document.querySelectorAll('.process-step');
   if (!steps.length) return;
-
   ScrollTrigger.batch(steps, {
     onEnter: (batch) => batch.forEach((el) => el.classList.add('is-active')),
-    start: 'top 80%',
-    once: true
+    start: 'top 80%', once: true
   });
 };
 
@@ -215,7 +209,6 @@ const initNavHighlight = () => {
   const sections = document.querySelectorAll('section[id]');
   const links    = document.querySelectorAll('.header__nav-link');
   if (!sections.length || !links.length) return;
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -225,7 +218,6 @@ const initNavHighlight = () => {
       });
     });
   }, { threshold: 0.5 });
-
   sections.forEach((section) => observer.observe(section));
 };
 
@@ -238,9 +230,7 @@ const initSmoothScroll = () => {
       e.preventDefault();
       const form = document.getElementById('contact');
       form?.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        form?.querySelector('input')?.focus();
-      }, 600);
+      setTimeout(() => form?.querySelector('input')?.focus(), 600);
     });
   });
 
@@ -312,29 +302,19 @@ const initPhoneScreens = () => {
 };
 
 const initScrollDots = () => {
-  const pairs = [
-    {
-      wrap: document.querySelector('.services__scroll-wrap'),
-      dots: document.querySelectorAll('#servicesDots .scroll-dot')
-    }
-  ];
-
-  pairs.forEach(({ wrap, dots }) => {
-    if (!wrap || !dots.length) return;
-    wrap.addEventListener('scroll', () => {
-      const total = wrap.scrollWidth - wrap.clientWidth;
-      if (!total) return;
-      const ratio = wrap.scrollLeft / total;
-      const idx = Math.round(ratio * (dots.length - 1));
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-    }, { passive: true });
-  });
+  const wrap = document.querySelector('.services__scroll-wrap');
+  const dots = document.querySelectorAll('#servicesDots .scroll-dot');
+  if (!wrap || !dots.length) return;
+  wrap.addEventListener('scroll', () => {
+    const total = wrap.scrollWidth - wrap.clientWidth;
+    if (!total) return;
+    const idx = Math.round((wrap.scrollLeft / total) * (dots.length - 1));
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+  }, { passive: true });
 };
 
 const initSmartHeader = () => {
-  const header = document.querySelector(
-    'header, .site-header, #main-header'
-  );
+  const header = document.querySelector('header, .site-header, #main-header');
   if (!header) return;
 
   let lastScroll = 0;
@@ -407,11 +387,7 @@ const initReviews = () => {
     card.addEventListener('touchmove', (e) => {
       const dy = Math.abs(e.touches[0].clientY - startY);
       const dx = Math.abs(e.touches[0].clientX - startX);
-      if (dy > dx) {
-        reviewsSwiper.allowTouchMove = false;
-      } else {
-        reviewsSwiper.allowTouchMove = true;
-      }
+      reviewsSwiper.allowTouchMove = dx >= dy;
     }, { passive: true });
 
     card.addEventListener('touchend', () => {
