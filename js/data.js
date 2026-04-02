@@ -136,3 +136,27 @@ const PRICING = [
     icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20V12l14-6v20L6 20z" stroke="#9B7FE8" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 13c2 1 3 3 3 5s-1 4-3 5" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/><path d="M6 20l-2 5" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/></svg>`
   }
 ];
+
+const PORTFOLIO = [
+  {
+    title: 'Lumière Beauty',
+    url: 'https://slik-bot.github.io/beauty-landing/',
+    iframeTitle: 'Beauty Landing',
+    tags: ['Студия красоты', 'Москва'],
+    result: 'Онлайн-запись выросла на 60% за первый месяц'
+  },
+  {
+    title: 'Getap Winery',
+    url: 'https://slik-bot.github.io/wine-parallax/',
+    iframeTitle: 'Wine Parallax',
+    tags: ['Винодельня', 'Геленджик'],
+    result: 'Средний чек онлайн-заказов вырос вдвое за два месяца'
+  },
+  {
+    title: 'Звёздный Путь',
+    url: 'https://slik-bot.github.io/tarolog-landing/',
+    iframeTitle: 'Tarolog Landing',
+    tags: ['Таролог', 'Онлайн'],
+    result: '40+ заявок в первую неделю после запуска'
+  }
+];

@@ -149,7 +149,6 @@ const animateCount = (el, target) => {
     const elapsed  = now - start;
     const progress = Math.min(elapsed / COUNTUP_DURATION, 1);
     el.textContent = Math.round(easeOut(progress) * target);
-
     if (progress < 1) {
       requestAnimationFrame(tick);
     } else {
@@ -157,14 +156,12 @@ const animateCount = (el, target) => {
       el.classList.remove('is-counting');
     }
   };
-
   requestAnimationFrame(tick);
 };
 
 const initCountUp = () => {
   const targets = document.querySelectorAll('[data-countup]');
   if (!targets.length) return;
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -335,6 +332,12 @@ const initSmartHeader = () => {
   }, { passive: true });
 };
 
+const renderPortfolio = () => {
+  const c = document.getElementById('portfolioTrack');
+  if (!c || typeof PORTFOLIO === 'undefined') return;
+  c.innerHTML = PORTFOLIO.map(p => `<a href="${p.url}" target="_blank" class="portfolio-slide"><div class="portfolio-slide__img"><iframe src="${p.url}" class="portfolio-slide__iframe" scrolling="no" loading="lazy" title="${p.iframeTitle}"></iframe></div><div class="portfolio-slide__hover"><span class="portfolio-slide__hover-btn">Смотреть проект</span></div><div class="portfolio-slide__info"><div class="portfolio-slide__tags">${p.tags.map(t => `<span class="portfolio-slide__tag">${t}</span>`).join('')}</div><h3 class="portfolio-slide__name">${p.title}</h3><p class="portfolio-slide__result"><span class="portfolio-slide__result-icon">↑</span>${p.result}</p></div></a>`).join('');
+};
+
 const renderPricing = () => {
   const c = document.getElementById('pricingTrack');
   if (!c || typeof PRICING === 'undefined') return;
@@ -420,7 +423,6 @@ const initActivityCounter = () => {
   if (isMobile()) return;
   const el = document.getElementById('activityText');
   if (!el) return;
-
   const phrases = [
     'Последняя заявка — 43 минуты назад',
     'Сейчас в работе 3 проекта',
@@ -433,10 +435,8 @@ const initActivityCounter = () => {
     'Команда онлайн — ответим быстро',
     'Проект из СПб завершён вчера'
   ];
-
   let current = Math.floor(Math.random() * phrases.length);
   el.textContent = phrases[current];
-
   const rotate = () => {
     el.classList.add('is-fading');
     setTimeout(() => {
@@ -483,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneScreens();
   initScrollDots();
   initSmartHeader();
+  renderPortfolio();
   renderPricing();
   renderReviews();
   initReviews();
