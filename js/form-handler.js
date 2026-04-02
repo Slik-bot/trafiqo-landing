@@ -23,7 +23,6 @@ const validateForm = (data) => {
   return { valid: errors.length === 0, errors };
 };
 
-// ─── ФОРМАТИРОВАНИЕ СООБЩЕНИЯ ────────────────────────────
 const formatMessage = (data) => {
   const date = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
   return [
@@ -59,11 +58,7 @@ const sendToSheets = async (data) => {
     const res = await fetch(SHEET_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        site: SITE_NAME,
-        date: new Date().toISOString(),
-        ...data
-      })
+      body: JSON.stringify({ site: SITE_NAME, date: new Date().toISOString(), ...data })
     });
     return res.ok;
   } catch (error) {
@@ -72,13 +67,10 @@ const sendToSheets = async (data) => {
   }
 };
 
-// ─── UI FEEDBACK ────────────────────────────────────────
 const showSuccess = (form) => {
   form.setAttribute('hidden', '');
-  const success = document.querySelector('.contact-form__success');
-  if (success) success.removeAttribute('hidden');
+  document.querySelector('.contact-form__success')?.removeAttribute('hidden');
 };
-
 const showError = (message) => {
   const el = document.querySelector('.contact-form__error');
   if (!el) return;
@@ -87,17 +79,13 @@ const showError = (message) => {
   el.removeAttribute('hidden');
   setTimeout(() => el.setAttribute('hidden', ''), 5000);
 };
-
 const showFieldError = (form, field, message) => {
   const input = form.querySelector(`[name="${field}"]`);
   if (!input) return;
   input.classList.add('is-error');
-  const hint = Object.assign(document.createElement('span'), {
-    className: 'contact-form__hint', textContent: message
-  });
+  const hint = Object.assign(document.createElement('span'), { className: 'contact-form__hint', textContent: message });
   input.insertAdjacentElement('afterend', hint);
 };
-
 const clearErrors = (form) => {
   form.querySelectorAll('.is-error').forEach((el) => el.classList.remove('is-error'));
   form.querySelectorAll('.contact-form__hint').forEach((el) => el.remove());
