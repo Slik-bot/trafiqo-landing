@@ -201,6 +201,10 @@
   .bot-input {
     font-size: 16px;
   }
+
+  .bot-widget.is-open .bot-widget__toggle {
+    display: none;
+  }
 }
 
 @supports (height: 100dvh) {
