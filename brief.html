@@ -206,7 +206,9 @@
   <script>
     const BOT_TOKEN = 'YOUR_BOT_TOKEN';
     const CHAT_ID = 'YOUR_CHAT_ID';
-    const SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxK2McWpGcFK5PLDzxg3BG4lqeZKUSwMJ4E_RvolDDl9EJXACtOckr1aZKelDumZNdl5A/exec';
+    const checkRateLimit = () => Date.now() - (+localStorage.getItem('trafiqo_last_submit') || 0) >= 60000;
+    const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const urlParams = new URLSearchParams(window.location.search);
     const preService = urlParams.get('service');
     if (preService) {
@@ -243,7 +245,7 @@
     function go(dir) {
       if(dir===1 && cur===1){ if(!document.getElementById('name').value.trim()||!document.getElementById('contact').value.trim()){ alert('Пожалуйста, укажите имя и контакт'); return; } }
       collect();
-      if(dir===1 && cur===6){ submit(); return; }
+      if(dir===1 && cur===6){ if(!checkRateLimit()){ alert('Подождите 60 секунд перед повторной отправкой'); return; } submit(); return; }
       cur = Math.max(1, Math.min(6, cur+dir)); show(cur);
     }
 
@@ -257,7 +259,18 @@
         `💰 *Бюджет:* ${fd.budget||'—'}${nl}⏱ *Сроки:* ${fd.deadline||'—'}${nl}${nl}` +
         `📣 *Источник:* ${fd.source||'—'}${nl}💬 *Описание:* ${fd.desc||'—'}${nl}🔗 *Референс:* ${fd.ref||'—'}`;
       if(BOT_TOKEN!=='YOUR_BOT_TOKEN') fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}).catch(()=>{});
-      if(SHEET_URL!=='YOUR_APPS_SCRIPT_URL') fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fd)}).catch(()=>{});
+      const data = {
+        form_source: 'site',
+        name: escapeHtml(fd.name||''), telegram: escapeHtml(fd.contact||''), city: escapeHtml(fd.city||''),
+        services: (fd.types||[]).join(', '), niche: escapeHtml(fd.niche||''),
+        status: fd.status||'', clients: fd.clients||'', goal: (fd.goals||[]).join(', '),
+        has_site: fd.hasSite||'', design: fd.design||'',
+        integrations: (fd.intg||[]).join(', '), tz_status: fd.tz||'',
+        budget: fd.budget||'', timeline: fd.deadline||'', source: fd.source||'',
+        description: escapeHtml(fd.desc||''), reference: escapeHtml(fd.ref||'')
+      };
+      fetch(SHEET_URL, {method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+      localStorage.setItem('trafiqo_last_submit', Date.now());
       document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
       document.querySelector('footer').style.display='none';
       document.getElementById('ss').style.display='block';
