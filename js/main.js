@@ -116,7 +116,6 @@ const initFAQ = () => {
     item.classList.remove('is-open');
     btn?.setAttribute('aria-expanded', 'false');
   };
-
   const openItem = (item) => {
     const answer = item.querySelector('.faq-item__answer, .faq-item__body');
     const btn = item.querySelector('.faq-item__question, .faq-item__btn');
@@ -125,17 +124,13 @@ const initFAQ = () => {
     btn?.setAttribute('aria-expanded', 'true');
     answer.style.maxHeight = answer.scrollHeight + 'px';
   };
-
   list.addEventListener('click', (e) => {
     const btn = e.target.closest('.faq-item__question, .faq-item__btn');
     if (!btn) return;
     const item = btn.closest('.faq-item');
     if (!item) return;
     const isOpen = item.classList.contains('is-open');
-
-    list.querySelectorAll('.faq-item.is-open').forEach(
-      openItem => closeItem(openItem)
-    );
+    list.querySelectorAll('.faq-item.is-open').forEach(i => closeItem(i));
 
     if (!isOpen) {
       setTimeout(() => openItem(item), 10);
@@ -340,6 +335,12 @@ const initSmartHeader = () => {
   }, { passive: true });
 };
 
+const renderPricing = () => {
+  const c = document.getElementById('pricingTrack');
+  if (!c || typeof PRICING === 'undefined') return;
+  c.innerHTML = PRICING.map(p => `<div class="pricing-card${p.highlighted ? ' pricing-card--highlighted' : ''}"><div class="pricing-card__icon">${p.icon}</div><div class="pricing-card__name">${p.title}</div><div class="pricing-card__price">${p.price}</div><ul class="pricing-card__features">${p.features.map(f => `<li>${f}</li>`).join('')}</ul><a href="#contact" class="pricing-card__btn">Обсудить проект</a></div>`).join('');
+};
+
 const renderReviews = () => {
   const container = document.getElementById('reviews-container');
   if (!container || typeof REVIEWS === 'undefined') return;
@@ -438,7 +439,6 @@ const initActivityCounter = () => {
 
   const rotate = () => {
     el.classList.add('is-fading');
-
     setTimeout(() => {
       current = (current + 1) % phrases.length;
       el.textContent = phrases[current];
@@ -483,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneScreens();
   initScrollDots();
   initSmartHeader();
+  renderPricing();
   renderReviews();
   initReviews();
   initActivityCounter();

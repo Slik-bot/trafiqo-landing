@@ -91,3 +91,48 @@ const REVIEWS = [
     text: 'Медицина это особая ответственность. Сайт клиники это точка входа для людей которым нужна помощь. Очень долго выбирали подрядчика смотрели на опыт на то как общаются насколько понимают специфику. TRAFIQO задавали правильные вопросы про пациентов про процесс записи про то какие вопросы чаще всего задают по телефону. На основе этого выстроили структуру и онлайн-запись. Звонков с вопросами как записаться стало значительно меньше люди находят ответы сами. Запись через сайт выросла на 35% за первые два месяца.'
   }
 ];
+
+const PRICING = [
+  {
+    title: 'Сайт и лендинг',
+    price: 'от 65 000 ₽<span>/ под ключ</span>',
+    features: ['Уникальный дизайн и анимации', 'Адаптив под все устройства', 'Форма заявки в Telegram', 'SEO-оптимизация'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="5" width="28" height="20" rx="3" stroke="#9B7FE8" stroke-width="1.5"/><path d="M2 10h28" stroke="#9B7FE8" stroke-width="1.5"/><circle cx="6" cy="7.5" r="1" fill="#9B7FE8"/><circle cx="10" cy="7.5" r="1" fill="#9B7FE8"/><rect x="6" y="14" width="8" height="7" rx="1" fill="#9B7FE8" opacity="0.3"/><rect x="17" y="14" width="9" height="3" rx="1" fill="#9B7FE8" opacity="0.3"/><rect x="17" y="19" width="6" height="2" rx="1" fill="#9B7FE8" opacity="0.3"/></svg>`
+  },
+  {
+    title: 'Мобильное приложение',
+    price: 'от 250 000 ₽<span>/ полный цикл</span>',
+    features: ['iOS и Android', 'UX/UI дизайн', 'Публикация в App Store и Google Play', 'Поддержка 30 дней'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="9" y="2" width="14" height="28" rx="3" stroke="#9B7FE8" stroke-width="1.5"/><circle cx="16" cy="26" r="1.5" fill="#9B7FE8"/><path d="M13 6h6" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  {
+    title: 'Telegram-бот',
+    price: 'от 20 000 ₽<span>/ готовый бот</span>',
+    features: ['Сценарий и воронка продаж', 'CRM-интеграция', 'Уведомления и автоответы', 'Аналитика'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#9B7FE8" stroke-width="1.5"/><path d="M8 16l5 5 11-10" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+  },
+  {
+    title: 'Автоматизация',
+    price: 'от 30 000 ₽<span>/ под задачу</span>',
+    features: ['API-интеграции', 'CRM и таблицы', 'Автоуведомления', 'Бизнес-процессы'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="4" stroke="#9B7FE8" stroke-width="1.5"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  {
+    title: 'Платформа',
+    price: 'от 200 000 ₽<span>/ независимо</span>',
+    features: ['Форум или закрытый клуб', 'Маркетплейс', 'Личный кабинет', 'Независимо от блокировок'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 26h24M8 26V14l8-8 8 8v12" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="19" width="6" height="7" rx="1" stroke="#9B7FE8" stroke-width="1.5"/></svg>`
+  },
+  {
+    title: 'Реклама',
+    price: 'от 15 000 ₽<span>/ в месяц</span>',
+    features: ['Telegram Ads', 'Таргетированная реклама', 'Баннеры и креативы', 'Аналитика и отчёты'],
+    highlighted: false,
+    icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20V12l14-6v20L6 20z" stroke="#9B7FE8" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 13c2 1 3 3 3 5s-1 4-3 5" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/><path d="M6 20l-2 5" stroke="#9B7FE8" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  }
+];
