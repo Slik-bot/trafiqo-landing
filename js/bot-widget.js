@@ -90,22 +90,25 @@ const initBotWidget = () => {
 
   const botWindow = widget.querySelector('.bot-widget__window');
   const botInput = widget.querySelector('input, textarea');
+  const botToggle = widget.querySelector('.bot-widget__toggle');
 
   if (botInput && botWindow) {
     botInput.addEventListener('focus', () => {
       if (window.innerWidth > 767) return;
+      if (!window.visualViewport) return;
       setTimeout(() => {
-        const vh = window.visualViewport
-          ? window.visualViewport.height
-          : window.innerHeight;
-        const keyboardHeight = window.innerHeight - vh;
-        botWindow.style.bottom = (keyboardHeight + 80) + 'px';
+        const keyboardHeight = window.innerHeight - window.visualViewport.height;
+        if (keyboardHeight > 100) {
+          botWindow.style.bottom = (keyboardHeight + 16) + 'px';
+          if (botToggle) botToggle.style.display = 'none';
+        }
       }, 300);
     }, { passive: true });
 
     botInput.addEventListener('blur', () => {
       if (window.innerWidth > 767) return;
       botWindow.style.bottom = '';
+      if (botToggle) botToggle.style.display = '';
     }, { passive: true });
   }
 };
