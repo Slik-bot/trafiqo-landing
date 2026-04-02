@@ -270,9 +270,7 @@
         description: escapeHtml(fd.desc||''), reference: escapeHtml(fd.ref||'')
       };
       data.direction = 'Сайт TRAFIQO (brief)';
-      try {
-        await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
-      } catch(e) { console.error('Google Sheets error:', e); }
+      navigator.sendBeacon(SHEET_URL, JSON.stringify(data));
       localStorage.setItem('trafiqo_last_submit', Date.now());
       document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
       document.querySelector('footer').style.display='none';
@@ -290,5 +288,6 @@
     document.querySelectorAll('.tag').forEach(t => t.addEventListener('click', () => t.classList.toggle('sel')));
     ui();
   </script>
+<script src="js/form-handler.js" defer></script>
 </body>
 </html>

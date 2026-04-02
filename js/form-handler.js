@@ -58,12 +58,17 @@ const sendToTelegram = async (data) => {
 const sendToSheets = (raw) => {
   const sheetData = {
     form_source: 'site',
+    direction: raw.source === 'quick-form' ? 'Быстрый контакт' : 'Сайт TRAFIQO',
     name: escapeHtml(raw.name||''), telegram: escapeHtml(raw.contact||''),
     services: escapeHtml(raw.service||''), timeline: '', description: '',
     city: '', niche: '', status: '', clients: '', goal: '',
     has_site: '', design: '', integrations: '', tz_status: '', budget: '', source: '', reference: ''
   };
-  fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sheetData) });
+  try {
+    navigator.sendBeacon(SHEET_URL, JSON.stringify(sheetData));
+  } catch(e) {
+    fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(sheetData) }).catch(()=>{});
+  }
 };
 
 const showSuccess = (form) => { form.setAttribute('hidden', ''); document.querySelector('.contact-form__success')?.removeAttribute('hidden'); };
