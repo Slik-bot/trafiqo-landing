@@ -539,3 +539,10 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   animation: shimmer-slow 3s linear infinite;
   box-shadow: 0 0 20px rgba(91,45,142,0.5), 0 0 40px rgba(91,45,142,0.2);
 }
+
+/* Hero mockup line widths */
+.ui-line--40 { width: 40%; }
+.ui-line--50 { width: 50%; }
+.ui-line--55 { width: 55%; }
+.ui-line--60 { width: 60%; }
+.ui-line--80 { width: 80%; }
