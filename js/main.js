@@ -90,29 +90,17 @@ const initBurger = () => {
     nav.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
   };
-
   const openBurger = () => {
     burger.classList.add('is-open');
     nav.classList.add('is-open');
     burger.setAttribute('aria-expanded', 'true');
   };
-
   burger.addEventListener('click', () => {
-    const isOpen = burger.classList.contains('is-open');
-    isOpen ? closeBurger() : openBurger();
+    burger.classList.contains('is-open') ? closeBurger() : openBurger();
   });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeBurger();
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.header__container')) closeBurger();
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= BREAKPOINT_MOBILE) closeBurger();
-  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBurger(); });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.header__container')) closeBurger(); });
+  window.addEventListener('resize', () => { if (window.innerWidth >= BREAKPOINT_MOBILE) closeBurger(); });
 };
 
 const initFAQ = () => {
@@ -352,6 +340,15 @@ const initSmartHeader = () => {
   }, { passive: true });
 };
 
+const renderReviews = () => {
+  const container = document.getElementById('reviews-container');
+  if (!container || typeof REVIEWS === 'undefined') return;
+  const stars = (n) => '★'.repeat(n);
+  container.innerHTML = REVIEWS.map(r =>
+    `<div class="swiper-slide"><div class="review-card"><div class="review-card__stars">${stars(r.stars)}</div><p class="review-card__text">${r.text}</p><div class="review-card__author"><img src="${r.avatar}" alt="${r.name}" class="review-card__avatar" loading="lazy" width="44" height="44"><div class="review-card__meta"><strong>${r.name}</strong><span>${r.role}</span></div></div></div></div>`
+  ).join('');
+};
+
 const initReviews = () => {
   if (typeof Swiper === 'undefined') return;
 
@@ -486,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneScreens();
   initScrollDots();
   initSmartHeader();
+  renderReviews();
   initReviews();
   initActivityCounter();
   initCursorGlow();
