@@ -1,0 +1,800 @@
+/* ─── КНОПКА-ТРИГГЕР ─────────────────────────────────────────────────────── */
+.calc-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 0.5px solid var(--color-border-active, rgba(155, 127, 232, 0.5));
+  border-radius: var(--radius-md);
+  color: var(--color-accent-lt);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.calc-trigger-btn:hover {
+  background: rgba(155, 127, 232, 0.08);
+  border-color: var(--color-accent-lt);
+  color: var(--color-text);
+}
+
+/* ─── ОВЕРЛЕЙ ────────────────────────────────────────────────────────────── */
+.calc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(7, 5, 15, 0.95);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.calc-modal--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─── КАРТОЧКА МОДАЛКИ (mobile: bottom sheet) ────────────────────────────── */
+.calc-modal__inner {
+  position: relative;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-modal-bg, #0D0B1A);
+  border: 0.5px solid var(--color-border);
+  border-radius: 20px 20px 0 0;
+  transform: translateY(30px);
+  transition: transform 0.3s ease;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.calc-modal--open .calc-modal__inner {
+  transform: translateY(0);
+}
+
+/* ─── DRAG-ИНДИКАТОР (только мобайл) ─────────────────────────────────────── */
+.calc-modal__drag {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 2px;
+  flex-shrink: 0;
+}
+
+.calc-modal__drag-bar {
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 8px auto 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* ─── КНОПКА ЗАКРЫТИЯ ────────────────────────────────────────────────────── */
+.calc-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.calc-modal__close:hover {
+  color: var(--color-text);
+  background: var(--color-surface, rgba(255, 255, 255, 0.03));
+}
+
+/* ─── ЗАГОЛОВОК ──────────────────────────────────────────────────────────── */
+.calc-modal__header {
+  flex-shrink: 0;
+  padding: 16px 48px 14px 20px;
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.calc-modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 3vw, 20px);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 3px;
+}
+
+.calc-modal__sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ─── БАННЕР «ПРОДОЛЖИТЬ» ────────────────────────────────────────────────── */
+.calc-continue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  background: rgba(155, 127, 232, 0.06);
+  border-bottom: 0.5px solid var(--color-border);
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.calc-continue__btn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.calc-continue__btn:hover {
+  background: var(--color-accent-lt);
+}
+
+/* ─── КОНТЕЙНЕР ШАГОВ ────────────────────────────────────────────────────── */
+.calc-steps {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.calc-steps::-webkit-scrollbar { width: 3px; }
+.calc-steps::-webkit-scrollbar-track { background: transparent; }
+.calc-steps::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+/* ─── ШАГ ────────────────────────────────────────────────────────────────── */
+.calc-step { animation: calcStepIn 0.25s ease both; }
+
+.calc-step:nth-child(2) { animation-delay: 0.05s; }
+.calc-step:nth-child(3) { animation-delay: 0.1s; }
+.calc-step:nth-child(4) { animation-delay: 0.15s; }
+.calc-step:nth-child(5) { animation-delay: 0.2s; }
+.calc-step:nth-child(6) { animation-delay: 0.22s; }
+
+@keyframes calcStepIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.calc-step__label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-lt);
+  margin-bottom: 6px;
+}
+
+.calc-step__title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+/* ─── СЕТКИ ОПЦИЙ ────────────────────────────────────────────────────────── */
+.calc-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.calc-opts--types {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.calc-opts--addons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.calc-opts--urgency {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+/* ─── КНОПКА-ОПЦИЯ ───────────────────────────────────────────────────────── */
+.calc-opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 12px 14px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.03));
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.calc-opt:hover {
+  border-color: var(--color-border-active, rgba(155, 127, 232, 0.5));
+  color: var(--color-text);
+}
+
+.calc-opt--on {
+  border-color: var(--color-border-active, rgba(155, 127, 232, 0.5));
+  background: rgba(155, 127, 232, 0.08);
+  color: var(--color-text);
+}
+
+.calc-opts--who .calc-opt {
+  flex: 1;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 10px;
+}
+
+.calc-opt--type {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px 14px;
+}
+
+.calc-opt__name {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.calc-opt__price {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-accent-lt);
+}
+
+.calc-opt__sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.calc-opt__mult {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-accent-lt);
+}
+
+.calc-opt--addon {
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.calc-opt--addon .calc-opt__name { flex: 1; }
+.calc-opt--addon .calc-opt__price { flex-shrink: 0; margin-left: 12px; }
+
+/* ─── ИКОНКА ХИНТА ───────────────────────────────────────────────────────── */
+.calc-opt__info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  font-style: normal;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  margin-left: 4px;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+.calc-opt__info-icon:hover {
+  color: var(--color-accent-lt);
+}
+
+/* ─── ХИНТ-БЛОК ──────────────────────────────────────────────────────────── */
+.calc-hint {
+  grid-column: 1 / -1;
+  padding: 8px 12px;
+  background: rgba(155, 127, 232, 0.06);
+  border: 0.5px solid rgba(155, 127, 232, 0.2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  animation: calcStepIn 0.15s ease both;
+}
+
+/* ─── БЕЙДЖ «ПОПУЛЯРНО» ──────────────────────────────────────────────────── */
+.calc-opt__badge {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  padding: 2px 6px;
+  background: var(--color-accent);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  pointer-events: none;
+}
+
+.calc-opts--urgency .calc-opt {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.calc-opts--currency .calc-opt {
+  padding: 10px 20px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ─── ПЛАШКА «ВХОДИТ В ЦЕНУ» ─────────────────────────────────────────────── */
+.calc-included {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(155, 127, 232, 0.06);
+  border: 0.5px solid rgba(155, 127, 232, 0.2);
+  border-radius: var(--radius-md);
+  animation: calcStepIn 0.2s ease both;
+}
+
+.calc-included__lbl {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-lt);
+}
+
+.calc-included__txt {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ─── НИЖНЯЯ ПАНЕЛЬ ──────────────────────────────────────────────────────── */
+.calc-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 0.5px solid var(--color-border);
+  background: var(--color-modal-bg, #0D0B1A);
+}
+
+.calc-bar__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.calc-bar__count {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.calc-bar__price {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.calc-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.calc-bar__reset {
+  padding: 9px 14px;
+  min-height: 48px;
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.calc-bar__reset:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-active, rgba(155, 127, 232, 0.5));
+}
+
+.calc-bar__btn {
+  flex-shrink: 0;
+  min-height: 48px;
+  padding: 10px 22px;
+  font-size: 14px;
+}
+
+.calc-bar__btn:disabled { opacity: 0.4; pointer-events: none; }
+
+/* ─── ЧЕК ────────────────────────────────────────────────────────────────── */
+.calc-check {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 16px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.calc-check::-webkit-scrollbar { width: 3px; }
+.calc-check::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+.calc-check__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.calc-check__brand {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--color-text);
+}
+
+.calc-check__meta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.calc-check__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-check__line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.calc-check__line span:last-child {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  color: var(--color-text);
+}
+
+.calc-check__line--coeff { color: var(--color-accent-lt); }
+
+.calc-check__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(155, 127, 232, 0.06);
+  border: 0.5px solid rgba(155, 127, 232, 0.2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.calc-check__total-val {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-accent-lt);
+}
+
+/* ─── СРАВНЕНИЕ С РЫНКОМ ─────────────────────────────────────────────────── */
+.calc-check__compare {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 12px 0;
+  padding: 12px 14px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.03));
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.calc-check__cmp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.calc-check__strike {
+  text-decoration: line-through;
+  color: var(--color-text-dim);
+}
+
+.calc-check__cmp-row--save {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 0.5px solid var(--color-border);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.calc-check__saving { color: var(--color-green, #4ADE80); }
+
+/* ─── ОПИСАНИЕ, ТАЙМЕР, КОПИРОВАНИЕ ─────────────────────────────────────── */
+.calc-check__desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.calc-check__timer {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-accent-lt);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.calc-check__copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 16px;
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.calc-check__copy:hover {
+  border-color: var(--color-border-active, rgba(155, 127, 232, 0.5));
+  color: var(--color-text);
+}
+
+/* ─── ФОРМА В ЧЕКЕ ───────────────────────────────────────────────────────── */
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.03));
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.calc-form__title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.calc-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calc-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.calc-input::placeholder { color: var(--color-text-dim); }
+.calc-input:focus { border-color: var(--color-border-active, rgba(155, 127, 232, 0.5)); }
+.calc-input--error { border-color: #E74C3C; }
+
+.calc-submit {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* ─── TEXTAREA КОММЕНТАРИЙ ───────────────────────────────────────────────── */
+.calc-textarea {
+  width: 100%;
+  min-height: 72px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.calc-textarea::placeholder { color: var(--color-text-dim); }
+.calc-textarea:focus { border-color: var(--color-border-active, rgba(155, 127, 232, 0.5)); }
+
+/* ─── ЭКРАН УСПЕХА ───────────────────────────────────────────────────────── */
+.calc-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px 20px;
+  text-align: center;
+  animation: calcStepIn 0.3s ease both;
+}
+
+.calc-success__icon {
+  font-size: 32px;
+  color: var(--color-accent-lt);
+  line-height: 1;
+}
+
+.calc-success__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.calc-success__sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ─── БЛОКИРОВКА СКРОЛЛА ─────────────────────────────────────────────────── */
+.calc-body--locked {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* ─── DESKTOP ────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .calc-modal {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .calc-modal__inner {
+    width: 540px;
+    height: 640px;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .calc-modal--open .calc-modal__inner {
+    transform: scale(1);
+  }
+
+  .calc-modal__drag { display: none; }
+
+  .calc-opts--types {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calc-check { padding: 20px 20px 28px; }
+
+  .calc-opts--addons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calc-form__fields { flex-direction: row; }
+}
+
+/* ─── PDF-КНОПКА ────────────────────────────────────────────────────────── */
+.calc-check__pdf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  background: rgba(155, 127, 232, 0.1);
+  border: 0.5px solid rgba(155, 127, 232, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--color-accent-lt);
+  font-size: 14px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.calc-check__pdf:hover {
+  background: rgba(155, 127, 232, 0.2);
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .calc-modal,
+  .calc-modal__inner,
+  .calc-step,
+  .calc-opt,
+  .calc-included,
+  .calc-hint,
+  .calc-success {
+    animation: none;
+    transition-duration: 0.01ms !important;
+  }
+}

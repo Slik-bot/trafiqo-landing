@@ -83,23 +83,17 @@ const initParallax = () => {
 const initBurger = () => {
   const burger = document.querySelector('.header__burger');
   const nav    = document.querySelector('.header__nav');
+  const header    = document.querySelector('.header');
+  const botWidget = document.querySelector('.bot-widget');
   if (!burger || !nav) return;
 
-  const closeBurger = () => {
-    burger.classList.remove('is-open');
-    nav.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-  };
-  const openBurger = () => {
-    burger.classList.add('is-open');
-    nav.classList.add('is-open');
-    burger.setAttribute('aria-expanded', 'true');
-  };
+  const openBurger  = () => { burger.classList.add('is-open'); nav.classList.add('is-open'); header?.classList.add('menu-open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; botWidget?.classList.add('bot--hidden'); };
+  const closeBurger = () => { burger.classList.remove('is-open'); nav.classList.remove('is-open'); header?.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; botWidget?.classList.remove('bot--hidden'); };
   burger.addEventListener('click', () => {
     burger.classList.contains('is-open') ? closeBurger() : openBurger();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBurger(); });
-  document.addEventListener('click', (e) => { if (!e.target.closest('.header__container')) closeBurger(); });
+  nav.addEventListener('click', (e) => { if (!e.target.closest('a') && !e.target.closest('button')) closeBurger(); });
   window.addEventListener('resize', () => { if (window.innerWidth >= BREAKPOINT_MOBILE) closeBurger(); });
 };
 
@@ -496,4 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initProcessSteps();
   }
   document.documentElement.style.scrollBehavior = 'smooth';
+
+  const calcBtns = document.querySelectorAll('.nav__calc-btn, .calc-trigger-btn');
+  calcBtns.forEach(btn => btn.addEventListener('click', () => calcBtns.forEach(b => { b.classList.remove('pulsing'); b.style.animation = 'none'; })));
+  document.querySelector('.bot-widget__bubble-close')?.addEventListener('click', (e) => {
+    e.stopPropagation(); document.querySelector('.bot-widget__bubble')?.classList.add('bot-bubble--hidden');
+  });
 });

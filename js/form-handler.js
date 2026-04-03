@@ -133,11 +133,16 @@ const initForm = () => {
       const data = Object.fromEntries(new FormData(quickForm));
       data.source = 'quick-form';
       if (data.website || !data.name?.trim() || !data.contact?.trim()) { showError('Заполните имя и контакт'); return; }
+      const consent = document.getElementById('consent-main');
+      if (consent && !consent.checked) { consent.nextElementSibling.classList.add('consent-box--error'); return; }
       btn.disabled = true; btn.textContent = 'Отправляю...';
       sendToSheets(data);
       await sendToTelegram(data);
       success.hidden = false; quickForm.reset(); btn.style.display = 'none';
     });
+    const consentChk = document.getElementById('consent-main');
+    const submitBtn = quickForm.querySelector('.quick-form__submit');
+    if (consentChk && submitBtn) consentChk.addEventListener('change', () => { submitBtn.disabled = !consentChk.checked; submitBtn.classList.toggle('quick-form__submit--disabled', !consentChk.checked); if (consentChk.checked) consentChk.nextElementSibling.classList.remove('consent-box--error'); });
   }
 };
 

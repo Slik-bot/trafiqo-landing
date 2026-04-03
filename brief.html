@@ -63,6 +63,15 @@
     .btg{background:var(--accent);color:var(--text);padding:14px;border-radius:8px;text-decoration:none;font-weight:500;display:block;text-align:center}
     .bhome{color:var(--text-muted);text-decoration:none;font-size:14px;padding:10px;display:block;text-align:center}
     @media(max-width:767px){main{padding:32px 16px}.oc{padding:12px 14px}footer{padding:10px 16px;justify-content:space-between}.btn{padding:12px 20px;font-size:14px}#btnBack{flex:1}#btnNext{flex:2}}
+    .consent-label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin:16px 0 12px;user-select:none}
+    .consent-check{position:absolute;opacity:0;width:0;height:0}
+    .consent-box{width:18px;height:18px;min-width:18px;flex-shrink:0;border:1.5px solid rgba(155,127,232,0.4);border-radius:4px;background:rgba(155,127,232,0.06);display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;margin-top:1px}
+    .consent-check:checked + .consent-box{background:#5B2D8E;border-color:#5B2D8E}
+    .consent-box .consent-tick{width:12px;height:10px;color:#F0ECFF;opacity:0;transform:scale(0.5);transition:all 0.2s ease}
+    .consent-check:checked + .consent-box .consent-tick{opacity:1;transform:scale(1)}
+    .consent-box--error{border-color:rgba(224,123,123,0.8)}
+    .consent-text{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5}
+    .consent-link{color:rgba(255,255,255,0.6);text-decoration:underline}
   </style>
 </head>
 <body>
@@ -185,6 +194,7 @@
       </div>
       <div class="field" style="margin-top:20px"><label>Расскажите о задаче своими словами</label><textarea id="desc" placeholder="Любые детали помогают — даже если кажется что это мелочи..."></textarea><p class="hint">Необязательно, но помогает дать точный ответ</p></div>
       <div class="field"><label>Ссылка на референс или документ</label><input type="url" id="ref" placeholder="https://..."><p class="hint">Сайты которые нравятся, конкуренты, ТЗ в Google Docs</p></div>
+      <label class="consent-label"><input type="checkbox" class="consent-check" id="consent-brief"><span class="consent-box"><svg class="consent-tick" viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="consent-text">Соглашаюсь с <a href="privacy.html" target="_blank" class="consent-link">политикой конфиденциальности</a></span></label>
     </div>
 
     <div id="ss">
@@ -245,7 +255,7 @@
     function go(dir) {
       if(dir===1 && cur===1){ if(!document.getElementById('name').value.trim()||!document.getElementById('contact').value.trim()){ alert('Пожалуйста, укажите имя и контакт'); return; } }
       collect();
-      if(dir===1 && cur===6){ if(!checkRateLimit()){ alert('Подождите 60 секунд перед повторной отправкой'); return; } submit(); return; }
+      if(dir===1 && cur===6){ if(!checkRateLimit()){ alert('Подождите 60 секунд перед повторной отправкой'); return; } const cb=document.getElementById('consent-brief'); if(cb&&!cb.checked){cb.nextElementSibling.classList.add('consent-box--error');return;} submit(); return; }
       cur = Math.max(1, Math.min(6, cur+dir)); show(cur);
     }
 

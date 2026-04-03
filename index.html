@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bot.css">
   <link rel="stylesheet" href="css/pricing.css">
+  <link rel="stylesheet" href="css/calculator.css">
   <link rel="stylesheet" href="css/footer.css">
   <style>html { scroll-behavior: auto; }</style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"TRAFIQO","description":"Digital Agency — сайты, приложения, автоматизация","url":"https://trafiqo.store"}</script>
 </head>
 <body>
-
 <header class="header">
   <div class="header__container">
     <a href="#hero" class="header__logo" aria-label="TRAFIQO — на главную">
@@ -37,6 +37,7 @@
       <a class="header__nav-link" href="#process">Как работаем</a>
       <a class="header__nav-link" href="#directions">Направления</a>
       <a class="header__nav-link" href="#faq">FAQ</a>
+      <button class="nav__calc-btn" data-open-calc>Рассчитать</button>
     </nav>
     <a href="#contact" class="btn btn--primary header__cta">Обсудить проект</a>
     <button class="header__burger" aria-label="Открыть меню" aria-expanded="false">
@@ -71,6 +72,7 @@
         <div class="section-hero__cta-group">
           <a href="#contact" class="btn btn--primary btn--glow">Обсудить проект</a>
           <a href="#directions" class="btn btn--outline">Смотреть направления</a>
+          <button class="btn btn--outline calc-trigger-btn pulsing" data-open-calc>Рассчитать проект</button>
           <a href="quiz.html" class="btn btn--quiz">Не знаю что выбрать — пройти тест</a>
         </div>
         <div class="hero-activity">
@@ -348,6 +350,7 @@
       <p class="pricing-footer__note">
         Точная стоимость — после брифа. Цена фиксируется до старта.
       </p>
+      <button class="btn btn--primary calc-trigger-btn pulsing" data-open-calc>Рассчитать проект</button>
     </div>
   </div>
 </section>
@@ -401,7 +404,8 @@
               <option value="education">Обучение</option>
               <option value="other">Другое</option>
             </select>
-            <button type="submit" class="btn btn--secondary quick-form__submit">Жду ответа</button>
+            <label class="consent-label"><input type="checkbox" class="consent-check" id="consent-main"><span class="consent-box"><svg class="consent-tick" viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="consent-text">Соглашаюсь с <a href="privacy.html" target="_blank" class="consent-link">политикой конфиденциальности</a></span></label>
+            <button type="submit" class="btn btn--secondary quick-form__submit quick-form__submit--disabled" disabled>Жду ответа</button>
             <div class="quick-form__success" hidden>Получено! Свяжемся в ближайшее время.</div>
           </form>
         </div>
@@ -461,12 +465,10 @@
       </svg>
     </button>
   </div>
-  <div class="bot-widget__bubble">Привет! Помогу оформить заявку. Что вас интересует?</div>
+  <div class="bot-widget__bubble">Привет! Помогу оформить заявку. Что вас интересует?<button class="bot-widget__bubble-close" aria-label="Закрыть пузырь">×</button></div>
   <button class="bot-widget__toggle" id="botToggle" aria-expanded="false" aria-label="Открыть чат"><span>T</span></button>
 </div>
-
 <div class="cursor-glow" id="cursorGlow"></div>
-
 <div class="tg-float-wrap" id="tgFloatWrap">
   <a href="https://t.me/trafiqo_store" class="tg-float" target="_blank"
      rel="noopener noreferrer" aria-label="Написать в Telegram">
@@ -477,7 +479,9 @@
   </a>
   <button class="tg-float-close" id="tgFloatClose" aria-label="Скрыть">×</button>
 </div>
-
+<div class="calc-modal" id="calc-modal" role="dialog" aria-modal="true" aria-label="Калькулятор стоимости">
+  <div class="calc-modal__inner"></div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -488,6 +492,8 @@
 <script src="js/bot-core.js" defer></script>
 <script src="js/bot-widget.js?v=2" defer></script>
 <script src="js/pricing.js" defer></script>
-
+<script src="js/calculator-data.js" defer></script>
+<script src="js/calculator.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </body>
 </html>
