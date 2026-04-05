@@ -788,4 +788,6 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .marquee-strip { padding: 1rem 0; }
   .marquee-strip__track { animation-duration: 18s; gap: 2rem; }
   .marquee-strip__track span { font-size: 0.62rem; letter-spacing: 4px; }
+  .section-hero__subtitle { margin-bottom: 1.5rem; }
+  .section-hero__content { gap: 1.2rem; }
 }
