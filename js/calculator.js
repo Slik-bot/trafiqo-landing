@@ -153,7 +153,7 @@ const stepAddonsHTML = () => {
   const t = getType();
   if (!t) return '';
   return `
-    <div class="calc-step">
+    <div class="calc-step" data-step="addons">
       <p class="calc-step__label">03 — Дополните проект · мультивыбор</p>
       <h3 class="calc-step__title">Что добавим?</h3>
       <div class="calc-opts calc-opts--addons">
@@ -207,6 +207,14 @@ const renderSteps = () => {
   wrap.innerHTML = html;
   bindStepEvents();
   updateBar();
+  if (cs.type) {
+    const addonsEl = wrap.querySelector('[data-step="addons"]');
+    if (addonsEl) {
+      setTimeout(() => {
+        addonsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
 };
 
 const bindStepEvents = () => {
