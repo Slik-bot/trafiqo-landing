@@ -752,3 +752,40 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
 .consent-link:hover { color: var(--color-accent-lt); }
 
 .quick-form__submit--disabled { opacity: 0.4; cursor: not-allowed; }
+
+.marquee-strip {
+  overflow: hidden;
+  padding: 1.4rem 0;
+  margin-top: -1px;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(155, 127, 232, 0.15);
+  border-bottom: 1px solid rgba(155, 127, 232, 0.15);
+  background: var(--color-bg);
+}
+.marquee-strip__track {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+  white-space: nowrap;
+  align-items: center;
+}
+.marquee-strip__track span {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgba(240, 236, 255, 0.55);
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+.marquee-strip__track span:hover { color: rgba(155, 127, 232, 0.9); }
+.marquee-strip__dot { color: var(--color-accent-lt) !important; opacity: 0.6; font-size: 1rem !important; letter-spacing: 0 !important; }
+.marquee-strip__track:hover { animation-play-state: paused; }
+@media (max-width: 768px) {
+  .marquee-strip { padding: 1rem 0; }
+  .marquee-strip__track { animation-duration: 18s; gap: 2rem; }
+  .marquee-strip__track span { font-size: 0.62rem; letter-spacing: 4px; }
+}

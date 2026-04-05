@@ -165,3 +165,12 @@
 0%,100%{opacity:0.3}
 50%{opacity:0.6}
 }
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+canvas.hero-sphere {
+  filter: blur(0px);
+  box-shadow: none;
+}

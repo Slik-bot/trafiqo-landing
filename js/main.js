@@ -397,20 +397,12 @@ const initCursorGlow = () => {
   if (!glow) return;
 
   let visible = false;
-
   document.addEventListener('mousemove', (e) => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
-    if (!visible) {
-      glow.style.opacity = '1';
-      visible = true;
-    }
+    if (!visible) { glow.style.opacity = '1'; visible = true; }
   }, { passive: true });
-
-  document.addEventListener('mouseleave', () => {
-    glow.style.opacity = '0';
-    visible = false;
-  });
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; visible = false; });
 };
 
 const initActivityCounter = () => {
@@ -441,6 +433,13 @@ const initActivityCounter = () => {
   };
 
   setInterval(rotate, 5000);
+};
+
+const initMarquee = () => {
+  const track = document.getElementById('marqueeTrack');
+  if (!track) return;
+  const items = ['САЙТЫ', 'ПРИЛОЖЕНИЯ', 'БОТЫ', 'АВТОМАТИЗАЦИЯ', 'ПЛАТФОРМЫ'];
+  track.innerHTML = [...items, ...items].map(i => `<span>${i}</span><span class="marquee-strip__dot">·</span>`).join('');
 };
 
 const initPortfolioSlider = () => {
@@ -484,13 +483,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initActivityCounter();
   initCursorGlow();
   initPortfolioSlider();
-
+  initMarquee();
   if (!isMobile() && !prefersReducedMotion()) {
     initParallax();
     initProcessSteps();
   }
   document.documentElement.style.scrollBehavior = 'smooth';
-
   const calcBtns = document.querySelectorAll('.nav__calc-btn, .calc-trigger-btn');
   calcBtns.forEach(btn => btn.addEventListener('click', () => calcBtns.forEach(b => { b.classList.remove('pulsing'); b.style.animation = 'none'; })));
   document.querySelector('.bot-widget__bubble-close')?.addEventListener('click', (e) => {
