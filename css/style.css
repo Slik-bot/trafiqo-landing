@@ -790,4 +790,6 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .marquee-strip__track span { font-size: 0.62rem; letter-spacing: 4px; }
   .section-hero__subtitle { margin-bottom: 1.5rem; }
   .section-hero__content { gap: 0.8rem; }
+  .hero-orb { display: none; }
+  .hero-bubbles { display: none; }
 }
