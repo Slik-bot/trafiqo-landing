@@ -406,7 +406,6 @@ const initCursorGlow = () => {
 };
 
 const initActivityCounter = () => {
-  if (isMobile()) return;
   const el = document.getElementById('activityText');
   if (!el) return;
   const phrases = [
