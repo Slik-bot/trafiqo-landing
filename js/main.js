@@ -406,6 +406,7 @@ const initCursorGlow = () => {
 };
 
 const initActivityCounter = () => {
+  if (window.innerWidth <= 768) return;
   const el = document.getElementById('activityText');
   if (!el) return;
   const phrases = [
