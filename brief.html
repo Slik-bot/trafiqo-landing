@@ -53,7 +53,8 @@
     .bn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:sh 2.5s infinite}
     @keyframes sh{to{left:160%}}
     .bn:hover{background:#7040A8}
-    #btnBack{display:none}
+    #btnBack{opacity:0;pointer-events:none}
+    #btnHome{display:none}
     #ss{display:none;text-align:center;padding:48px 0}
     .chkanim{width:72px;height:72px;border-radius:50%;border:2px solid var(--accent-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;animation:pu .5s ease}
     @keyframes pu{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
@@ -209,6 +210,7 @@
   </main>
 
   <footer>
+    <a href="/" class="btn bb" id="btnHome">← На главную</a>
     <button class="btn bb" id="btnBack" onclick="go(-1)">← Назад</button>
     <button class="btn bn" id="btnNext" onclick="go(1)">Далее</button>
   </footer>
@@ -233,7 +235,18 @@
     function ui() {
       document.getElementById('stepCounter').textContent = `Шаг ${cur} из 6`;
       document.getElementById('progressFill').style.width = `${cur/6*100}%`;
-      document.getElementById('btnBack').style.display = cur === 1 ? 'none' : '';
+      const btnBack = document.getElementById('btnBack');
+      if (btnBack) {
+        if (cur === 1) {
+          btnBack.style.opacity = '0';
+          btnBack.style.pointerEvents = 'none';
+        } else {
+          btnBack.style.opacity = '1';
+          btnBack.style.pointerEvents = 'auto';
+        }
+      }
+      const btnHome = document.getElementById('btnHome');
+      if (btnHome) { btnHome.style.display = cur === 1 ? 'inline-flex' : 'none'; }
       document.getElementById('btnNext').textContent = cur === 6 ? 'Отправить анкету' : 'Далее';
     }
 

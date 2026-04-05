@@ -227,6 +227,7 @@ input::placeholder{color:var(--dim)}
 </main>
 
 <div class="nav-bar" id="navBar">
+  <a href="/" class="btn-back hidden" id="btnHome">← На главную</a>
   <button class="btn-back hidden" id="btnBack" onclick="prev()">← Назад</button>
   <button class="btn-next" id="btnNext" onclick="next()">Далее</button>
 </div>
@@ -256,7 +257,15 @@ function updateUI() {
   document.querySelectorAll('.step').forEach((s,i) => s.classList.toggle('active', i === cur));
   document.getElementById('stepLbl').textContent = 'Шаг ' + (cur+1) + ' из ' + total;
   document.getElementById('progressFill').style.width = ((cur+1)/total*100) + '%';
-  document.getElementById('btnBack').classList.toggle('hidden', cur === 0);
+  const btnBack = document.getElementById('btnBack');
+  const btnHome = document.getElementById('btnHome');
+  if (cur === 0) {
+    btnBack.classList.add('hidden');
+    btnHome.classList.remove('hidden');
+  } else {
+    btnBack.classList.remove('hidden');
+    btnHome.classList.add('hidden');
+  }
   document.getElementById('btnNext').textContent = cur === total-1 ? 'Получить результат' : 'Далее';
 }
 
