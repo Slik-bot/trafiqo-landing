@@ -3,6 +3,7 @@
 const initScrambleText = () => {
   const h1 = document.querySelector('#hero h1');
   if (!h1) return;
+  if (window.innerWidth <= 768) return;
   const chars = '#@$%&?!*~';
 
   // Собираем все узлы — текстовые и span
