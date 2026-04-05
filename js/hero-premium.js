@@ -25,8 +25,10 @@ const initScrambleText = () => {
 
   let frame = 0;
   const totalFrames = 40;
+  let scramblesDone = false;
 
   const scramble = () => {
+    if (scramblesDone) return;
     const progress = frame / totalFrames;
     nodes.forEach(({ node, original, isSpan }) => {
       const scrambled = scrambleText(original, progress);
@@ -35,7 +37,7 @@ const initScrambleText = () => {
     });
     frame++;
     if (frame <= totalFrames) requestAnimationFrame(scramble);
-    else nodes.forEach(({ node, original }) => { node.textContent = original; });
+    else { nodes.forEach(({ node, original }) => { node.textContent = original; }); scramblesDone = true; }
   };
 
   setTimeout(scramble, 400);
