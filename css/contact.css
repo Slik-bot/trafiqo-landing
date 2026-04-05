@@ -100,7 +100,7 @@
   border-radius: 50%;
   background: var(--color-accent-lt);
 }
-.contact-path__btn { width: 100%; text-align: center; display: block; text-decoration: none; padding: 14px; }
+.contact-path__btn { width: 100%; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 14px; }
 .quick-form { display: flex; flex-direction: column; gap: 10px; }
 .quick-form__input {
   width: 100%;
