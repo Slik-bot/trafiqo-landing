@@ -187,8 +187,8 @@ canvas.hero-sphere { filter: blur(0px); box-shadow: none; }
 @keyframes lineSlide{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 @media(max-width:1200px){.he-wrap{width:380px}}
 @media(max-width:768px){
-  .he-wrap{display:block;width:100%;max-width:100%;animation:none;transform:none;margin-top:0;border-radius:8px}
-  .he-body{height:220px}
+  .he-wrap{display:block;width:100%;max-width:100%;animation:none;transform:none;margin-top:0;border-radius:8px;height:280px;overflow:hidden}
+  .he-body{height:220px;overflow:hidden;flex-shrink:0}
   .he-line{font-size:.65rem}
   .he-tab{font-size:.55rem;padding:.2rem .5rem}
 }
