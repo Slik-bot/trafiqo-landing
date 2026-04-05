@@ -793,4 +793,5 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .hero-orb { display: none; }
   .hero-bubbles { display: none; }
   .ui-browser,.ui-phone,.ui-chat{display:none}
+  .section-hero__visuals{display:block;width:100%}
 }
