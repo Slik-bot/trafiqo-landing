@@ -792,9 +792,5 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .section-hero__content { gap: 0.8rem; }
   .hero-orb { display: none; }
   .hero-bubbles { display: none; }
-  .section-hero__visuals .ui-browser,
-  .section-hero__visuals .ui-phone,
-  .section-hero__visuals .ui-chat {
-    display: none;
-  }
+  .ui-browser,.ui-phone,.ui-chat{display:none}
 }
