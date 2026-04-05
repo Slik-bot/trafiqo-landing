@@ -289,7 +289,9 @@ const buildReceiptHTML = (t, total, market, num, date, desc) => `
       <p class="calc-check__timer" id="calc-timer">Действителен ещё 72:00:00</p>
     </div>
     <button class="calc-check__copy" id="calc-copy-btn">Скопировать расчёт</button>
-    <button class="calc-check__pdf" onclick="downloadPDF()">Скачать PDF</button>
+    ${window.innerWidth < 768
+      ? '<button class="calc-check__pdf" onclick="copyCheckMobile()">Скопировать расчёт</button>'
+      : '<button class="calc-check__pdf" onclick="downloadPDF()">Скачать PDF</button>'}
     <button class="calc-submit btn btn--primary" id="calcSubmit">Обсудить проект</button>
   </div>`;
 
@@ -330,6 +332,25 @@ const copyCheck = () => {
   }).catch(e => console.error('Copy failed:', e));
 };
 
+const copyCheckMobile = async () => {
+  const btn = qs('.calc-check__pdf');
+  const t = CALC_TYPES.find(x => x.key === cs.type);
+  const ref = currentCheck?.num || 'TR-0000';
+  const date = new Date().toLocaleDateString('ru-RU');
+  const opts = [...(cs.options || [])].map(name => {
+    const o = (CALC_OPTIONS[cs.type] || []).find(x => x.name === name);
+    return o ? name + ': +' + fmt(o.price) : name;
+  }).join('\n');
+  const text = ['TRAFIQO · ' + ref + ' · ' + date, '', 'Проект: ' + (t?.name || ''), opts, '',
+    'Итого: от ' + fmt(calcBase()), 'Рынок: от ' + fmt(calcMarket()),
+    'Экономия: ' + fmt(calcMarket() - calcBase()), '', 'trafiqo.store · @trafiqo_store'].join('\n');
+  try {
+    await navigator.clipboard.writeText(text);
+    if (btn) { btn.textContent = 'Скопировано ✓'; setTimeout(() => { btn.textContent = 'Скопировать расчёт'; }, 2000); }
+  } catch (e) {
+    console.error('Copy failed:', e);
+  }
+};
 // ─── PDF ─────────────────────────────────────────────────────────────────────
 const downloadPDF = () => {
   const el = document.createElement('div');
