@@ -248,6 +248,34 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
   .hero-actions{flex-direction:column;align-items:center}
   .btn-gold,.btn-tg,.btn-outline{width:100%;max-width:320px;justify-content:center}
 }
+
+/* Hero load animations */
+.hero-live{animation:fadeUp .6s .1s both}
+.hero-kicker{animation:fadeUp .6s .2s both}
+.hero-h1{animation:fadeUp .8s .35s both}
+.hero-sub{animation:fadeUp .7s .5s both}
+.countdown-block{animation:fadeUp .7s .6s both}
+.hero-actions{animation:fadeUp .7s .75s both}
+.hero-stats{animation:fadeUp .7s .9s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* Shimmer на кнопке */
+.btn-nav{position:relative;overflow:hidden}
+.btn-nav::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%{left:-100%}60%,100%{left:150%}}
+
+/* Stagger карточек */
+.dir-card{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.dir-card.visible{opacity:1;transform:translateY(0)}
+.dir-card.locked.visible{opacity:.25}
+
+/* Flip таймер */
+.cd-num{display:inline-block;transition:transform .15s ease,opacity .15s ease}
+.cd-num.flip{transform:translateY(-8px);opacity:0}
+
+/* Count-up */
+.students-counter{font-family:var(--mono);font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;justify-content:center;margin-top:1.2rem}
+.students-num{color:var(--gold);font-weight:700;font-size:.85rem}
 </style>
 </head>
 <body>
@@ -330,6 +358,11 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
     <div class="h-stat"><span class="h-stat-n">∞</span><span class="h-stat-l">Уроков</span></div>
     <div class="h-stat"><span class="h-stat-n">0 ₽</span><span class="h-stat-l">Стоимость</span></div>
     <div class="h-stat"><span class="h-stat-n">24/7</span><span class="h-stat-l">Доступ</span></div>
+  </div>
+  <div class="students-counter">
+    <span class="live-dot"></span>
+    <span class="students-num" id="studentsCount">0</span>
+    студентов уже учатся
   </div>
 </section>
 
@@ -602,6 +635,47 @@ burger.addEventListener('click', () => {
 menu.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => menu.classList.remove('open'));
 });
+
+// Stagger карточек
+const cardObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => { e.target.classList.add('visible'); }, i * 60);
+      cardObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.dir-card').forEach(c => cardObs.observe(c));
+
+// Count-up студентов
+const studentsEl = document.getElementById('studentsCount');
+if (studentsEl) {
+  const target = 847;
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const countUp = setInterval(() => {
+    current = Math.min(current + step, target);
+    studentsEl.textContent = current.toLocaleString('ru');
+    if (current >= target) clearInterval(countUp);
+  }, 25);
+}
+
+// Flip анимация таймера
+const cdIds = ['cdD','cdH','cdM','cdS'];
+const prevVals = {};
+const animateCd = () => {
+  cdIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.textContent;
+    if (prevVals[id] !== val) {
+      el.classList.add('flip');
+      setTimeout(() => el.classList.remove('flip'), 150);
+      prevVals[id] = val;
+    }
+  });
+};
+setInterval(animateCd, 1000);
 </script>
 </body>
 </html>
