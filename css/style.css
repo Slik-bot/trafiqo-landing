@@ -795,18 +795,5 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .ui-browser,.ui-phone,.ui-chat{display:none}
   .section-hero__visuals{display:block;width:100%}
 }
-.btn--academy {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-lt));
-  color: var(--color-text);
-  padding: .5rem 1.4rem;
-  border-radius: 100px;
-  font-size: .75rem;
-  letter-spacing: 2px;
-  text-decoration: none;
-  transition: .3s;
-  font-weight: 500;
-}
-.btn--academy:hover {
-  opacity: .85;
-  transform: translateY(-1px);
-}
+.btn--academy{background:linear-gradient(135deg,var(--color-accent),var(--color-accent-lt));color:var(--color-text);padding:.5rem 1.4rem;border-radius:100px;font-size:.75rem;letter-spacing:2px;text-decoration:none;transition:.3s;font-weight:500}
+.btn--academy:hover{opacity:.85;transform:translateY(-1px)}
