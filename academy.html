@@ -98,9 +98,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sec-right{font-family:var(--mono);font-size:.7rem;color:var(--dim);text-align:right}
 
 .dirs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border2)}
-.dir-card{background:var(--bg);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:.4s;cursor:default;border-radius:8px;display:flex;flex-direction:column;border:1px solid transparent}
-.dir-card.available{cursor:pointer}
-.dir-card.available:hover{background:var(--bg3);box-shadow:0 0 40px rgba(91,45,142,0.15);border-color:rgba(155,127,232,0.2)}
+.dir-card{background:rgba(255,255,255,0.02);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:.4s;cursor:default;border-radius:8px;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.06)}
+.dir-card.available{cursor:pointer;background:rgba(91,45,142,0.06);border:1px solid rgba(155,127,232,0.15)}
+.dir-card.available:hover{background:rgba(91,45,142,0.12);box-shadow:0 0 40px rgba(91,45,142,0.15);border-color:rgba(155,127,232,0.3)}
 .dir-card.available:hover .dir-arrow{opacity:1;transform:translateX(0)}
 .dir-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--purple),var(--gold));transform:scaleX(0);transform-origin:left;transition:.5s}
 .dir-card.available:hover::before{transform:scaleX(1)}
@@ -121,7 +121,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .dir-arrow{font-size:.8rem;color:var(--purple-lt);opacity:0;transform:translateX(-6px);transition:.3s}
 
 /* LIVE COURSE */
-.live-course{padding:9rem 5rem;background:var(--bg2);position:relative}
+.live-course{padding:6rem 5rem;background:var(--bg2);position:relative}
 .live-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .live-left{}
 .live-badge-wrap{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem}
@@ -163,7 +163,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .how{padding:9rem 5rem;position:relative}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);margin-top:4rem}
 .how-item{background:var(--bg);padding:3rem 2.5rem;position:relative;transition:.3s;border-radius:8px}
-.how-item:hover{background:var(--bg3)}
+.how-item:hover{background:var(--bg)}
 .how-num{font-family:var(--mono);font-size:3rem;font-weight:700;color:rgba(155,127,232,0.25);line-height:1;margin-bottom:1.5rem;display:block;text-shadow:0 0 40px rgba(91,45,142,0.3)}
 .how-title{font-size:1.1rem;font-weight:700;margin-bottom:.8rem;letter-spacing:.5px}
 .how-desc{font-family:var(--mono);font-size:.68rem;color:var(--muted);line-height:1.9}
@@ -175,8 +175,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .cta-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.8rem;border:1px solid rgba(201,168,76,0.2);padding:.4rem 1.2rem}
 .cta-h2{font-size:clamp(2.5rem,5vw,5.5rem);font-weight:800;letter-spacing:-2px;line-height:.95;margin-bottom:1.5rem}
 .cta-sub{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:2;margin-bottom:3rem}
-.cta-socials{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.cta-social{display:flex;align-items:center;gap:.8rem;padding:1rem 2rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.75rem;letter-spacing:1px;transition:.4s;border-radius:6px}
+.cta-socials{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;max-width:600px;margin:0 auto}
+.cta-social{display:flex;align-items:center;justify-content:center;gap:.8rem;padding:1rem 2rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.75rem;letter-spacing:1px;transition:.4s;border-radius:6px}
 .cta-social:hover{transform:translateY(-3px)}
 .cta-social.tg{border-color:rgba(41,182,246,0.25);color:rgba(41,182,246,0.7)}
 .cta-social.tg:hover{border-color:#29B6F6;color:#29B6F6;box-shadow:0 8px 30px rgba(41,182,246,0.15)}
@@ -189,7 +189,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .cta-social-icon{width:18px;height:18px;flex-shrink:0}
 
 /* FOOTER */
-footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex;justify-content:space-between;align-items:center;gap:2rem}
+footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex;justify-content:space-between;align-items:center;gap:2rem;background:rgba(91,45,142,0.04)}
 .footer-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
 .footer-copy{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;color:var(--dim)}
 .footer-back{font-family:var(--mono);font-size:.62rem;letter-spacing:1px;color:var(--dim);text-decoration:none;transition:.3s;display:flex;align-items:center;gap:.5rem}
@@ -218,7 +218,8 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
   nav{padding:1.1rem 1.5rem}
   .nav-links{display:none}
   .nav-tg{display:none}
-  .hero,.directions,.live-course,.how,.cta-section{padding:5.5rem 1.5rem}
+  .hero,.directions,.how,.cta-section{padding:5.5rem 1.5rem}
+  .live-course{padding:4rem 1.5rem}
   .hero-h1{font-size:3.2rem;letter-spacing:-2px}
   .hero-stats{grid-template-columns:1fr 1fr}
   .h-stat:nth-child(2){border-right:none}
@@ -227,8 +228,7 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
   .live-inner{grid-template-columns:1fr}
   .how-grid{grid-template-columns:1fr 1fr}
   .sec-header{flex-direction:column;align-items:flex-start;gap:1rem}
-  .cta-socials{flex-direction:column;align-items:center}
-  .cta-social{width:100%;max-width:320px;justify-content:center}
+  .cta-socials{grid-template-columns:1fr}
   footer{flex-direction:column;text-align:center;padding:2.5rem 1.5rem;gap:1.5rem}
   .countdown{gap:.5rem}
   .cd-block{min-width:56px;padding:.6rem .8rem}
