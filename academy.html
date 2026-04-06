@@ -24,7 +24,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5rem;border-bottom:1px solid rgba(155,127,232,0.18);backdrop-filter:blur(24px);background:rgba(5,4,14,0.85);box-shadow:0 1px 30px rgba(91,45,142,0.1)}
 .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
 .logo-academy{font-family:var(--mono);font-size:.52rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;text-shadow:0 0 10px rgba(201,168,76,0.5)}
-.nav-back{font-family:var(--mono);font-size:.62rem;letter-spacing:2px;color:var(--dim);text-decoration:none;transition:.3s;display:flex;align-items:center;gap:.4rem;border:1px solid var(--border);padding:.4rem 1rem;border-radius:100px}
+.nav-back{font-family:var(--mono);font-size:.62rem;letter-spacing:2px;color:var(--dim);text-decoration:none;transition:.3s;display:flex;align-items:center;gap:.4rem;border:1px solid var(--border);padding:.4rem 1rem;border-radius:100px;margin-right:auto}
 .nav-back:hover{color:var(--purple-lt);border-color:var(--purple-lt)}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:1px;transition:.3s;font-family:var(--mono)}
@@ -213,7 +213,7 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
 .acad-mobile-menu.open{display:flex}
 .acad-mobile-menu a{font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:1px;transition:.3s}
 .acad-mobile-menu a:hover{color:var(--gold)}
-.acad-mobile-menu a:last-child{font-size:.8rem;color:var(--dim);margin-top:2rem;font-family:var(--mono)}
+.acad-mobile-menu a:last-child{font-size:.75rem;color:var(--purple-lt);margin-top:2rem;font-family:var(--mono);border:1px solid rgba(155,127,232,0.3);padding:.6rem 1.5rem;border-radius:100px}
 
 /* MOBILE */
 @media(max-width:1024px){.dirs-grid{grid-template-columns:repeat(3,1fr)}}
@@ -257,13 +257,13 @@ footer{padding:3rem 5rem;border-top:1px solid rgba(155,127,232,0.2);display:flex
     <img src="img/logo.svg" alt="TRAFIQO" width="130" height="35">
     <span class="logo-academy">Academy</span>
   </a>
+  <a href="https://trafiqo.store" class="nav-back">← trafiqo.store</a>
   <ul class="nav-links">
     <li><a href="#directions">Направления</a></li>
     <li><a href="#live">Текущий курс</a></li>
     <li><a href="#how">Как учиться</a></li>
     <li><a href="#cta">Подписаться</a></li>
   </ul>
-  <a href="https://trafiqo.store" class="nav-back">← trafiqo.store</a>
   <div class="nav-right">
     <a href="https://t.me/trafiqo_store" class="nav-tg" target="_blank">@trafiqo_store</a>
     <a href="https://t.me/TRAFIQO_club01" class="nav-cta" target="_blank">Вступить бесплатно</a>
