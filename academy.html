@@ -23,7 +23,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5rem;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(5,4,14,0.85)}
 .logo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
-.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--purple),var(--purple-lt));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:var(--white);letter-spacing:0;flex-shrink:0}
+.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,#5B2D8E,#9B7FE8);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--white);letter-spacing:0;flex-shrink:0}
 .logo-text{font-size:.95rem;font-weight:800;letter-spacing:3px;color:var(--white)}
 .logo-sub{font-family:var(--mono);font-size:.52rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;line-height:1;margin-top:1px}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* DIRECTIONS */
-.directions{padding:8rem 5rem}
+.directions{padding:8rem 5rem;position:relative}
 .sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
 .sec-left{}
 .sec-tag{font-family:var(--mono);font-size:.58rem;letter-spacing:5px;color:var(--purple-lt);text-transform:uppercase;display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
@@ -98,7 +98,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sec-right{font-family:var(--mono);font-size:.7rem;color:var(--dim);text-align:right}
 
 .dirs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border2)}
-.dir-card{background:var(--bg);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:.4s;cursor:default;border-radius:8px}
+.dir-card{background:var(--bg);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:.4s;cursor:default;border-radius:8px;display:flex;flex-direction:column}
 .dir-card.available{cursor:pointer}
 .dir-card.available:hover{background:var(--bg3)}
 .dir-card.available:hover .dir-arrow{opacity:1;transform:translateX(0)}
@@ -112,7 +112,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .dir-card.locked .dir-icon-svg{color:var(--dim)}
 .dir-name{font-size:.85rem;font-weight:700;letter-spacing:.3px;margin-bottom:.5rem;line-height:1.3}
 .dir-desc{font-family:var(--mono);font-size:.62rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
-.dir-footer{display:flex;align-items:center;justify-content:space-between}
+.dir-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
 .dir-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:2px;padding:.25rem .7rem;border-radius:100px}
 .dir-tag.free{background:rgba(40,200,64,0.08);color:#28C840;border:1px solid rgba(40,200,64,0.2)}
 .dir-tag.active{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.25)}
@@ -121,7 +121,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .dir-arrow{font-size:.8rem;color:var(--purple-lt);opacity:0;transform:translateX(-6px);transition:.3s}
 
 /* LIVE COURSE */
-.live-course{padding:6rem 5rem;background:var(--bg2)}
+.live-course{padding:6rem 5rem;background:var(--bg2);position:relative}
 .live-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .live-left{}
 .live-badge-wrap{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem}
@@ -160,7 +160,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .lesson-done.lock{border-color:var(--dim);color:var(--dim)}
 
 /* HOW */
-.how{padding:8rem 5rem}
+.how{padding:8rem 5rem;position:relative}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);margin-top:4rem}
 .how-item{background:var(--bg);padding:3rem 2.5rem;position:relative;transition:.3s;border-radius:8px}
 .how-item:hover{background:var(--bg3)}
@@ -170,7 +170,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 /* CTA */
 .cta-section{padding:8rem 5rem;text-align:center;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(91,45,142,0.12) 0%,transparent 65%)}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(91,45,142,0.12) 0%,transparent 65%);opacity:1}
 .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
 .cta-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.8rem;border:1px solid rgba(201,168,76,0.2);padding:.4rem 1.2rem}
 .cta-h2{font-size:clamp(2.5rem,5vw,5.5rem);font-weight:800;letter-spacing:-2px;line-height:.95;margin-bottom:1.5rem}
@@ -201,6 +201,17 @@ footer{padding:3rem 5rem;border-top:1px solid var(--border);display:flex;justify
 [data-reveal].visible{opacity:1;transform:none}
 [data-d1]{transition-delay:.08s}[data-d2]{transition-delay:.15s}[data-d3]{transition-delay:.22s}[data-d4]{transition-delay:.29s}
 
+.directions::before,
+.how::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+
+.acad-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem;z-index:200}
+.acad-burger span{display:block;width:24px;height:2px;background:var(--white);transition:.3s}
+.acad-mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,4,14,0.98);backdrop-filter:blur(20px);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.acad-mobile-menu.open{display:flex}
+.acad-mobile-menu a{font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:1px;transition:.3s}
+.acad-mobile-menu a:hover{color:var(--gold)}
+.acad-mobile-menu a:last-child{font-size:.8rem;color:var(--dim);margin-top:2rem;font-family:var(--mono)}
+
 /* MOBILE */
 @media(max-width:1024px){.dirs-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:768px){
@@ -223,7 +234,8 @@ footer{padding:3rem 5rem;border-top:1px solid var(--border);display:flex;justify
   .cd-block{min-width:56px;padding:.6rem .8rem}
   .cd-num{font-size:1.5rem}
   .nav-right{gap:.5rem}
-  .nav-cta{padding:.55rem 1.2rem;font-size:.65rem}
+  .nav-cta{padding:.55rem 1.2rem;font-size:.65rem;display:none}
+  .acad-burger{display:flex}
 }
 @media(max-width:480px){
   .dirs-grid{grid-template-columns:1fr}
@@ -255,6 +267,17 @@ footer{padding:3rem 5rem;border-top:1px solid var(--border);display:flex;justify
     <a href="https://t.me/TRAFIQO_club01" class="nav-cta" target="_blank">Вступить бесплатно</a>
   </div>
 </nav>
+<button class="acad-burger" id="acadBurger">
+  <span></span><span></span><span></span>
+</button>
+<div class="acad-mobile-menu" id="acadMenu">
+  <a href="#directions">Направления</a>
+  <a href="#live">Текущий курс</a>
+  <a href="#how">Как учиться</a>
+  <a href="#cta">Подписаться</a>
+  <a href="https://t.me/TRAFIQO_club01" target="_blank">Вступить бесплатно</a>
+  <a href="https://trafiqo.store">← На главную</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -568,6 +591,15 @@ const tick = () => {
   document.getElementById('cdS').textContent = fmt(s);
 };
 tick(); setInterval(tick, 1000);
+
+const burger = document.getElementById('acadBurger');
+const menu = document.getElementById('acadMenu');
+burger.addEventListener('click', () => {
+  menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => menu.classList.remove('open'));
+});
 </script>
 </body>
 </html>
