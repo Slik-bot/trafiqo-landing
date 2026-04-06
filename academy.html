@@ -1,4 +1,571 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=https://trafiqo.github.io/portfolio/academy.html">
-</head><body></body></html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAFIQO Academy — Бесплатное обучение SMM и трафику</title>
+<meta name="description" content="Бесплатная онлайн-школа по продвижению в соцсетях. 25+ направлений: Instagram, TikTok, YouTube, Telegram и другие. Старт прямо сейчас.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#05040E;--bg2:#0A0818;--bg3:#0D0B1F;
+  --purple:#5B2D8E;--purple-lt:#9B7FE8;--purple-dim:rgba(91,45,142,0.15);
+  --gold:#C9A84C;--gold2:#E8C97A;--gold-dim:rgba(201,168,76,0.1);
+  --white:#F0ECFF;--muted:rgba(240,236,255,0.45);--dim:rgba(240,236,255,0.18);
+  --border:rgba(155,127,232,0.12);--border2:rgba(255,255,255,0.06);
+  --mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--display);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px;opacity:.022;pointer-events:none;z-index:9998}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5rem;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(5,4,14,0.85)}
+.logo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--purple),var(--purple-lt));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:var(--white);letter-spacing:0;flex-shrink:0}
+.logo-text{font-size:.95rem;font-weight:800;letter-spacing:3px;color:var(--white)}
+.logo-sub{font-family:var(--mono);font-size:.52rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;line-height:1;margin-top:1px}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:1px;transition:.3s;font-family:var(--mono)}
+.nav-links a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-tg{display:flex;align-items:center;gap:.5rem;color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.72rem;letter-spacing:1px;transition:.3s}
+.nav-tg:hover{color:var(--white)}
+.nav-cta{background:var(--gold);color:#05040E;padding:.65rem 1.8rem;font-size:.72rem;font-weight:700;letter-spacing:2px;text-decoration:none;transition:.3s;font-family:var(--mono);white-space:nowrap}
+.nav-cta:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden}
+.hero-bg1{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(91,45,142,0.2) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-bg2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);top:20%;left:65%;transform:translate(-50%,-50%);animation:bgPulse 5s ease-in-out infinite;pointer-events:none}
+@keyframes bgPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.3)}}
+
+.live-badge{display:inline-flex;align-items:center;gap:.7rem;border:1px solid rgba(40,200,64,0.25);background:rgba(40,200,64,0.06);padding:.5rem 1.4rem;border-radius:100px;font-family:var(--mono);font-size:.62rem;letter-spacing:3px;color:rgba(240,236,255,0.6);margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s .1s forwards}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#28C840;animation:livePulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.8)}}
+
+.hero-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeUp .7s .25s forwards}
+
+.hero-h1{font-size:clamp(3rem,7.5vw,9rem);font-weight:800;line-height:.88;letter-spacing:-4px;margin-bottom:2.5rem;opacity:0;animation:fadeUp .9s .4s forwards}
+.hero-h1 .w1{display:block;color:var(--dim)}
+.hero-h1 .w2{display:block;color:var(--white)}
+.hero-h1 .w3{display:block}
+.hero-h1 .w3 em{font-style:normal;color:var(--gold)}
+
+.hero-sub{font-family:var(--mono);font-size:.88rem;color:var(--muted);line-height:2.1;max-width:640px;margin:0 auto 3.5rem;opacity:0;animation:fadeUp .8s .55s forwards;letter-spacing:.2px}
+
+/* COUNTDOWN */
+.countdown-wrap{margin-bottom:3rem;opacity:0;animation:fadeUp .8s .65s forwards}
+.countdown-label{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--purple-lt);text-transform:uppercase;margin-bottom:1rem}
+.countdown{display:flex;gap:1rem;justify-content:center;align-items:center}
+.cd-block{background:rgba(91,45,142,0.12);border:1px solid var(--border);padding:.8rem 1.2rem;min-width:70px;text-align:center}
+.cd-num{font-size:2rem;font-weight:800;display:block;line-height:1;color:var(--white)}
+.cd-label{font-family:var(--mono);font-size:.5rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:.3rem}
+.cd-sep{font-size:1.5rem;color:var(--purple-lt);opacity:.5;font-weight:300}
+.current-course{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.course-tag{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:.2rem .8rem;font-size:.58rem;letter-spacing:2px;border-radius:2px}
+
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:5rem;opacity:0;animation:fadeUp .8s .75s forwards}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#05040E;padding:1.1rem 2.8rem;font-size:.8rem;font-weight:700;letter-spacing:2px;text-decoration:none;transition:.4s;font-family:var(--mono);display:inline-flex;align-items:center;gap:.7rem}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.25)}
+.btn-tg{background:rgba(41,182,246,0.1);border:1px solid rgba(41,182,246,0.25);color:rgba(41,182,246,0.8);padding:1.1rem 2.8rem;font-size:.8rem;letter-spacing:2px;text-decoration:none;transition:.3s;font-family:var(--mono);display:inline-flex;align-items:center;gap:.7rem}
+.btn-tg:hover{background:rgba(41,182,246,0.15);color:#29B6F6}
+.btn-outline{border:1px solid var(--border);color:var(--muted);padding:1.1rem 2.8rem;font-size:.8rem;letter-spacing:2px;text-decoration:none;transition:.3s;font-family:var(--mono)}
+.btn-outline:hover{border-color:var(--purple-lt);color:var(--white)}
+
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);max-width:700px;margin:0 auto;opacity:0;animation:fadeUp .8s .9s forwards}
+.h-stat{padding:1.5rem 2rem;border-right:1px solid var(--border);text-align:center}
+.h-stat:last-child{border-right:none}
+.h-stat-n{font-size:1.8rem;font-weight:800;color:var(--gold);display:block;line-height:1;margin-bottom:.3rem}
+.h-stat-l{font-family:var(--mono);font-size:.55rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+
+/* MARQUEE */
+.marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;background:rgba(91,45,142,0.04)}
+.marquee-track{display:flex;gap:2.5rem;width:max-content;animation:marquee 30s linear infinite;white-space:nowrap}
+.marquee-item{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--dim);text-transform:uppercase;display:flex;align-items:center;gap:2.5rem}
+.marquee-sep{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;opacity:.5}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* DIRECTIONS */
+.directions{padding:8rem 5rem}
+.sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.sec-left{}
+.sec-tag{font-family:var(--mono);font-size:.58rem;letter-spacing:5px;color:var(--purple-lt);text-transform:uppercase;display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.sec-tag::before{content:'//';color:var(--dim)}
+.sec-h2{font-size:clamp(2.5rem,4vw,4rem);font-weight:800;letter-spacing:-1.5px;line-height:1}
+.sec-sub{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-top:.8rem;line-height:1.8}
+.sec-right{font-family:var(--mono);font-size:.7rem;color:var(--dim);text-align:right}
+
+.dirs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border2)}
+.dir-card{background:var(--bg);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:.4s;cursor:default}
+.dir-card.available{cursor:pointer}
+.dir-card.available:hover{background:var(--bg3)}
+.dir-card.available:hover .dir-arrow{opacity:1;transform:translateX(0)}
+.dir-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--purple),var(--gold));transform:scaleX(0);transform-origin:left;transition:.5s}
+.dir-card.available:hover::before{transform:scaleX(1)}
+.dir-card.locked{opacity:.4}
+.dir-num{font-family:var(--mono);font-size:.52rem;letter-spacing:2px;color:var(--dim);margin-bottom:1.2rem;display:block}
+.dir-icon-wrap{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;transition:.3s}
+.dir-card.available:hover .dir-icon-wrap{border-color:var(--purple-lt);background:var(--purple-dim)}
+.dir-icon-svg{width:20px;height:20px;color:var(--purple-lt)}
+.dir-card.locked .dir-icon-svg{color:var(--dim)}
+.dir-name{font-size:.85rem;font-weight:700;letter-spacing:.3px;margin-bottom:.5rem;line-height:1.3}
+.dir-desc{font-family:var(--mono);font-size:.62rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
+.dir-footer{display:flex;align-items:center;justify-content:space-between}
+.dir-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:2px;padding:.25rem .7rem;border-radius:100px}
+.dir-tag.free{background:rgba(40,200,64,0.08);color:#28C840;border:1px solid rgba(40,200,64,0.2)}
+.dir-tag.active{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.25)}
+.dir-tag.soon{background:rgba(155,127,232,0.08);color:var(--purple-lt);border:1px solid rgba(155,127,232,0.15)}
+.dir-lock{font-family:var(--mono);font-size:.55rem;color:var(--dim);letter-spacing:1px}
+.dir-arrow{font-size:.8rem;color:var(--purple-lt);opacity:0;transform:translateX(-6px);transition:.3s}
+
+/* LIVE COURSE */
+.live-course{padding:6rem 5rem;background:var(--bg2)}
+.live-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.live-left{}
+.live-badge-wrap{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem}
+.live-badge-pill{background:rgba(40,200,64,0.08);border:1px solid rgba(40,200,64,0.2);color:#28C840;font-family:var(--mono);font-size:.6rem;letter-spacing:3px;padding:.4rem 1rem;border-radius:100px;display:flex;align-items:center;gap:.5rem}
+.live-h2{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:800;letter-spacing:-1px;line-height:1.05;margin-bottom:1.5rem}
+.live-h2 span{color:var(--gold)}
+.live-desc{font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:2;margin-bottom:2.5rem}
+.live-meta{display:flex;gap:2rem;margin-bottom:2.5rem}
+.live-meta-item{font-family:var(--mono);font-size:.65rem;color:var(--dim);display:flex;flex-direction:column;gap:.3rem}
+.live-meta-item strong{color:var(--white);font-size:.85rem;font-weight:700}
+.live-socials{display:flex;gap:.8rem;flex-wrap:wrap}
+.social-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.5rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.68rem;letter-spacing:1px;transition:.3s}
+.social-btn:hover{border-color:var(--purple-lt);color:var(--white)}
+.social-btn.tg{border-color:rgba(41,182,246,0.2);color:rgba(41,182,246,0.7)}
+.social-btn.tg:hover{border-color:#29B6F6;color:#29B6F6}
+.social-btn.ig{border-color:rgba(193,53,132,0.2);color:rgba(193,53,132,0.7)}
+.social-btn.ig:hover{border-color:#C13584;color:#C13584}
+.social-btn.yt{border-color:rgba(255,0,0,0.2);color:rgba(255,80,80,0.7)}
+.social-btn.yt:hover{border-color:#FF4444;color:#FF4444}
+.social-icon{width:16px;height:16px;flex-shrink:0}
+
+.live-right{}
+.lesson-card{background:var(--bg);border:1px solid var(--border);overflow:hidden}
+.lesson-card-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.lesson-card-title{font-size:.85rem;font-weight:700;letter-spacing:.5px}
+.lesson-card-status{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;color:#28C840;display:flex;align-items:center;gap:.4rem}
+.lesson-list{display:flex;flex-direction:column}
+.lesson-row{display:flex;align-items:center;gap:1rem;padding:.9rem 1.5rem;border-bottom:1px solid var(--border2);transition:.2s}
+.lesson-row:last-child{border-bottom:none}
+.lesson-row:hover{background:var(--bg3)}
+.lesson-n{font-family:var(--mono);font-size:.6rem;color:var(--dim);min-width:24px}
+.lesson-title{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex:1;line-height:1.5}
+.lesson-done{width:18px;height:18px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.55rem}
+.lesson-done.ok{border-color:rgba(40,200,64,0.4);color:#28C840;background:rgba(40,200,64,0.08)}
+.lesson-done.live{border-color:rgba(201,168,76,0.4);color:var(--gold);background:rgba(201,168,76,0.08);animation:livePulse 2s ease-in-out infinite}
+.lesson-done.lock{border-color:var(--dim);color:var(--dim)}
+
+/* HOW */
+.how{padding:8rem 5rem}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);margin-top:4rem}
+.how-item{background:var(--bg);padding:3rem 2.5rem;position:relative;transition:.3s}
+.how-item:hover{background:var(--bg3)}
+.how-num{font-family:var(--mono);font-size:3rem;font-weight:700;color:var(--purple-dim);line-height:1;margin-bottom:1.5rem;display:block}
+.how-title{font-size:1rem;font-weight:700;margin-bottom:.8rem}
+.how-desc{font-family:var(--mono);font-size:.68rem;color:var(--muted);line-height:1.9}
+
+/* CTA */
+.cta-section{padding:8rem 5rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(91,45,142,0.12) 0%,transparent 65%)}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.8rem;border:1px solid rgba(201,168,76,0.2);padding:.4rem 1.2rem}
+.cta-h2{font-size:clamp(2.5rem,5vw,5.5rem);font-weight:800;letter-spacing:-2px;line-height:.95;margin-bottom:1.5rem}
+.cta-sub{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:2;margin-bottom:3rem}
+.cta-socials{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-social{display:flex;align-items:center;gap:.8rem;padding:1rem 2rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.75rem;letter-spacing:1px;transition:.4s}
+.cta-social:hover{transform:translateY(-3px)}
+.cta-social.tg{border-color:rgba(41,182,246,0.25);color:rgba(41,182,246,0.7)}
+.cta-social.tg:hover{border-color:#29B6F6;color:#29B6F6;box-shadow:0 8px 30px rgba(41,182,246,0.15)}
+.cta-social.ig{border-color:rgba(193,53,132,0.25);color:rgba(193,53,132,0.7)}
+.cta-social.ig:hover{border-color:#C13584;color:#C13584;box-shadow:0 8px 30px rgba(193,53,132,0.15)}
+.cta-social.yt{border-color:rgba(255,68,68,0.25);color:rgba(255,100,100,0.7)}
+.cta-social.yt:hover{border-color:#FF4444;color:#FF4444;box-shadow:0 8px 30px rgba(255,68,68,0.15)}
+.cta-social.tg2{border-color:rgba(41,182,246,0.15);color:rgba(41,182,246,0.5)}
+.cta-social.tg2:hover{border-color:rgba(41,182,246,0.5);color:rgba(41,182,246,0.8)}
+.cta-social-icon{width:18px;height:18px;flex-shrink:0}
+
+/* FOOTER */
+footer{padding:3rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:2rem}
+.footer-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.footer-copy{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;color:var(--dim)}
+.footer-back{font-family:var(--mono);font-size:.62rem;letter-spacing:1px;color:var(--dim);text-decoration:none;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.footer-back:hover{color:var(--purple-lt)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+[data-reveal]{opacity:0;transform:translateY(35px);transition:.9s cubic-bezier(.16,1,.3,1)}
+[data-reveal].visible{opacity:1;transform:none}
+[data-d1]{transition-delay:.08s}[data-d2]{transition-delay:.15s}[data-d3]{transition-delay:.22s}[data-d4]{transition-delay:.29s}
+
+/* MOBILE */
+@media(max-width:1024px){.dirs-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+  nav{padding:1.1rem 1.5rem}
+  .nav-links{display:none}
+  .nav-tg{display:none}
+  .hero,.directions,.live-course,.how,.cta-section{padding:5rem 1.5rem}
+  .hero-h1{font-size:3.2rem;letter-spacing:-2px}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .h-stat:nth-child(2){border-right:none}
+  .h-stat:nth-child(1),.h-stat:nth-child(2){border-bottom:1px solid var(--border)}
+  .dirs-grid{grid-template-columns:1fr 1fr}
+  .live-inner{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .sec-header{flex-direction:column;align-items:flex-start;gap:1rem}
+  .cta-socials{flex-direction:column;align-items:center}
+  .cta-social{width:100%;max-width:320px;justify-content:center}
+  footer{flex-direction:column;text-align:center;padding:2.5rem 1.5rem;gap:1.5rem}
+  .countdown{gap:.5rem}
+  .cd-block{min-width:56px;padding:.6rem .8rem}
+  .cd-num{font-size:1.5rem}
+}
+@media(max-width:480px){
+  .dirs-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column;align-items:center}
+  .btn-gold,.btn-tg,.btn-outline{width:100%;max-width:320px;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://trafiqo.store" class="logo">
+    <div class="logo-mark">T</div>
+    <div>
+      <div class="logo-text">TRAFIQO</div>
+      <div class="logo-sub">Academy</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#directions">Направления</a></li>
+    <li><a href="#live">Текущий курс</a></li>
+    <li><a href="#how">Как учиться</a></li>
+    <li><a href="#cta">Подписаться</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://t.me/trafiqo_store" class="nav-tg" target="_blank">@trafiqo_store</a>
+    <a href="https://t.me/TRAFIQO_club01" class="nav-cta" target="_blank">Вступить бесплатно</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg1"></div>
+  <div class="hero-bg2"></div>
+
+  <div class="live-badge"><span class="live-dot"></span>Идёт набор · SMM-менеджер с нуля · Старт уже начался</div>
+  <div class="hero-tag">Бесплатная онлайн-школа · 25+ направлений</div>
+
+  <h1 class="hero-h1">
+    <span class="w1">Научись</span>
+    <span class="w2">продвижению</span>
+    <span class="w3">с нуля до <em>результата</em></span>
+  </h1>
+
+  <p class="hero-sub">Бесплатные курсы по SMM, таргету, контенту и трафику.<br>Никакой воды — только практика и реальные инструменты.<br>Подписывайся и начинай прямо сейчас.</p>
+
+  <div class="countdown-wrap">
+    <div class="countdown-label">До следующего курса</div>
+    <div class="countdown">
+      <div class="cd-block"><span class="cd-num" id="cdD">14</span><span class="cd-label">дней</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cdH">08</span><span class="cd-label">часов</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cdM">32</span><span class="cd-label">минут</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cdS">45</span><span class="cd-label">секунд</span></div>
+    </div>
+    <div class="current-course">
+      <span class="course-tag">СЕЙЧАС ИДЁТ</span>
+      SMM-менеджер с нуля · Урок выходит каждый день
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="https://t.me/TRAFIQO_club01" class="btn-tg" target="_blank">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8.03c-.12.57-.46.71-.93.44l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.61 4.72-4.27c.21-.18-.04-.28-.31-.1L7.9 14.87l-2.53-.79c-.55-.17-.56-.55.12-.81l9.89-3.81c.46-.17.86.11.26.34z"/></svg>
+      Вступить в Telegram
+    </a>
+    <a href="#directions" class="btn-outline">Смотреть программу</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat"><span class="h-stat-n">25+</span><span class="h-stat-l">Направлений</span></div>
+    <div class="h-stat"><span class="h-stat-n">∞</span><span class="h-stat-l">Уроков</span></div>
+    <div class="h-stat"><span class="h-stat-n">0 ₽</span><span class="h-stat-l">Стоимость</span></div>
+    <div class="h-stat"><span class="h-stat-n">24/7</span><span class="h-stat-l">Доступ</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Instagram <span class="marquee-sep"></span></span>
+    <span class="marquee-item">TikTok <span class="marquee-sep"></span></span>
+    <span class="marquee-item">YouTube <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Telegram <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Reels <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Таргет <span class="marquee-sep"></span></span>
+    <span class="marquee-item">SEO <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Контент <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Воронки <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Личный бренд <span class="marquee-sep"></span></span>
+    <span class="marquee-item">AI-маркетинг <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Монетизация <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Instagram <span class="marquee-sep"></span></span>
+    <span class="marquee-item">TikTok <span class="marquee-sep"></span></span>
+    <span class="marquee-item">YouTube <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Telegram <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Reels <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Таргет <span class="marquee-sep"></span></span>
+    <span class="marquee-item">SEO <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Контент <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Воронки <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Личный бренд <span class="marquee-sep"></span></span>
+    <span class="marquee-item">AI-маркетинг <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Монетизация <span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- DIRECTIONS -->
+<section class="directions" id="directions">
+  <div class="sec-header" data-reveal>
+    <div class="sec-left">
+      <div class="sec-tag">Программа обучения</div>
+      <h2 class="sec-h2">25+ направлений</h2>
+      <p class="sec-sub">Курсы выходят последовательно. Подписывайся чтобы не пропустить.</p>
+    </div>
+    <div class="sec-right">4 курса открыто<br>21 курс скоро</div>
+  </div>
+  <div class="dirs-grid">
+
+    <!-- AVAILABLE -->
+    <div class="dir-card available" data-reveal>
+      <span class="dir-num">01</span>
+      <div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div class="dir-name">SMM-менеджер с нуля</div>
+      <p class="dir-desc">Полный курс: стратегия, контент, аналитика, работа с клиентами. С нуля до первых заказов.</p>
+      <div class="dir-footer"><span class="dir-tag active">● Идёт сейчас</span><span class="dir-arrow">→</span></div>
+    </div>
+
+    <div class="dir-card available" data-reveal data-d1>
+      <span class="dir-num">02</span>
+      <div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+      <div class="dir-name">Instagram Reels</div>
+      <p class="dir-desc">Алгоритмы, монтаж, хуки, структура вирусного видео. От 0 до 100K просмотров.</p>
+      <div class="dir-footer"><span class="dir-tag free">Доступно</span><span class="dir-arrow">→</span></div>
+    </div>
+
+    <div class="dir-card available" data-reveal data-d2>
+      <span class="dir-num">03</span>
+      <div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+      <div class="dir-name">YouTube с нуля</div>
+      <p class="dir-desc">SEO, заголовки, превью, монтаж, монетизация. Первые 1000 подписчиков за 60 дней.</p>
+      <div class="dir-footer"><span class="dir-tag free">Доступно</span><span class="dir-arrow">→</span></div>
+    </div>
+
+    <div class="dir-card available" data-reveal data-d3>
+      <span class="dir-num">04</span>
+      <div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8.03c-.12.57-.46.71-.93.44l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.61 4.72-4.27c.21-.18-.04-.28-.31-.1L7.9 14.87l-2.53-.79c-.55-.17-.56-.55.12-.81l9.89-3.81c.46-.17.86.11.26.34z"/></svg></div>
+      <div class="dir-name">Telegram канал</div>
+      <p class="dir-desc">Стратегия, контент-план, монетизация, закупы рекламы и органический рост.</p>
+      <div class="dir-footer"><span class="dir-tag free">Доступно</span><span class="dir-arrow">→</span></div>
+    </div>
+
+    <!-- SOON -->
+    <div class="dir-card locked" data-reveal data-d4><span class="dir-num">05</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg></div><div class="dir-name">TikTok продвижение</div><p class="dir-desc">Алгоритм FYP, тренды, создание вирусного контента и монетизация.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal><span class="dir-num">06</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="dir-name">Таргетированная реклама</div><p class="dir-desc">Instagram Ads, TikTok Ads. Настройка кампаний, аудитории, аналитика.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d1><span class="dir-num">07</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div class="dir-name">SEO продвижение</div><p class="dir-desc">Органический поиск, ключевые слова, оптимизация контента под алгоритмы.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d2><span class="dir-num">08</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="dir-name">Контент-маркетинг</div><p class="dir-desc">Тексты, сторителлинг, контент-план, редакционная стратегия для бизнеса.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d3><span class="dir-num">09</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div><div class="dir-name">Email-маркетинг</div><p class="dir-desc">Рассылки, автоворонки, сегментация базы, письма которые открывают.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d4><span class="dir-num">10</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="dir-name">AI в маркетинге</div><p class="dir-desc">ChatGPT, Midjourney, автоматизация контента. Работай в 10× быстрее.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal><span class="dir-num">11</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="dir-name">Аналитика и метрики</div><p class="dir-desc">Читаем данные, принимаем решения на цифрах, оптимизируем кампании.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d1><span class="dir-num">12</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="dir-name">Монетизация аудитории</div><p class="dir-desc">Воронки продаж, партнёрки, инфопродукты, работа с брендами.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d2><span class="dir-num">13</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="dir-name">Личный бренд</div><p class="dir-desc">Позиционирование, экспертность, упаковка профиля, нетворкинг онлайн.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d3><span class="dir-num">14</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="dir-name">Community building</div><p class="dir-desc">Создание и монетизация онлайн-сообществ. Форумы, чаты, клубы.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d4><span class="dir-num">15</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="dir-name">Influence-маркетинг</div><p class="dir-desc">Работа с блогерами, нативные интеграции, подбор и анализ аудитории.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal><span class="dir-num">16</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg></div><div class="dir-name">Pinterest маркетинг</div><p class="dir-desc">Визуальный поиск, пины, трафик на сайт. Долгосрочная органика.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d1><span class="dir-num">17</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div><div class="dir-name">LinkedIn продвижение</div><p class="dir-desc">B2B трафик, личный бренд эксперта, генерация лидов через контент.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d2><span class="dir-num">18</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></div><div class="dir-name">X / Twitter маркетинг</div><p class="dir-desc">Виральный контент, твиттер-треды, монетизация через X Premium.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d3><span class="dir-num">19</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div><div class="dir-name">ВКонтакте продвижение</div><p class="dir-desc">Сообщества, таргет ВК, клипы, рекламный кабинет. Рынок СНГ.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d4><span class="dir-num">20</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="dir-name">Shorts & Клипы</div><p class="dir-desc">YouTube Shorts, VK Клипы — алгоритмы коротких видео и монетизация.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal><span class="dir-num">21</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg></div><div class="dir-name">Подкасты</div><p class="dir-desc">Запуск подкаста с нуля, дистрибуция, монетизация, рост аудитории.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d1><span class="dir-num">22</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="dir-name">Чат-боты и воронки</div><p class="dir-desc">Telegram-боты, автоворонки, квизы. Лидогенерация на автопилоте.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d2><span class="dir-num">23</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><div class="dir-name">Продажи через соцсети</div><p class="dir-desc">Скрипты продаж в директ, истории, прямые эфиры. Конверсия подписчика в клиента.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d3><span class="dir-num">24</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg></div><div class="dir-name">Запуск инфопродукта</div><p class="dir-desc">От идеи до первых продаж курса или консультаций. Без больших вложений.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+    <div class="dir-card locked" data-reveal data-d4><span class="dir-num">25</span><div class="dir-icon-wrap"><svg class="dir-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="dir-name">Фриланс в SMM</div><p class="dir-desc">Как найти первых клиентов, оформить портфолио, выйти на стабильный доход.</p><div class="dir-footer"><span class="dir-tag soon">Скоро</span><span class="dir-lock">🔒</span></div></div>
+
+  </div>
+</section>
+
+<!-- LIVE COURSE -->
+<section class="live-course" id="live">
+  <div class="live-inner">
+    <div class="live-left" data-reveal>
+      <div class="live-badge-wrap">
+        <div class="live-badge-pill"><span class="live-dot"></span>Идёт сейчас</div>
+      </div>
+      <h2 class="live-h2">SMM-менеджер<br>с нуля до <span>первых клиентов</span></h2>
+      <p class="live-desc">Бесплатный практический курс. Каждый день — новый урок в формате короткого видео. Смотри в Instagram, TikTok, YouTube или Telegram. Без регистрации, без оплаты.</p>
+      <div class="live-meta">
+        <div class="live-meta-item"><span>Формат</span><strong>Короткие видео</strong></div>
+        <div class="live-meta-item"><span>Периодичность</span><strong>Каждый день</strong></div>
+        <div class="live-meta-item"><span>Стоимость</span><strong>Бесплатно</strong></div>
+      </div>
+      <div class="live-socials">
+        <a href="https://t.me/TRAFIQO_club01" class="social-btn tg" target="_blank">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8.03c-.12.57-.46.71-.93.44l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.61 4.72-4.27c.21-.18-.04-.28-.31-.1L7.9 14.87l-2.53-.79c-.55-.17-.56-.55.12-.81l9.89-3.81c.46-.17.86.11.26.34z"/></svg>
+          Telegram группа
+        </a>
+        <a href="https://instagram.com/trafiqo.store" class="social-btn ig" target="_blank">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          Instagram
+        </a>
+        <a href="https://youtube.com/@trafiqo" class="social-btn yt" target="_blank">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          YouTube
+        </a>
+      </div>
+    </div>
+    <div class="live-right" data-reveal>
+      <div class="lesson-card">
+        <div class="lesson-card-header">
+          <div class="lesson-card-title">SMM-менеджер · Программа</div>
+          <div class="lesson-card-status"><span class="live-dot" style="width:5px;height:5px"></span>Идёт набор</div>
+        </div>
+        <div class="lesson-list">
+          <div class="lesson-row"><span class="lesson-n">01</span><span class="lesson-title">Кто такой SMM-менеджер и сколько он зарабатывает</span><div class="lesson-done ok">✓</div></div>
+          <div class="lesson-row"><span class="lesson-n">02</span><span class="lesson-title">Как выбрать нишу и найти первого клиента</span><div class="lesson-done ok">✓</div></div>
+          <div class="lesson-row"><span class="lesson-n">03</span><span class="lesson-title">Разбор аккаунта: что работает а что нет</span><div class="lesson-done ok">✓</div></div>
+          <div class="lesson-row"><span class="lesson-n">04</span><span class="lesson-title">Контент-план: система на месяц за 2 часа</span><div class="lesson-done live">●</div></div>
+          <div class="lesson-row"><span class="lesson-n">05</span><span class="lesson-title">Reels которые набирают просмотры</span><div class="lesson-done lock">—</div></div>
+          <div class="lesson-row"><span class="lesson-n">06</span><span class="lesson-title">Как продавать в соцсетях без прямых продаж</span><div class="lesson-done lock">—</div></div>
+          <div class="lesson-row"><span class="lesson-n">07</span><span class="lesson-title">Аналитика: что смотреть и как расти</span><div class="lesson-done lock">—</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="sec-tag" data-reveal>Как это работает</div>
+  <h2 class="sec-h2" data-reveal>Просто. Бесплатно.<br>Без регистрации.</h2>
+  <div class="how-grid">
+    <div class="how-item" data-reveal>
+      <span class="how-num">01</span>
+      <div class="how-title">Подписывайся</div>
+      <p class="how-desc">На наш Telegram, Instagram или YouTube. Бесплатно, без карты, за 10 секунд.</p>
+    </div>
+    <div class="how-item" data-reveal data-d1>
+      <span class="how-num">02</span>
+      <div class="how-title">Смотри уроки</div>
+      <p class="how-desc">Каждый день выходит новый урок. Коротко, по делу, с практическими заданиями.</p>
+    </div>
+    <div class="how-item" data-reveal data-d2>
+      <span class="how-num">03</span>
+      <div class="how-title">Применяй на практике</div>
+      <p class="how-desc">Задания после каждого урока. Разбор в Telegram-чате. Реальные результаты.</p>
+    </div>
+    <div class="how-item" data-reveal data-d3>
+      <span class="how-num">04</span>
+      <div class="how-title">Зарабатывай</div>
+      <p class="how-desc">После курса — портфолио, первые клиенты и вход на платформу TRAFIQO.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner" data-reveal>
+    <div class="cta-eyebrow">Присоединяйся бесплатно</div>
+    <h2 class="cta-h2">Начни учиться<br>прямо сейчас</h2>
+    <p class="cta-sub">Подпишись на наши соцсети — уроки выходят каждый день.<br>Никакой регистрации. Никакой оплаты. Только практика.</p>
+    <div class="cta-socials">
+      <a href="https://t.me/TRAFIQO_club01" class="cta-social tg" target="_blank">
+        <svg class="cta-social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8.03c-.12.57-.46.71-.93.44l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.61 4.72-4.27c.21-.18-.04-.28-.31-.1L7.9 14.87l-2.53-.79c-.55-.17-.56-.55.12-.81l9.89-3.81c.46-.17.86.11.26.34z"/></svg>
+        Telegram группа @TRAFIQO_club01
+      </a>
+      <a href="https://t.me/trafiqo_store" class="cta-social tg2" target="_blank">
+        <svg class="cta-social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8.03c-.12.57-.46.71-.93.44l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.61 4.72-4.27c.21-.18-.04-.28-.31-.1L7.9 14.87l-2.53-.79c-.55-.17-.56-.55.12-.81l9.89-3.81c.46-.17.86.11.26.34z"/></svg>
+        Telegram канал @trafiqo_store
+      </a>
+      <a href="https://instagram.com/trafiqo.store" class="cta-social ig" target="_blank">
+        <svg class="cta-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+        Instagram @trafiqo.store
+      </a>
+      <a href="https://youtube.com/@trafiqo" class="cta-social yt" target="_blank">
+        <svg class="cta-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        YouTube @trafiqo
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="https://trafiqo.store" class="footer-logo">
+    <div class="logo-mark">T</div>
+    <div>
+      <div style="font-size:.85rem;font-weight:800;letter-spacing:3px;color:var(--white)">TRAFIQO</div>
+      <div style="font-family:var(--mono);font-size:.5rem;letter-spacing:4px;color:var(--gold)">ACADEMY</div>
+    </div>
+  </a>
+  <span class="footer-copy">© 2025 TRAFIQO Academy · Бесплатное обучение трафику</span>
+  <a href="https://trafiqo.store" class="footer-back">← trafiqo.store</a>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
+},{threshold:0.08});
+document.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
+
+// Countdown — next course in 14 days from now
+const target = new Date();
+target.setDate(target.getDate() + 14);
+target.setHours(12,0,0,0);
+const tick = () => {
+  const now = new Date();
+  const diff = target - now;
+  if(diff <= 0) return;
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  const fmt = n => String(n).padStart(2,'0');
+  document.getElementById('cdD').textContent = fmt(d);
+  document.getElementById('cdH').textContent = fmt(h);
+  document.getElementById('cdM').textContent = fmt(m);
+  document.getElementById('cdS').textContent = fmt(s);
+};
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
