@@ -308,7 +308,6 @@ p  { font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
   .header__nav .btn--academy{width:100%;text-align:center;font-size:24px;border-radius:100px;justify-content:center;display:flex;align-items:center}
 }
 
-
 /* ─── CONTACT FORM ──────────────────────────────────────── */
 .section-contact { padding-top: 80px; padding-bottom: 80px; background: rgba(255, 255, 255, 0.01); }
 
